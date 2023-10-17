@@ -12,13 +12,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Teacher', 'Student', 'Admin'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -29,11 +32,21 @@ function ResponsiveAppBar() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+   const handlelogout =()=>{
+     navigate("/register");
+     toast.success("Successfull");
+   }
+
+   const handlelogin =()=>{
+    navigate("/login");
+    toast.success("Successfull");
+  }
 
   return (
     <AppBar position="static">
@@ -113,6 +126,11 @@ function ResponsiveAppBar() {
           >
             LOGO
           </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } , gap: 2  }}>
+            <Button onClick={handlelogin} variant='contained' color='success'>Login</Button>
+            
+            <Button onClick={handlelogout} variant='contained' color='success'>Register</Button>
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -147,6 +165,7 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
@@ -156,6 +175,7 @@ function ResponsiveAppBar() {
           </Box>
         </Toolbar>
       </Container>
+    <ToastContainer/>
     </AppBar>
   );
 }

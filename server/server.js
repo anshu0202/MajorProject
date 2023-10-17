@@ -29,7 +29,7 @@ app.use("/api/v1/product" , productRoutes);
 
 //rest api
 app.get("/", (req, res) => {
-    res.send("<h1>Welcome to E-comm Server!!</h1>")
+    res.send("<h1>Welcome to Education-HUB Server!!</h1>")
 })
 
 const PORT = process.env.PORT || 8080;
