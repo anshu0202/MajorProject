@@ -1,10 +1,13 @@
-import React, { useCallback, useState } from 'react'
-import Layout from '../components/Layout/Layout'
-import webrtc from "../assets/img/webrtc.gif";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import Layout from '../components/Layout/Layout';
 import { Button, Input } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 import { toast } from 'react-toastify';
-const Home = () => {
+
+
+
+const Room = () => {
     const [roomID, setRoomID] = useState('');
     const navigate = useNavigate();
     
@@ -14,15 +17,9 @@ const Home = () => {
    },[navigate , roomID])
 
 
-
     return (
         <Layout>
-            <h1>Home</h1>
-            <div className='container text-center'>
-
-                <img style={{ width: "50%" }} src={webrtc} alt="web-rtc dig." />
-
-            </div>
+            <h1>Room</h1>
             <div className='container text-center'>
                 <div className='row'>
                     <div className='col-md-6'>
@@ -35,17 +32,15 @@ const Home = () => {
                         </div>
                     </div>
                     <div className='col-md-6'>
-                        <h3> here is information and oher stuffs</h3>
+                       <h3> here is information and oher stuffs</h3>
                     </div>
 
 
 
                 </div>
             </div>
-
         </Layout>
-
     )
 }
 
-export default Home
+export default Room
