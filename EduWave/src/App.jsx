@@ -8,7 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Room from './pages/Room';
 import NotFound from './pages/NotFound';
 import RoomPage from './pages/RoomPage';
-import Testingpage from './pages/testingpage';
+// import Testingpage from './pages/Testingpage';
+
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/room" element={<Room/>} />
         <Route path="/room/:roomID" element={<RoomPage/>} />
-        <Route path="/testing" element={<Testingpage/>} />
+        {/* <Route path="/testing" element={<Testingpage/>} /> */}
 
 
 
