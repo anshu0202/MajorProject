@@ -6,7 +6,7 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Room from './pages/Room';
-import NotFound from './pages/notFound';
+import NotFound from './pages/NotFound';
 import RoomPage from './pages/RoomPage';
 import Testingpage from './pages/testingpage';
 
