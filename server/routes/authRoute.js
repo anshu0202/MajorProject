@@ -43,6 +43,8 @@ router.get("/admin-auth", requireSignIn,isAdmin, (req, res) => {
     res.status(200).send({ ok: true });
 })
 
+
+
 router.put('/profile' , requireSignIn , updateProfileController);
 
 router.get('/orders' , requireSignIn , getOrdersController)
