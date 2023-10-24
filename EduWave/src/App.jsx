@@ -20,6 +20,7 @@ import Help from './pages/Student/HelpAndSupport/Help';
 import JoinClass from './pages/Student/JoinClass/JoinClass';
 import Announcements from './pages/Student/Anouncements/Announcements';
 import Grades from './pages/Student/Grades/Grades';
+import LiveClass from './pages/Teacher/LiveClass/LiveClass';
 // import Testingpage from './pages/Testingpage';
 
 
@@ -31,6 +32,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/room" element={<Room/>} />
         <Route path="/room/:roomID" element={<RoomPage/>} />
+        <Route path="/liveClass" element={<LiveClass/>} />
+
         {/* <Route path="/testing" element={<Testingpage/>} /> */}
 
 
