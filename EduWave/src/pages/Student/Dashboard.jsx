@@ -8,13 +8,13 @@ import { Outlet, useNavigate } from 'react-router-dom';
 function Dashboard() {
   return (
     <div className='main'>
-    <div className='sideBar'>
-    <SideBar/>
-    </div>
-    <div className='footer'>
-    <Footer/>
-    </div>
-    <Outlet/>
+      <div className='sideBar'>
+        <SideBar />
+      </div>
+      <div className='footer'>
+        <Footer />
+      </div>
+      <Outlet />
     </div>
   )
 }

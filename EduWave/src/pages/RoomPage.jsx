@@ -3,13 +3,15 @@ import Layout from '../components/Layout/Layout';
 import { useParams } from 'react-router-dom';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { ZegoSuperBoardManager } from "zego-superboard-web";
+import { useTeacher } from '../context/Teacher';
 
 
 const RoomPage = () => {
     const { roomID } = useParams();
+    const { teacherData, setTeacherData } = useTeacher();
 
     const myMeeting = async (element) => {
-
+        console.log("teacher data" , teacherData)
         // const appID = import.meta.env.VITE_APP_ID;
         const appID = 1661547157;
 
@@ -26,26 +28,26 @@ const RoomPage = () => {
             serverSecret,
             roomID,
             Date.now().toString(),
-            "Enter Your Name Here ",);
+            teacherData?.teacherName,);
 
         const zc = ZegoUIKitPrebuilt.create(kitToken);
 
-        zc.addPlugins({ ZegoSuperBoardManager });
+        // zc.addPlugins({ ZegoSuperBoardManager });
         zc.joinRoom({
             container: element,
             whiteboardConfig: {
                 showAddImageButton: true,
             },
-            sharedLinks: [
-                {
-                    name: 'Personal link',
-                    url:
-                        window.location.protocol + '//' +
-                        window.location.host + window.location.pathname +
-                        '?roomID=' +
-                        roomID,
-                },
-            ],
+            // sharedLinks: [
+            //     {
+            //         name: 'Personal link',
+            //         url:
+            //             window.location.protocol + '//' +
+            //             window.location.host + window.location.pathname +
+            //             '?roomID=' +
+            //             roomID,
+            //     },
+            // ],
             videoResolutionList: [
                 ZegoUIKitPrebuilt.VideoResolution_360P,
                 ZegoUIKitPrebuilt.VideoResolution_180P,
