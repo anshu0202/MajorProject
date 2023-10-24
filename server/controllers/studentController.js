@@ -53,41 +53,47 @@ export const studentRegisterController = async (req, res) => {
 //login part is left
 export const studentLogin = async (req, res) => {
   try {
-    const { userName, password } = req.body;
+    const { email, password } = req.body;
+    // console.log("ggg ", req.body)
 
-    if (!userName || !password) {
-      res.staus(400).send({
-        message: "Invalid username or password",
+    if (!email || !password) {
+      res.status(400).send({
+        message: "Invalid email or password",
         success: false,
       });
+      return;
     }
 
-    const student = await studentModel.findOne({ userName });
+    const student = await studentModel.findOne({ email });
 
     if (!student) {
       res.status(404).send({
-        message: "No student found with given user name",
+        message: "No student found with given Email-ID",
         success: true,
       });
+      return;
     }
 
     const match = await comparePassword(password, student.password);
 
     if (!match) {
-      res.staus(404).send({
-        message: "Username or Password do not match",
+      res.status(404).send({
+        message: "Email or Password do not match",
         success: false,
       });
     }
 
-    const token = await getToken(student._id);
+    else {
 
-    res.status(200).send({
-      message: "Student successfully login !!",
-      student,
-      success: true,
-      token,
-    });
+      const token = await getToken(student._id);
+      res.status(200).send({
+        message: "Student successfully login !!",
+        student,
+        success: true,
+        token,
+      });
+
+    }
   } catch (error) {
     console.log("Error while student login");
     res.status(500).send({

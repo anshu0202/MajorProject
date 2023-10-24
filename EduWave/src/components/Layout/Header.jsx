@@ -14,11 +14,15 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { useAuth } from '../../context/User';
 
-const pages = ['Teacher', 'Student', 'Admin'];
+const pages = ['Login', 'Student', 'Admin'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
+  const { user } = useAuth();
+  console.log("iuhsdisfhsuihfd --- >", user);
+  // const user = auth?.user;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
@@ -38,12 +42,12 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-   const handlelogout =()=>{
-     navigate("/register");
-     toast.success("Successfull");
-   }
+  const handlelogout = () => {
+    navigate("/register");
+    toast.success("Successfull");
+  }
 
-   const handlelogin =()=>{
+  const handlelogin = () => {
     navigate("/login");
     toast.success("Successfull");
   }
@@ -126,21 +130,40 @@ function ResponsiveAppBar() {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } , gap: 2  }}>
-            <Button onClick={handlelogin} variant='contained' color='success'>Login</Button>
-            
-            <Button onClick={handlelogout} variant='contained' color='success'>Register</Button>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', }, justifyContent: 'flex-end', gap: '20px', mr: '10px' }}>
+
+
+
+
+
+
+
+            <Button
+              onClick={handlelogout}
+              sx={{ my: 2, display: 'block' }}
+              color='success'
+              variant='contained'
+            >
+              Logout
+            </Button>
+
+
+
+            <Button
+              onClick={handlelogin}
+              sx={{ my: 2, display: 'block' }}
+              color='success'
+              variant='contained'
+            >
+              Login/Register
+            </Button>
+
+
+
+
+
+
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -175,7 +198,7 @@ function ResponsiveAppBar() {
           </Box>
         </Toolbar>
       </Container>
-    <ToastContainer/>
+      <ToastContainer />
     </AppBar>
   );
 }

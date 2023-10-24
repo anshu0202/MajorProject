@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.post("/register", studentRegisterController);
 
-router.get("/login", studentLogin);
+router.post("/login", studentLogin);
 
 router.put("/updateProfile/:id", updateStudentProfile);
 
