@@ -18,12 +18,8 @@ const Home = () => {
     return (
         <Layout>
             <h1>Home</h1>
-            <div className='container text-center'>
-
-                <img style={{ width: "50%" }} src={webrtc} alt="web-rtc dig." />
-
-            </div>
-            <div className='container text-center'>
+            
+            {/* <div className='container text-center'>
                 <div className='row'>
                     <div className='col-md-6'>
 
@@ -41,7 +37,7 @@ const Home = () => {
 
 
                 </div>
-            </div>
+            </div> */}
 
         </Layout>
 

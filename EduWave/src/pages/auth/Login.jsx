@@ -19,12 +19,15 @@ import { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios';
 import loginGif from "../../assets/img/login.gif";
+import { studentLogin } from '../../service/StudentApi';
+import { useAuth } from '../../context/User';
 // import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 // import jwt_decode from "jwt-decode";
 
 
 
 function Copyright(props) {
+  
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
@@ -43,7 +46,7 @@ const defaultTheme = createTheme();
 
 export default function SignInSide() {
 
-
+    const {auth , setAuth} = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -51,44 +54,33 @@ export default function SignInSide() {
     // const [auth, setAuth] = useAuth();
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const data  = {
+            email : email,
+            password : password
+        }
 
+        // console.log("data in login -->", data);
 
-        // try {
-        //   const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/login`, {
-        //     email, password
-        //   });
+        const res = await studentLogin(data);
+        // console.log("this is teststststt ---> " , res);
+        if (res.success) {
+            toast.success("Login Successfully");
+            localStorage.setItem("auth", JSON.stringify(res?.student));
+            localStorage.setItem("token", JSON.stringify(res?.token));
 
-        //   if (res && res.data.success) {
-        //     toast.success(res.data.message);
-        //     setAuth({
-        //       ...auth,
-        //       user: res.data.user,
-        //       token: res.data.token
-        //     });
-        //     localStorage.setItem("auth", JSON.stringify(res.data));
-        //     setTimeout(() => {
-        //       navigate(location.state || "/")
-        //     }, 1000)
+            setTimeout(() => {
+                
+                navigate("/studentDashboard");
+            }, 2000);
 
-        //   } else {
-        //     toast.error(res.data.message)
-        //   }
-        // } catch (error) {
-        //   console.log("Error while Submitting data in frontEnd --> ", error);
-        //   if (error.response) {
-        //     toast.error(error.response.data.message)
-        //   }
-        //   if (error.AxiosError) {
-        //     toast.error(error.AxiosError.message)
-        //   }
-        //   if (error.message === "Network Error") {
-        //     toast.error("Network error occurred. Please check your internet connection and try again.");
-        //   }
+            
+            setAuth({
+                user: res?.student,
+                token: res?.token
+            });
+            
 
-        // }
-
-
-
+        }
     }
     return (
         <>

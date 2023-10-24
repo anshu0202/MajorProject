@@ -16,6 +16,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import { studentRegister } from '../../service/StudentApi';
 // import loginGif from "./img/login.gif";
 function Copyright(props) {
     return (
@@ -35,43 +36,37 @@ export default function SignUp() {
 
     const navigate = useNavigate();
 
-    const [name, setName] = useState("");
+    const [fname, setFName] = useState("");
+    const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
-    const [answer, setAnswer] = useState("");
+    const [username, setUsername] = useState("");
+    // const [answer, setAnswer] = useState("");
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
-            name, email, password, phone, address, answer
+            firstName: fname,
+            email : email,
+            password : password,
+            lastName: lname,
+            userName : username
         }
         console.log(data);
 
+        const res = await studentRegister(data);
+        console.log("res in register page main ", res);
+        if (res.success) {
+            toast.success(res.message);
+            // localStorage.setItem("user", JSON.stringify(res?.student));
+            setTimeout(() => {
+                
+                navigate("/login");
+            },2000);
 
-        //  console.log(process.env.REACT_APP_API)
-
-        // try {
-        //     const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, data);
-        //     console.log("this is resposnse in front--->", res)
-        //     if (res.data.success) {
-        //         toast.success(res.data.message);
-        //         setTimeout(() => {
-        //             navigate("/login")
-        //         }, 1000)
-        //         // navigate("/login")
-        //     } else {
-        //         toast.error(res.data.message)
-        //     }
-
-
-
-
-        // } catch (error) {
-        //     console.log("Error while Submitting data in frontEnd --> ", error);
-        //     toast.error("Something Went Wrong!!:😢😢")
-        // }
-
+        } else {
+            toast.error(res.message);
+        }
 
 
     }
@@ -82,7 +77,7 @@ export default function SignUp() {
 
     return (
         <main-container >
-            <Container   component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs">
                 <Box
                     sx={{
                         marginTop: 8,
@@ -101,14 +96,14 @@ export default function SignUp() {
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    value={fname}
+                                    onChange={(e) => setFName(e.target.value)}
                                     autoComplete="given-name"
                                     name="Name"
                                     required
                                     fullWidth
                                     id="firstName"
-                                    label="Name"
+                                    label="First Name"
                                     autoFocus
                                 />
                             </Grid>
@@ -116,12 +111,12 @@ export default function SignUp() {
                                 <TextField
                                     required
                                     fullWidth
-                                    value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    id="exampleInputPhone"
-                                    label="Phone No."
-                                    name="phoneno"
-                                    autoComplete="phone"
+                                    value={lname}
+                                    onChange={(e) => setLname(e.target.value)}
+                                    id="name"
+                                    label="Last Name "
+                                    name="lname"
+                                    autoComplete="lastname"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -152,17 +147,17 @@ export default function SignUp() {
                             <Grid item xs={12}>
                                 <TextField
                                     required
-                                    value={address}
-                                    onChange={(e) => setAddress(e.target.value)}
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
                                     fullWidth
-                                    name="address"
-                                    label="Enter Your Address"
+                                    name="username"
+                                    label="Enter Your Username"
                                     type="text"
-                                    id="exampleInputAddress"
-                                    autoComplete="address"
+                                    id="exampleInputUsername"
+                                    autoComplete="username"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <TextField
                                     required
                                     value={answer}
@@ -173,7 +168,7 @@ export default function SignUp() {
                                     id="exampleInputgame"
                                     autoComplete="game"
                                 />
-                            </Grid>
+                            </Grid> */}
 
                         </Grid>
                         <Button
