@@ -17,8 +17,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-// import InboxIcon from '@mui/icons-material/MoveToInbox';
-// import MailIcon from '@mui/icons-material/Mail';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 import ClassIcon from '@mui/icons-material/Class';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AssessmentIcon from '@mui/icons-material/Assessment';
@@ -35,7 +35,14 @@ import Assignment from './Assignments/Assignment';
 import { Route, Routes, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Outlet, useNavigate } from 'react-router-dom';
-import './SideBar.css'
+import './SideBar.css';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 
@@ -155,10 +162,22 @@ export default function SideBar() {
     setOpen(false);
   };
 
+
+
+
+   const [anchorEl, setAnchorEl] = React.useState(null);
+  const opendropdown = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div style={{display:"flex",flexDirection:"column",minHeight:"100vh",paddingTop:"15vh"}}>
-    <Box sx={{ display: 'flex' }} style={{zIndex:1,flex:1, }} >
-      <CssBaseline />
+    <Box sx={{ display: 'flex' }} style={{zIndex:1,flex:1 }} >
+      <CssBaseline  />
       <AppBar position="fixed" open={open} style={{backgroundColor:"Black",}}>
         <Toolbar style={{display:"flex",justifyContent:"space-between"}}>
           <IconButton
@@ -177,11 +196,69 @@ export default function SideBar() {
             {title==undefined ? "StudentDashboard" : title}
             {/* {title} */}
           </Typography>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoHXWaNoXKuhTQ8j3eV-NxoCOxrpOfXEYwpg3gF-vMw&s" alt="" style={{height:"30px",width:"30px",borderRadius:"50%"}} />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoHXWaNoXKuhTQ8j3eV-NxoCOxrpOfXEYwpg3gF-vMw&s" alt="" onClick={handleClick} style={{height:"30px",width:"30px",borderRadius:"50%"}} />
         </Toolbar>
+        <Menu
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={opendropdown}
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            '&:before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+      <Link to="/studentDashboard/Profile" style={{textDecoration:"none",color:"black"}}>
+        <MenuItem onClick={handleClose}>
+          <Avatar /> Profile
+        </MenuItem>
+      </Link>
+      <Link to="/studentDashboard/UpdateProfile" style={{textDecoration:"none",color:"black"}}>
+        <MenuItem onClick={handleClose}>
+          <Avatar /> Update
+        </MenuItem>
+      </Link>
+        <Divider />
+    
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
+       
+      </Menu>
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoHXWaNoXKuhTQ8j3eV-NxoCOxrpOfXEYwpg3gF-vMw&s" alt="" style={{float:"right",height:"30px",width:"30px",borderRadius:"50%"}} /> */}
       </AppBar>
-      <Drawer variant="permanent" open={open} >
+      {/* <div > */}
+
+     
+      <Drawer variant="permanent" open={open}  style={{backgroundColor:"Black"}}>
         <DrawerHeader style={{backgroundColor:"Black", color:"white"}}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon style={{color:"white"}}/> : <ChevronLeftIcon style={{color:"white"}}/>}
@@ -190,8 +267,8 @@ export default function SideBar() {
         <Divider />
         <List style={{backgroundColor:"Black",color:"white"}}>
           {arr.map((text,index) => (
-            <Link to={text.link} >
-            <ListItem key={index} disablePadding sx={{ display: 'block' }}>
+            <Link to={text.link} style={{textDecoration:"none" }} >
+            <ListItem key={index} disablePadding sx={{ display: 'block',}}>
             
               <ListItemButton
                 sx={{
@@ -217,16 +294,18 @@ export default function SideBar() {
                   <AssignmentIcon style={{color:"white"}}/>
                   <CalendarMonthIcon style={{color:"white"}}/> */}
                 </ListItemIcon>
-                <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 ,textDecoration:"none",color:"white"}} />
+                <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 ,textDecorationLine:"none",textDecoration:"none",color:"white"}} />
                 {/* </Link> */}
               </ListItemButton>
             </ListItem>
             </Link>
           ))}
         </List>
-        <Divider />
+        {/* <Divider style={{backgroundColor:"aqua"}} /> */}
+        
         </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3}}>
+        {/* </div> */}
+      <Box component="main" sx={{ p: 3}}>
         <DrawerHeader />
        
       </Box>

@@ -21,6 +21,8 @@ import JoinClass from './pages/Student/JoinClass/JoinClass';
 import Announcements from './pages/Student/Anouncements/Announcements';
 import Grades from './pages/Student/Grades/Grades';
 import LiveClass from './pages/Teacher/LiveClass/LiveClass';
+import Profile from './pages/Student/Profile/Profile';
+import UpdateProfile from './pages/Student/UpdateProfile/UpdateProfile';
 // import Testingpage from './pages/Testingpage';
 
 
@@ -42,7 +44,6 @@ function App() {
 
         <Route path="/about" element={<About />} />
         <Route path="/studentDashboard" element={<SideBar/>}>
-        
         <Route index element={<Course/>} />
         <Route path='Courses' element={<Course/>} />
 
@@ -55,6 +56,8 @@ function App() {
         <Route path="Grades" element={<Grades/>}/>
         <Route path="Announcements" element={<Announcements/>}/>
         <Route path="JoinClass" element={<JoinClass/>}/>
+        <Route path="Profile" element={<Profile/>}/>
+        <Route path="UpdateProfile" element={<UpdateProfile/>}/>
         </Route>
         
         <Route path="/login" element={<Login />} />

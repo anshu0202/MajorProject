@@ -58,27 +58,27 @@ function JoinClass() {
 
   return (
     <div>
-      <div style={{ border: '1px solid red' }} className='row text-center '>
-        <div className='col-md-6'>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Class ID</th>
-                <th>Teacher Name</th>
-                <th>Join Now</th>
+      <div  >
+        <div >
+          <table style={{width:"75vw"}}>
+            <thead  style={{margin:"20px",border:"1px solid black",borderRadius:"20px",}} >
+              <tr >
+                <th style={{padding:"10px"}}>Name</th>
+                <th style={{padding:"10px"}}>Class ID</th>
+                <th style={{padding:"10px"}}>Teacher Name</th>
+                <th style={{padding:"10px"}}>Join Now</th>
 
 
 
               </tr>
             </thead>
-            <tbody>
+            <tbody style={{margin:"2vh",padding:"2vh"}} >
               {data.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.name}</td>
-                  <td>{item.classId}</td>
-                  <td>{item.TeacherName}</td>
-                  <td>
+                <tr key={index} style={{border:"1px solid black",borderRadius:"20px",margin:"2vh"}}>
+                  <td style={{padding:"10px"}}>{item.name}</td>
+                  <td style={{padding:"10px"}}>{item.classId}</td>
+                  <td style={{padding:"10px"}}>{item.TeacherName}</td>
+                  <td style={{padding:"10px"}}>
                     <Button onClick={()=>handleJoin(item.classId)} variant='contained' color='success'>
                       Join Class
 
