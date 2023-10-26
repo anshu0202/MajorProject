@@ -22,14 +22,34 @@ export const startLiveClass = async(data) => {
 
 //upload NOtes/PDF
 
-export const uploadNotes =  async()=>{
+export const uploadNotes =  async(data)=>{
     try {
+        const res = await axios.post(`${url}/api/v1/teacher/notes/upload/` , data);
+        console.log("Res in notes upload",res);
+        return res.data
+    } catch (error) {
+        console.log("Error while uploading notes!!" , error); 
+    }
+}
 
-        const res = await axios.post(`${url}/api/teacher/`)
 
-
-
+export const uploadPYQS =  async(data)=>{
+    try {
+        const res = await axios.post(`${url}/api/v1/teacher/pyq/upload` , data);
+        console.log("Res in PYQA upload i nbackend",res);
+        return res.data
+    } catch (error) {
+        console.log("Error while uploading notes!!" , error);
         
+    }
+}
+
+
+export const uploadAssignment =  async(data)=>{
+    try {
+        const res = await axios.post(`${url}/api/v1/teacher/assignment/upload` , data);
+        console.log("Res in Assignment upload i nbackend",res);
+        return res.data
     } catch (error) {
         console.log("Error while uploading notes!!" , error);
         

@@ -11,6 +11,7 @@ import "./pyqMedia.css";
 import "./upload.css";
 import "./note.css";
 import "./media.css";
+import { uploadPYQS } from '../../../service/TeacherApi';
 
 
 
@@ -178,48 +179,64 @@ function PyqUpload() {
   const pyqUpload = async (e) => {
     setNoteProgress(0)
     e.preventDefault()
-    // console.log(subjectSuggestion)
-    // console.log(file);
-    // console.log(credit);
-    // console.log(faculty);
-    // console.log(examType);
+
+
+    
+    console.log(subjectSuggestion)
+    console.log(file);
+    console.log(credit);
+    console.log(faculty);
+    console.log(examType);
+
+
     const formdata = new FormData();
     formdata.append('file', file);
     formdata.append('credit', credit);
     formdata.append('faculty', faculty);
     formdata.append('examtype', examType);
     formdata.append('subject', subjectSuggestion);
-    try {
-      const response = await axios.post('https://exampedia-rest-api-production.up.railway.app/api/pyq/upload/', formdata, pyqUploadOptions);
-      setNotesMsg('File Upload successfully');
-      reset()
-      // setFile([]);
-      setCredit('');
-      setFaculty('');
-      setExamType('');
-      // console.log(credit);
-      setSubjectSuggestion('');
-    } catch (error) {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-        setNotesMsg(`Error: ${error.response.data}`);
-      } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-        // http.ClientRequest in node.js
-        console.log(error.request);
-        setNotesMsg('Error: No response received from server');
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log('Error', error.message);
-        setNotesMsg(`Error: ${error.message}`);
-      }
-      console.log(error.config);
-    }
+
+    
+
+
+
+    console.log("Form data-->" , formdata);
+
+    const res = await uploadPYQS(formdata);
+    console.log("Res in frontend-->" , res);
+
+
+    // try {
+    //   const response = await axios.post('https://exampedia-rest-api-production.up.railway.app/api/pyq/upload/', formdata, pyqUploadOptions);
+    //   setNotesMsg('File Upload successfully');
+    //   reset()
+    //   // setFile([]);
+    //   setCredit('');
+    //   setFaculty('');
+    //   setExamType('');
+    //   // console.log(credit);
+    //   setSubjectSuggestion('');
+    // } catch (error) {
+    //   if (error.response) {
+    //     // The request was made and the server responded with a status code
+    //     // that falls out of the range of 2xx
+    //     console.log(error.response.data);
+    //     console.log(error.response.status);
+    //     console.log(error.response.headers);
+    //     setNotesMsg(`Error: ${error.response.data}`);
+    //   } else if (error.request) {
+    //     // The request was made but no response was received
+    //     // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+    //     // http.ClientRequest in node.js
+    //     console.log(error.request);
+    //     setNotesMsg('Error: No response received from server');
+    //   } else {
+    //     // Something happened in setting up the request that triggered an Error
+    //     console.log('Error', error.message);
+    //     setNotesMsg(`Error: ${error.message}`);
+    //   }
+    //   console.log(error.config);
+    // }
   }
 
   const pyqUploadOptions = {

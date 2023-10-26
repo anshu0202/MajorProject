@@ -314,7 +314,7 @@ export default function SideBar() {
    
     
     <div className='footer'>
-    <Footer/>
+    {/* <Footer/> */}
     </div>
     
     

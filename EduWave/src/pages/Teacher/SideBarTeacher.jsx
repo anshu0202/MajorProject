@@ -128,7 +128,7 @@ export default function SideBarTeacher() {
               link:"/teacherDashboard/Attendance"},
             { name:'Assignment',
               icon:<AssignmentIcon style={{color:"white"}}/>,
-              link:"/teacherDashboard/Assignment"},
+              link:"/teacherDashboard/assignmentUpload"},
             { name:'Create-Test',
               icon:<QuizIcon style={{color:"white"}}/>,
               link:"/teacherDashboard/Test"},
