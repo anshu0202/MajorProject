@@ -114,7 +114,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function SideBarTeacher() {
 
     let {title} = useParams();
-
+    const navigate = useNavigate();
     const arr =
         [
             {name:'Start Live Class',
@@ -132,6 +132,12 @@ export default function SideBarTeacher() {
             { name:'Create-Test',
               icon:<QuizIcon style={{color:"white"}}/>,
               link:"/teacherDashboard/Test"},
+              { name:'Upload-Notes',
+              icon:<QuizIcon style={{color:"white"}}/>,
+              link:"/teacherDashboard/noteUpload"},
+              { name:'Upload-PYQS',
+              icon:<QuizIcon style={{color:"white"}}/>,
+              link:"/teacherDashboard/pyqUpload"},
             // { name:'Course Material',
             //   icon:<DescriptionIcon style={{color:"white"}}/>,
             //   link:"/teacherDashboard/Notes"},
@@ -174,6 +180,10 @@ export default function SideBarTeacher() {
     setAnchorEl(null);
   };
 
+  const handleDash = ()=>{
+    navigate("/teacherDashboard")
+  }
+
   return (
     <div style={{display:"flex",flexDirection:"column",minHeight:"100vh",paddingTop:"15vh"}}>
     <Box sx={{ display: 'flex' }} style={{zIndex:1,flex:1 }} >
@@ -192,7 +202,7 @@ export default function SideBarTeacher() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography sx={{cursor:"pointer"}} onClick={handleDash} variant="h6" noWrap component="div">
             {title==undefined ? "Teacher Dashboard" : title}
             {/* {title} */}
           </Typography>

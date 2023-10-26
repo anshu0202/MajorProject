@@ -18,3 +18,21 @@ export const startLiveClass = async(data) => {
     }
 
 }
+
+
+//upload NOtes/PDF
+
+export const uploadNotes =  async()=>{
+    try {
+
+        const res = await axios.post(`${url}/api/teacher/`)
+
+
+
+        
+    } catch (error) {
+        console.log("Error while uploading notes!!" , error);
+        
+    }
+}
+

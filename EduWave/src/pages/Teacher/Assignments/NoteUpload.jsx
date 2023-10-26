@@ -30,7 +30,9 @@ function NoteUpload() {
   const [notesData, setNotesData] = useState()
   const [noteProgress, setNoteProgress] = useState(0)
   const [notesMsg, setNotesMsg] = useState('')
-  const [formData,setFormData]=('not-allowed')
+  const [formData,setFormData]=('not-allowed');
+  const [subjectName , setSubjectName] = useState('');
+  const [className , setClassName] = useState('');
 
   useEffect(() => {
     const loadSubject = async () => {
@@ -160,51 +162,55 @@ function NoteUpload() {
   const notesUpload = async (e) => {
     setNoteProgress(0)
     e.preventDefault()
-    // console.log(subjectSuggestion)
-    // console.log(file);
-    // console.log(credit);
-    // console.log(chapter);
+    console.log(subjectSuggestion)
+    console.log(file);
+    console.log(credit);
+    console.log(chapter);
+    console.log(subjectName);
+    console.log(className);
     // {subjectSuggestion && file && credit}
     const formdata = new FormData();
     formdata.append('file', file);
-    formdata.append('credit', credit);
+    formdata.append('Name', credit);
     formdata.append('chapter', chapter);
-    formdata.append('subject', subjectSuggestion);
+    formdata.append('subject', subjectName);
+    formdata.append('className', className);
+
 
     console.log("this is from data" , formdata);
 
     
 
-    try {
-      const response = await axios.post('https://exampedia-rest-api-production.up.railway.app/api/note/upload/', formdata, noteUploadOptions);
-      setNotesMsg('File Upload successfully');
-      reset()
-      // setFile([]);
-      setCredit('');
-      setChapter('');
-      console.log(credit);
-      setSubjectSuggestion('');
-    } catch (error) {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-        setNotesMsg(`Error: ${error.response.data}`);
-      } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-        // http.ClientRequest in node.js
-        console.log(error.request);
-        setNotesMsg('Error: No response received from server');
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log('Error', error.message);
-        setNotesMsg(`Error: ${error.message}`);
-      }
-      console.log(error.config);
-    }
+    // try {
+    //   const response = await axios.post('https://exampedia-rest-api-production.up.railway.app/api/note/upload/', formdata, noteUploadOptions);
+    //   setNotesMsg('File Upload successfully');
+    //   reset()
+    //   // setFile([]);
+    //   setCredit('');
+    //   setChapter('');
+    //   console.log(credit);
+    //   setSubjectSuggestion('');
+    // } catch (error) {
+    //   if (error.response) {
+    //     // The request was made and the server responded with a status code
+    //     // that falls out of the range of 2xx
+    //     console.log(error.response.data);
+    //     console.log(error.response.status);
+    //     console.log(error.response.headers);
+    //     setNotesMsg(`Error: ${error.response.data}`);
+    //   } else if (error.request) {
+    //     // The request was made but no response was received
+    //     // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+    //     // http.ClientRequest in node.js
+    //     console.log(error.request);
+    //     setNotesMsg('Error: No response received from server');
+    //   } else {
+    //     // Something happened in setting up the request that triggered an Error
+    //     console.log('Error', error.message);
+    //     setNotesMsg(`Error: ${error.message}`);
+    //   }
+    //   console.log(error.config);
+    // }
   }
 
   const noteUploadOptions = {
@@ -273,14 +279,12 @@ function NoteUpload() {
               </div>
             </label>
 
-            <input className='note-text-input' value={credit} placeholder='Enter Your Name for credit' required type="text" name="credit" id="" onChange={(e) => creditName(e)} />
-            <input className='note-text-input' value={chapter} placeholder='Enter Chapter Name ' required type="text" name="credit" id="" onChange={(e) => chapterName(e)} />
+            <input className='note-text-input' value={credit} placeholder='Enter Your Name' required type="text" name="credit" id="" onChange={(e) => creditName(e)} />
+            <input className='note-text-input' value={chapter} placeholder='Enter Unit/Topic Name ' required type="text" name="credit" id="" onChange={(e) => chapterName(e)} />
 
-            <input className='note-text-input' onChange={e => onChangeHandler(e.target.value)} value={subjectSuggestion} placeholder='Enter subject name' required type="text" name="subject" id="" onBlur={() => {
-              setTimeout(() => {
-                setSuggestion([])
-              }, 200)
-            }} />
+            <input className='note-text-input' value={subjectName} onChange={(e) => setSubjectName(e.target.value)} placeholder='Enter subject name' required type="text" name="subject"  />
+
+            <input className='note-text-input' value={className} onChange={(e) => setClassName(e.target.value)} placeholder='Enter Class name' required type="text" name="class"  />
 
             {suggestion && suggestion.map((suggestion, i) => {
 

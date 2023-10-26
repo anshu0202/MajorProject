@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "educationhub-403210",
+  "private_key_id": "d5392a160e42809072edd7f2a03fc19f800512ff",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCXCePxL2wiVqVa\njMWc8tq+oGP/5TlaNZuHvNfuqw/rj7YvFkq7HnGgwI7QoksFfbHIg4PWTo/Lb//J\nKDYbX1wFXDy8CtCsdijCvDGaHIp8ZT1DZJ3BBXCBrazGsR9L2bX1kThRlaE7c/l7\nVUjQu+IkpZJ4RNWnQVYnEOnhy+t/14yqElXBuTXNuSjsopQpoEnU0Gk5t3KWVQoc\nUSDSTvndroVi0aCcda0xYNi+A5KkbkHgrUfYcuuKvnfLXjLoOxZZX/GO6UL6adGC\nnbFDvnGi6Bs87ocRBIt+yQwsWw49H59RroPZvE8nUHqoBhRI3YAXaNk98S7NVM1H\nFdWg0X2ZAgMBAAECggEAETDG3PH576AXPprAWKRS9YidjRfmus/YaX76wC8/1v6i\nvJH/1DOLOQHFl3UrTv8PA6yFTjhfmSbgkOF25A9q0rDceEYOWVyy97QR/LGEKROg\nQQoEAv62nwnYfP5WmqxXL5GVXILIaLMC2ZDbwmcp/mQKa04hV6Gh970O85xBK+n8\nmmZgHtJKv5dv3Pa2gukIm0puq0JXZ22N9UyrPzyTgD36QapS4HqBmu67NfBDQz6Z\njy4es+mztt3iHTor3r++XHelKSXc+ntZKtiOm8mwyf3ATJ792WexBVS2Ny9excjA\nWpgO/O2d49cfLDHTWc6LBDXhIQo/fEPkU7vGvuc+YQKBgQDSp5qesxj6BMI+MU5S\nOFQbfRNMz07faOu1zAV1tHKLaQUDp9JNdr2YTXsPVLHcp14weKTb+TCOCBRrQuJA\nVtGQSDwL0aQCkMkxTjDJlF/OkaRIamPoxyphwGJB6vztw7ee30IyYLokfsvmdRln\nqsbR5lG8VIOzVleq1HU+0ILv+QKBgQC3jREikmOfEKP7uC6SBDB8+gwKaY8HkwSy\ng+aGUMkjuZu0qmNJJlUPZZL+FUPj2VBxThkCvk1Un5SCYH/s5AaqEx0Jm2DZdPAK\n1fjpiy1Zq95H78BB/va3Q1itshyJq2OG2uxQNArX0r6SQe5gOXKeMJQ82G0XTOHE\n/BpEuMWioQKBgB4uoXrHknaQI/yhN+WT6IkfvJouwdBEyjD8EHQy7I6I94z0iK9M\nqhGeWFlz+x/wYxBy2Lwj0g8nnTVZGe26AsC3eNMAsI0ljY4g8+CN/8QrHey6QaJi\nlvH2jJ2BO8gdWLvMpUFuln0QJcrZUFCIKYB9jYx8V3pkjp8NXdcoLPqRAoGAZOKH\nOX5GfSYTS4ZnKmBdGkQBHDP6pkobOdcffFGozBb3Suyf15PXCrhke3zKrNBD05L+\nUjCwpkNzx9ksVtLaCt6ohiA9sigAy6PhxNN3YKMDcHyJKnzts7qzYfzUjKKD+JoZ\nate/4fH2RsMwNvk8U1AWGf9GrpjWOoPqGD2KeyECgYAF7gFI7h+qNzil2/Dv5S3Q\n6oaUvh0dJOdHNfvlvz/gTEhRz7IHHxXmhz57M5QPo5RtMvLwHYjL/p0onBhLHm74\nxE8TEjZd7JtLpYfXXz99JVl3RuQQfg8CnqgAVXwq+aVnUndeZl0FlvhX/AMHj6lC\nEzpYdXbfAYkIFPu+wNPLiA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "educationhub@educationhub-403210.iam.gserviceaccount.com",
+  "client_id": "108846011119030010245",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/educationhub%40educationhub-403210.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

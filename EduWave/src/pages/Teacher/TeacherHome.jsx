@@ -6,7 +6,7 @@ import "./index.css";
 
 function Feature() {
     return (
-        <div >
+        <div style={{   border:"2px solid red"}} >
             <div className="feature-intro">
                 <h1>Why ExamPedia ?</h1>
                 <p>Maximize your learning and reach your academic goals with our user-friendly platform. Join now and get access to a wide range of notes and previous year questions, as well as the support of a community of like-minded students</p>
@@ -23,7 +23,7 @@ function Feature() {
                         <p>Enhance your studies and ace your exams with our comprehensive and thoroughly researched notes. Download now and get access to the top-quality resources you need to succeed!</p>
                     </div>
                     <div className="feature-button">
-                        <NavLink exact to="/notes">
+                        <NavLink exact to="/teacherDashboard/noteUpload">
                             <button className="feature-note-button">
                                 Note
                             </button>
@@ -44,7 +44,7 @@ function Feature() {
                         <p>Join our community of learners and share your knowledge with others. Upload your notes and previous year questions now and help fellow students succeed in their studies. </p>
                     </div>
                     <div className="feature-button">
-                        <NavLink exact to="/upload">
+                        <NavLink exact to="/teacherDashboard/Assignment">
                             <button className="feature-upload-button">
                                 Upload
                             </button>
@@ -66,7 +66,7 @@ function Feature() {
                         <p>Get ahead to your studies and give yourself a competitive edge with our extensive collection of previous year questions. Download now and get instant access to a wealth of material!</p>
                     </div>
                     <div className="feature-button">
-                        <NavLink exact to="/pyq">
+                        <NavLink exact to="/teacherDashboard/pyqUpload">
                             <button className="feature-pyq-button">
                                 PYQ
                             </button>
