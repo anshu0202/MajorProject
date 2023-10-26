@@ -1,0 +1,112 @@
+.update-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center; */
+    padding: 20px;
+    width: 80%;
+    /* border: 1px solid black; */
+  }
+
+  .update-page h1{
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    
+  }
+  
+  .form-group label {
+    /* width: 120px; */
+    font-size: 1.2rem;
+  }
+  
+  input,
+  span {
+    flex: 1;
+    padding: 5px;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+  
+  button.edit-button {
+    font-size: 18px;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    
+  }
+  
+  button.edit-button:hover {
+    text-decoration: underline;
+  }
+  
+  button[type="submit"] {
+    background-color: #0074d9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .profile-photo {
+    position: relative;
+    text-align: center;
+    /* justify-content: center; */
+  /* align-items: center; */
+    /* display: inline-block; */
+
+  }
+
+  .icon {
+    position: absolute;
+    top: 230px; /* Adjust the top and right values to position the icon */
+    right: 25px;
+    background-color: Black; 
+    /* Background color for the icon */
+    color: white;
+     /* Icon color */
+    width: 30px; /* Icon dimensions */
+    height: 30px;
+    border-radius: 50%; /* Make it a circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* @media (max-width: 768px) { */
+    @media screen and (max-width: 576px) {
+        .update-page {
+          width: 95%;
+        }
+
+        .update-page h1{
+            text-align: center;
+        }
+
+
+      
+        .form-group {
+          flex-direction: column;
+        }
+      
+        input, span {
+          margin-right: 0;
+        }
+      
+        .icon {
+          top: 65px;
+          right: 50px;
+        }
+      }
+      
+  /* } */
+  

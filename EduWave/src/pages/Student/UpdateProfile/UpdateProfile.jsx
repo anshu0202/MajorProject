@@ -1,14 +1,202 @@
-import React from 'react'
+import React, { useState } from 'react';
+import './UpdatePage.css'; // Import your CSS file
+import { Link } from 'react-router-dom';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 function UpdateProfile() {
+  const [formData, setFormData] = useState({
+    name: 'John Doe',
+    rollNo:2022614,
+    email: 'john.doe@example.com',
+    dob: "02-02-2003",
+    phone:9915667484,
+    gender:"female",
+    address:"Jalandhar"
+
+    
+  });
+
+  const [editableField, setEditableField] = useState(null);
+
+  const handleFieldChange = (field, value) => {
+    setFormData({
+      ...formData,
+      [field]: value,
+    });
+  };
+
+  const handleEditClick = (field) => {
+    setEditableField(field);
+  };
+
   return (
-    <div>
-      this is update page
+    <div className="update-page">
+      <h1>Update Information</h1>
+       
+      <div className="profile-photo">
+          <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D" alt="Profile" />
+          {/* <br /> */}
+          <AddCircleOutlineIcon className='icon' fontSize='large'/>
+          <h2>Seea Rani</h2>
+        </div>
+       <div className="form">
+
+       
+
+      <form className='form'>
+        <div className="form-group">
+          <label>Name :</label>
+          {editableField === 'name' ? (
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => handleFieldChange('name', e.target.value)}
+            />
+          ) : (
+            <span>{formData.name}</span>
+          )}
+          <button
+            type="button"
+            onClick={() => handleEditClick('name')}
+            className="edit-button"
+          >
+            ✏️
+          </button>
+        </div>
+
+        <div className="form-group">
+          <label>Roll No.:</label>
+          {editableField === 'rollNo' ? (
+            <input
+              type="number"
+              value={formData.rollNo}
+              onChange={(e) => handleFieldChange('rollNo', e.target.value)}
+            />
+          ) : (
+            <span>{formData.rollNo}</span>
+          )}
+          <button
+            type="button"
+            onClick={() => handleEditClick('rollNo')}
+            className="edit-button"
+          >
+            ✏️
+          </button>
+        </div>
+
+        <div className="form-group">
+          <label>Email :</label>
+          {editableField === 'email' ? (
+            <input
+              type="email"
+              value={formData.email}
+              onChange={(e) => handleFieldChange('email', e.target.value)}
+            />
+          ) : (
+            <span>{formData.email}</span>
+          )}
+          <button
+            type="button"
+            onClick={() => handleEditClick('email')}
+            className="edit-button"
+          >
+            ✏️
+          </button>
+        </div>
+
+        <div className="form-group">
+          <label>DOB :</label>
+          {editableField === 'dob' ? (
+            <input
+              type="date"
+              value={formData.dob}
+              onChange={(e) => handleFieldChange('dob', e.target.value)}
+            />
+          ) : (
+            <span>{formData.dob}</span>
+          )}
+          <button
+            type="button"
+            onClick={() => handleEditClick('dob')}
+            className="edit-button"
+          >
+            ✏️
+          </button>
+        </div>
+
+        <div className="form-group">
+          <label>Phone :</label>
+          {editableField === 'phone' ? (
+            <input
+              type="text"
+              value={formData.phone}
+              onChange={(e) => handleFieldChange('phone', e.target.value)}
+            />
+          ) : (
+            <span>{formData.phone}</span>
+          )}
+          <button
+            type="button"
+            onClick={() => handleEditClick('phone')}
+            className="edit-button"
+          >
+            ✏️
+          </button>
+        </div>
+
+        <div className="form-group">
+          <label>Gender:</label>
+          {editableField === 'gender' ? (
+            <input
+              type="text"
+              value={formData.gender}
+              onChange={(e) => handleFieldChange('gender', e.target.value)}
+            />
+          ) : (
+            <span>{formData.gender}</span>
+          )}
+          <button
+            type="button"
+            onClick={() => handleEditClick('gender')}
+            className="edit-button"
+          >
+            ✏️
+          </button>
+        </div>
+
+        <div className="form-group">
+          <label>Address:</label>
+          {editableField === 'address' ? (
+            <input
+              type="text"
+              value={formData.address}
+              onChange={(e) => handleFieldChange('address', e.target.value)}
+            />
+          ) : (
+            <span>{formData.address}</span>
+          )}
+          <button
+            type="button"
+            onClick={() => handleEditClick('address')}
+            className="edit-button"
+          >
+            ✏️
+          </button>
+        </div>
+
+        
+
+        <Link to="/studentDashboard/Profile">
+        <button type="submit">Save</button>
+        </Link>
+        
+      </form>
+      </div>
     </div>
-  )
+  );
 }
 
-export default UpdateProfile
+export default UpdateProfile;
 
 
 
