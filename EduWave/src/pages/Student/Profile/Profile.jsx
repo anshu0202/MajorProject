@@ -15,59 +15,67 @@ const Profile = ({ user }) => {
   return (
     <div className="profile-container">
       <div className="profile-header">
+      <div className="profile-info">
+          <p style={{textAlign:"center"}}>The IK Gujral Punjab Technical University</p>
+        </div>
         <div className="profile-photo">
           <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D" alt="Profile" />
           {/* <br /> */}
-          <AddCircleOutlineIcon className='icon' fontSize='large'/>
+          <AddCircleOutlineIcon className='profile-icon' fontSize='large'/>
           <h2>Seea Rani</h2>
         </div>
-        <div className="profile-info">
-          <p style={{textAlign:"center"}}>The IK Gujral Punjab Technical University</p>
-        </div>
+        
       
-      <div className="profile-courses">
+      {/* <div className="profile-courses">
         <h3>Courses</h3>
         <ul>
           {courses.map((course, index) => (
             <li key={index}>{course}</li>
           ))}
         </ul>
-      </div>
+      </div> */}
 
       </div>
       {/* <hr style={{color:"grey"}}/> */}
       <div className="profile-details">
-        <h3>Student Information</h3>
+        
         <Row>
           <Col className='profile-details-col' >
+          <h3>Student Information</h3>
+          <div>
           <strong className='fs-4 m-3'>Name :</strong> <span className='fs-4 '>Seea Rani</span>
-          </Col>
-          <Col className='profile-details-col'>
+          </div>
+          <div>
           <strong className='fs-4 m-3'>Phone No :</strong> <span className='fs-4'>9915667484</span>
-          </Col>
-        </Row>
-        <Row>
-          <Col className='profile-details-col'>
+          </div>
+          <div>
           <strong className='fs-4 m-3'>Roll No. :</strong> <span className='fs-4'>2022614</span>
-          </Col>
-          <Col className='profile-details-col'>
+          </div>
+          <div>
           <strong className='fs-4 m-3'>Email :</strong> <span className='fs-4'>seeagarg0203@gmail.com</span>
-          </Col>
-        </Row>
-        <Row>
-          <Col className='profile-details-col'>
+          </div>
+          <div>
           <strong className='fs-4  m-3'>Gender :</strong> <span className='fs-4'>Female</span>
-          </Col>
-          <Col className='profile-details-col'>
+          </div>
+          <div>
           <strong className='fs-4  m-3'>DOB :</strong> <span className='fs-4'>02-02-03</span>
-          </Col>
-        </Row>
-        <Row>
-          <Col className='profile-details-col'>
+          </div>
+          <div>
           <strong className='fs-4  m-3'>Address :</strong> <span className='fs-4'>Jalandhar</span>
+          </div>
+          </Col>
+          <Col className='profile-details-col profile-courses'>
+          <h3>Course List</h3>
+          <ul>
+          {courses.map((course, index) => (
+            <li key={index} className='fs-4 '>{course}</li>
+          ))}
+        </ul>
           </Col>
           
+          
         </Row>
+        
       </div>
      
 
