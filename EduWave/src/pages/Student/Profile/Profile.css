@@ -29,8 +29,8 @@
   
   .profile-icon {
     position: absolute;
-    top: 230px; /* Adjust the top and right values to position the icon */
-    right: 345px;
+    top: 190px; /* Adjust the top and right values to position the icon */
+    right: 367px;
     background-color: Black; 
     /* Background color for the icon */
     color: white;
@@ -45,9 +45,10 @@
   
   
   .profile-photo img {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
+    box-shadow: 3px 7px 10px #888888;
     /* margin-right: 20px; */
     
   }
@@ -150,6 +151,7 @@
       height: 100px;
       margin-right: 0;
       margin-bottom: 10px;
+      border: 0px solid rgb(184, 183, 183);
     }
   
     .profile-photo h2 {
