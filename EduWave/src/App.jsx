@@ -30,6 +30,7 @@ import NoteUpload from './pages/Teacher/Assignments/NoteUpload';
 import PyqUpload from './pages/Teacher/Assignments/PyqUpload';
 import TeacherHome from './pages/Teacher/TeacherHome';
 import AssignmentUpload from './pages/Teacher/Assignments/AssignmentUpload';
+import Previous from './pages/Student/PYQS/Previous';
 // import Testingpage from './pages/Testingpage';
 
 
@@ -58,6 +59,8 @@ function App() {
         <Route path="Assignment" element={<Assignment/>}/>
         <Route path="Attendance" element={<Attendance/>}/>
         <Route path="Notes" element={<Notes/>}/>
+        <Route path="Previous" element={<Previous/>}/>
+
         <Route path="Test" element={<Test/>}/>
         <Route path="Schedule" element={<Schedule/>}/>
         <Route path="HelpAndSupport" element={<Help/>}/>

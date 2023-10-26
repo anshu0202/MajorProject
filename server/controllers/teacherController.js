@@ -363,9 +363,14 @@ export const getAllAssignmentController=async(req,res)=>{
 
 export const getAllPyqController=async(req,res)=>{
   try{
-    const {cid,tid}=req.params;
+    // const {cid,tid}=req.params;
 
-    // const assignment=await 
+    const pyqs=await pyqModel.find();
+    return res.status(200).send({
+      message:"All PYQs",
+      data:pyqs,
+      success:true
+    })
   }
   catch(error){
     console.log("Error while getting all PYQs ", error.message);
@@ -378,9 +383,14 @@ export const getAllPyqController=async(req,res)=>{
 
 export const getAllNotesController=async(req,res)=>{
   try{
-    const {cid,tid}=req.params;
+    // const {cid,tid}=req.params;
 
-    // const assignment=await 
+    const notes=await noteModel.find();
+    return res.status(200).send({
+      message:"All Notes",
+      data:notes,
+      success:true
+    })
   }
   catch(error){
     console.log("Error while getting all Notes ", error.message);
