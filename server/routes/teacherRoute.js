@@ -17,8 +17,12 @@ router.post('/assignment/upload', upload.single('file'), assignmentUploadControl
 // router.get('/getAllAssignment/:tid/:cid',getAllAssignmentController);
 router.get('/getAllAssignment',getAllAssignmentController);
 
-router.get('/getAllPyqs/:tid/:cid',getAllPyqController);
-router.get('/getAllNotes/:tid/:cid',getAllNotesController);
+// router.get('/getAllPyqs/:tid/:cid',getAllPyqController);
+router.get('/getAllPyqs',getAllPyqController);
+
+// router.get('/getAllNotes/:tid/:cid',getAllNotesController);
+router.get('/getAllNotes',getAllNotesController);
+
 
 
 

@@ -44,7 +44,7 @@ import LoadingAnimation from "../Assignments/LoadingAnimation";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
-function Notes() {
+function Previous() {
   const [serverValue, setServerValue] = useState([])
   const [optionValue, setOptionValue] = useState('')
   const [searchBarValue, setSearchBarValue] = useState('')
@@ -153,11 +153,12 @@ function Notes() {
     }
     // alert(`${searchBarValue} is searched`)
     // console.log(`https://exampedia-rest-api-production.up.railway.app/api/allNote?${optionValue}=${searchBarValue} is searched`);
-    const searchedData = await fetch(`${url}/api/v1/teacher/getAllNotes`);
+    const searchedData = await fetch(`${url}/api/v1/teacher/getAllPyqs`);
     const searchValue = await searchedData.json();
     console.log("loda lasun -->" , searchValue);
     setSearchResult(searchValue.data);
     setLoaderAnimation(true);
+    
 
   }
 
@@ -171,7 +172,7 @@ function Notes() {
       {/* <Navbar /> */}
       <div className="note">
         <div className="note-intro">
-
+        
         
           <div className="note-select">
             <select value={optionValue} onChange={(e) => option(e)} name="" id="">
@@ -248,4 +249,4 @@ function Notes() {
   )
 }
 
-export default Notes
+export default Previous

@@ -113,42 +113,72 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function SideBar() {
 
-    let {title} = useParams();
+  let { title } = useParams();
 
-    const arr =
-        [
-            {name:'Join Class',
-             icon:<VideoCameraFrontIcon  style={{color:"white"}} />,
-             link:"/studentDashboard/JoinClass"},
-            { name:'Courses',
-              icon:<ClassIcon style={{color:"white"}}/>,
-              link:"/studentDashboard/Courses"}, 
-            { name:'Attendance',
-              icon:<AssessmentIcon style={{color:"white"}}/>,
-              link:"/studentDashboard/Attendance"},
-            { name:'Assignment',
-              icon:<AssignmentIcon style={{color:"white"}}/>,
-              link:"/studentDashboard/Assignment"},
-            { name:'Test',
-              icon:<QuizIcon style={{color:"white"}}/>,
-              link:"/studentDashboard/Test"},
-            { name:'Course Material',
-              icon:<DescriptionIcon style={{color:"white"}}/>,
-              link:"/studentDashboard/Notes"},
-            { name:'Calendar',
-              icon:<CalendarMonthIcon style={{color:"white"}}/>,
-              link:"/studentDashboard/Schedule"},
-            { name:'Announcements',
-              icon:<CircleNotificationsIcon style={{color:"white"}}/>,
-              link:"/studentDashboard/Announcements"},
-            { name:'Grades',
-              icon:<GradeIcon style={{color:"white"}}/>,
-              link:"/studentDashboard/Grades"},
-            { name:'Help & Support',
-              icon:<InfoIcon style={{color:"white"}}/>,
-              link:"/studentDashboard/HelpAndSupport"}
-        ]
-    
+  const arr =
+    [
+      {
+        name: 'Join Class',
+        icon: <VideoCameraFrontIcon style={{ color: "white" }} />,
+        link: "/studentDashboard/JoinClass"
+      },
+      {
+        name: 'Courses',
+        icon: <ClassIcon style={{ color: "white" }} />,
+        link: "/studentDashboard/Courses"
+      },
+      {
+        name: 'Attendance',
+        icon: <AssessmentIcon style={{ color: "white" }} />,
+        link: "/studentDashboard/Attendance"
+      },
+      {
+        name: 'Assignment',
+        icon: <AssignmentIcon style={{ color: "white" }} />,
+        link: "/studentDashboard/Assignment"
+      },
+      {
+        name: 'Notes',
+        icon: <AssignmentIcon style={{ color: "white" }} />,
+        link: "/studentDashboard/Notes"
+      },
+      {
+        name: 'Previous-Year Paper',
+        icon: <AssignmentIcon style={{ color: "white" }} />,
+        link: "/studentDashboard/Previous"
+      },
+      {
+        name: 'Test',
+        icon: <QuizIcon style={{ color: "white" }} />,
+        link: "/studentDashboard/Test"
+      },
+      {
+        name: 'Course Material',
+        icon: <DescriptionIcon style={{ color: "white" }} />,
+        link: "/studentDashboard/Notes"
+      },
+      {
+        name: 'Calendar',
+        icon: <CalendarMonthIcon style={{ color: "white" }} />,
+        link: "/studentDashboard/Schedule"
+      },
+      // {
+      //   name: 'Announcements',
+      //   icon: <CircleNotificationsIcon style={{ color: "white" }} />,
+      //   link: "/studentDashboard/Announcements"
+      // },
+      // {
+      //   name: 'Grades',
+      //   icon: <GradeIcon style={{ color: "white" }} />,
+      //   link: "/studentDashboard/Grades"
+      // },
+      // {
+      //   name: 'Help & Support',
+      //   icon: <InfoIcon style={{ color: "white" }} />,
+      //   link: "/studentDashboard/HelpAndSupport"
+      // }
+    ]
+
 
 
   const theme = useTheme();
@@ -165,7 +195,7 @@ export default function SideBar() {
 
 
 
-   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const opendropdown = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -175,149 +205,149 @@ export default function SideBar() {
   };
 
   return (
-    <div style={{display:"flex",flexDirection:"column",minHeight:"100vh",paddingTop:"15vh"}}>
-    <Box sx={{ display: 'flex' }} style={{zIndex:1,flex:1 }} >
-      <CssBaseline  />
-      <AppBar position="fixed" open={open} style={{backgroundColor:"Black",}}>
-        <Toolbar style={{display:"flex",justifyContent:"space-between"}}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", paddingTop: "15vh" }}>
+      <Box sx={{ display: 'flex' }} style={{ zIndex: 1, flex: 1 }} >
+        <CssBaseline />
+        <AppBar position="fixed" open={open} style={{ backgroundColor: "Black", }}>
+          <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: 5,
+                ...(open && { display: 'none' }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              {title == undefined ? "StudentDashboard" : title}
+              {/* {title} */}
+            </Typography>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoHXWaNoXKuhTQ8j3eV-NxoCOxrpOfXEYwpg3gF-vMw&s" alt="" onClick={handleClick} style={{ height: "30px", width: "30px", borderRadius: "50%" }} />
+          </Toolbar>
+          <Menu
+            anchorEl={anchorEl}
+            id="account-menu"
+            open={opendropdown}
+            onClose={handleClose}
+            onClick={handleClose}
+            PaperProps={{
+              elevation: 0,
+              sx: {
+                overflow: 'visible',
+                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                mt: 1.5,
+                '& .MuiAvatar-root': {
+                  width: 32,
+                  height: 32,
+                  ml: -0.5,
+                  mr: 1,
+                },
+                '&:before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  top: 0,
+                  right: 14,
+                  width: 10,
+                  height: 10,
+                  bgcolor: 'background.paper',
+                  transform: 'translateY(-50%) rotate(45deg)',
+                  zIndex: 0,
+                },
+              },
             }}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            {title==undefined ? "StudentDashboard" : title}
-            {/* {title} */}
-          </Typography>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoHXWaNoXKuhTQ8j3eV-NxoCOxrpOfXEYwpg3gF-vMw&s" alt="" onClick={handleClick} style={{height:"30px",width:"30px",borderRadius:"50%"}} />
-        </Toolbar>
-        <Menu
-        anchorEl={anchorEl}
-        id="account-menu"
-        open={opendropdown}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      >
-      <Link to="/studentDashboard/Profile" style={{textDecoration:"none",color:"black"}}>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
-        </MenuItem>
-      </Link>
-      <Link to="/studentDashboard/UpdateProfile" style={{textDecoration:"none",color:"black"}}>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Update
-        </MenuItem>
-      </Link>
-        <Divider />
-    
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
-       
-      </Menu>
-        {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoHXWaNoXKuhTQ8j3eV-NxoCOxrpOfXEYwpg3gF-vMw&s" alt="" style={{float:"right",height:"30px",width:"30px",borderRadius:"50%"}} /> */}
-      </AppBar>
-      {/* <div > */}
+            <Link to="/studentDashboard/Profile" style={{ textDecoration: "none", color: "black" }}>
+              <MenuItem onClick={handleClose}>
+                <Avatar /> Profile
+              </MenuItem>
+            </Link>
+            <Link to="/studentDashboard/UpdateProfile" style={{ textDecoration: "none", color: "black" }}>
+              <MenuItem onClick={handleClose}>
+                <Avatar /> Update
+              </MenuItem>
+            </Link>
+            <Divider />
 
-     
-      <Drawer variant="permanent" open={open}  style={{backgroundColor:"Black"}}>
-        <DrawerHeader style={{backgroundColor:"Black", color:"white"}}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon style={{color:"white"}}/> : <ChevronLeftIcon style={{color:"white"}}/>}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List style={{backgroundColor:"Black",color:"white"}}>
-          {arr.map((text,index) => (
-            <Link to={text.link} style={{textDecoration:"none" }} >
-            <ListItem key={index} disablePadding sx={{ display: 'block',}}>
-            
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-              
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <Logout fontSize="small" />
+              </ListItemIcon>
+              Logout
+            </MenuItem>
+
+          </Menu>
+          {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoHXWaNoXKuhTQ8j3eV-NxoCOxrpOfXEYwpg3gF-vMw&s" alt="" style={{float:"right",height:"30px",width:"30px",borderRadius:"50%"}} /> */}
+        </AppBar>
+        {/* <div > */}
 
 
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {text.icon}
-                  {/* {text.icon} */}
-                  {/* <ClassIcon style={{color:"white"}}/>
+        <Drawer variant="permanent" open={open} style={{ backgroundColor: "Black" }}>
+          <DrawerHeader style={{ backgroundColor: "Black", color: "white" }}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon style={{ color: "white" }} /> : <ChevronLeftIcon style={{ color: "white" }} />}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List style={{ backgroundColor: "Black", color: "white" }}>
+            {arr.map((text, index) => (
+              <Link to={text.link} style={{ textDecoration: "none" }} >
+                <ListItem key={index} disablePadding sx={{ display: 'block', }}>
+
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+
+
+
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {text.icon}
+                      {/* {text.icon} */}
+                      {/* <ClassIcon style={{color:"white"}}/>
                   <AssessmentIcon style={{color:"white"}}/>
                   <AssignmentIcon style={{color:"white"}}/>
                   <CalendarMonthIcon style={{color:"white"}}/> */}
-                </ListItemIcon>
-                <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 ,textDecorationLine:"none",textDecoration:"none",color:"white"}} />
-                {/* </Link> */}
-              </ListItemButton>
-            </ListItem>
-            </Link>
-          ))}
-        </List>
-        {/* <Divider style={{backgroundColor:"aqua"}} /> */}
-        
+                    </ListItemIcon>
+                    <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, textDecorationLine: "none", textDecoration: "none", color: "white" }} />
+                    {/* </Link> */}
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+          {/* <Divider style={{backgroundColor:"aqua"}} /> */}
+
         </Drawer>
         {/* </div> */}
-      <Box component="main" sx={{ p: 3}}>
-        <DrawerHeader />
-       
+        <Box component="main" sx={{ p: 3 }}>
+          <DrawerHeader />
+
+        </Box>
+        <Outlet />
       </Box>
-      <Outlet  />
-    </Box>
-   
-    
-    <div className='footer'>
-    {/* <Footer/> */}
-    </div>
-    
-    
+
+
+      <div className='footer'>
+        {/* <Footer/> */}
+      </div>
+
+
 
     </div>
   );
