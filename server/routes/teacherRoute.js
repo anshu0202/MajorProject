@@ -21,6 +21,4 @@ router.get('/getAllNotes/:tid/:cid',getAllNotesController);
 
 
 
-
-
 export default router;

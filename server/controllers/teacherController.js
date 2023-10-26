@@ -2,7 +2,7 @@ import liveClassModel from "../models/liveClassModel.js";
 import mongoose from "mongoose";
 const ObjectId = mongoose.Types.ObjectId;
 import fs from "fs";
-// import noteModel from "../models/noteModel.js";
+import noteModel from "../models/noteModel.js";
 
 import {google} from 'googleapis';
 
@@ -169,17 +169,17 @@ export const notesUploadController = async ( req, res, next) => {
     console.log(gFileUrl);
 
     // Assuming "note" is your model for storing file information
-    // const file = new note({
-    //   fileName: req.file.originalname,
-    //   filePath: fileId,
-    //   fileType: req.file.mimetype,
-    //   fileSize: fileSizeFormatter(req.file.size, 2), // Format the size as needed
-    //   chapter: req.body.chapter,
-    //   subject: req.body.subject,
-    //   credit: req.body.credit,
-    // });
+    const file = new noteModel({
+      fileName: req.file.originalname,
+      filePath: fileId,
+      fileType: req.file.mimetype,
+      fileSize: fileSizeFormatter(req.file.size, 2), // Format the size as needed
+      chapter: req.body.chapter,
+      subject: req.body.subject,
+      credit: req.body.credit,
+    });
 
-    // await file.save();
+    await file.save();
     // console.log(file);
     console.log("uploaded suceesful")
 
@@ -307,10 +307,10 @@ export const assignmentUploadController = async ( req, res, next) => {
     });
 
     const gFileUrl = gResult.data;
-    console.log(gFileUrl);
+    // console.log(gFileUrl);
 
     // Assuming "note" is your model for storing file information
-    // const file = new note({
+    // const file = new ({
     //   fileName: req.file.originalname,
     //   filePath: fileId,
     //   fileType: req.file.mimetype,

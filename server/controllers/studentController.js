@@ -2,6 +2,30 @@ import { comparePassword, getToken, hashPassword } from "../helpers/utils.js";
 import studentModel from "../models/studentModel.js";
 import attendanceModel from "../models/studentAttendanceModel.js";
 import liveClassModel from "../models/liveClassModel.js";
+import fs from "fs";
+import {google} from 'googleapis';
+
+
+
+const   client_email=process.env.CLIENT_EMAIL;
+const private_key= process.env.PRIVATE_KEY;
+
+
+
+const SCOPE = ['https://www.googleapis.com/auth/drive'];
+
+async function authorize(){
+  console.log("authorize")
+    const jwtClient = new google.auth.JWT(
+        client_email,
+        null,
+        private_key,
+        SCOPE
+    );
+    await jwtClient.authorize();
+    return jwtClient;
+}
+
 
 export const studentRegisterController = async (req, res) => {
   try {
@@ -253,6 +277,146 @@ export const joinLiveClass = async (req, res) => {
       message: "Error while joining live class",
       error: error.message,
     });
+  }
+};
+
+
+
+export const assignmentSubmitController = async ( req, res, next) => {
+  try {
+   
+    console.log("hgefh ",req.fields)
+
+    const authClient = await authorize();
+
+    const userFilePath = req.file.path;
+    const userFileName = req.file.originalname;
+    const userMimeType = req.file.mimetype;
+
+    const drive = google.drive({ version: 'v3', auth: authClient });
+
+    const gdriveResponse = await drive.files.create({
+      requestBody: {
+        name: userFileName,
+        mimeType: userMimeType,
+      },
+      media: {
+        mimeType: userMimeType,
+        body: fs.createReadStream(userFilePath),
+      },
+    });
+
+    console.log(gdriveResponse.data);
+    const gData = gdriveResponse.data;
+    const fileId = gData.id;
+    console.log(fileId);
+
+    await drive.permissions.create({
+      fileId: fileId,
+      requestBody: {
+        role: 'reader',
+        type: 'anyone',
+      },
+    });
+
+    const gResult = await drive.files.get({
+      fileId: fileId,
+      fields: 'webViewLink, webContentLink',
+    });
+
+    const gFileUrl = gResult.data;
+    // console.log(gFileUrl);
+
+    // Assuming "note" is your model for storing file information
+    // const file = new ({
+    //   fileName: req.file.originalname,
+    //   filePath: fileId,
+    //   fileType: req.file.mimetype,
+    //   fileSize: fileSizeFormatter(req.file.size, 2), // Format the size as needed
+    //   chapter: req.body.chapter,
+    //   subject: req.body.subject,
+    //   credit: req.body.credit,
+    // });
+
+    // await file.save();
+    // console.log(file);
+    console.log("uploaded suceesful")
+
+    res.status(201).send('File Upload Successfully');
+  } catch (error) {
+    console.log("Error is ", error.message);
+    res.status(400).send(error.message);
+  }
+};
+
+
+
+
+
+export const getAssignmentController = async ( req, res, next) => {
+  try {
+   
+    console.log("hgefh ",req.fields)
+
+    const authClient = await authorize();
+
+    const userFilePath = req.file.path;
+    const userFileName = req.file.originalname;
+    const userMimeType = req.file.mimetype;
+
+    const drive = google.drive({ version: 'v3', auth: authClient });
+
+    const gdriveResponse = await drive.files.create({
+      requestBody: {
+        name: userFileName,
+        mimeType: userMimeType,
+      },
+      media: {
+        mimeType: userMimeType,
+        body: fs.createReadStream(userFilePath),
+      },
+    });
+
+    console.log(gdriveResponse.data);
+    const gData = gdriveResponse.data;
+    const fileId = gData.id;
+    console.log(fileId);
+
+    await drive.permissions.create({
+      fileId: fileId,
+      requestBody: {
+        role: 'reader',
+        type: 'anyone',
+      },
+    });
+
+    const gResult = await drive.files.get({
+      fileId: fileId,
+      fields: 'webViewLink, webContentLink',
+    });
+
+    const gFileUrl = gResult.data;
+    // console.log(gFileUrl);
+
+    // Assuming "note" is your model for storing file information
+    // const file = new ({
+    //   fileName: req.file.originalname,
+    //   filePath: fileId,
+    //   fileType: req.file.mimetype,
+    //   fileSize: fileSizeFormatter(req.file.size, 2), // Format the size as needed
+    //   chapter: req.body.chapter,
+    //   subject: req.body.subject,
+    //   credit: req.body.credit,
+    // });
+
+    // await file.save();
+    // console.log(file);
+    console.log("uploaded suceesful")
+
+    res.status(201).send('File Upload Successfully');
+  } catch (error) {
+    console.log("Error is ", error.message);
+    res.status(400).send(error.message);
   }
 };
 
