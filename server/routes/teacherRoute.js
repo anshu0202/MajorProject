@@ -14,7 +14,9 @@ router.post('/notes/upload', upload.single('file'), notesUploadController);
 router.post('/pyq/upload', upload.single('file'), pyqUploadController);
 router.post('/assignment/upload', upload.single('file'), assignmentUploadController);
 
-router.get('/getAllAssignment/:tid/:cid',getAllAssignmentController);
+// router.get('/getAllAssignment/:tid/:cid',getAllAssignmentController);
+router.get('/getAllAssignment',getAllAssignmentController);
+
 router.get('/getAllPyqs/:tid/:cid',getAllPyqController);
 router.get('/getAllNotes/:tid/:cid',getAllNotesController);
 

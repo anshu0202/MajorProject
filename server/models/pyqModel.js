@@ -7,7 +7,7 @@ const pyqSchema = new Schema ({
 
     },
     filePath: {
-        type: String,
+        type: Object,
         required : true,
         
     },
@@ -23,17 +23,17 @@ const pyqSchema = new Schema ({
     },
     subject: {
         type: String,
-        required : true,
+        // required : true,
         
     },
     examtype: {
         type: String,
-        required : true,
+        // required : true,
         
     },
     faculty: {
         type: String,
-        required : true,
+        // required : true,
         
     },
     credit: {

@@ -29,6 +29,7 @@ import UploadAssignment from './pages/Teacher/Assignments/UploadAssignment';
 import NoteUpload from './pages/Teacher/Assignments/NoteUpload';
 import PyqUpload from './pages/Teacher/Assignments/PyqUpload';
 import TeacherHome from './pages/Teacher/TeacherHome';
+import AssignmentUpload from './pages/Teacher/Assignments/AssignmentUpload';
 // import Testingpage from './pages/Testingpage';
 
 
@@ -76,6 +77,7 @@ function App() {
 
 
         <Route path="Assignment" element={<UploadAssignment/>}/>
+        <Route path="assignmentUpload" element={<AssignmentUpload/>}/>
         <Route path="noteUpload" element={<NoteUpload/>}/>
         <Route path="pyqUpload" element={<PyqUpload/>}/>
         <Route path="Attendance" element={<Attendance/>}/>

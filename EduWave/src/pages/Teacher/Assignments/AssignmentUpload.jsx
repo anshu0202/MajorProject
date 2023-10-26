@@ -10,9 +10,9 @@ import "./pyqMedia.css";
 import "./upload.css";
 import "./note.css";
 import "./media.css";
-import { uploadNotes } from '../../../service/TeacherApi';
+import { uploadAssignment, uploadNotes } from '../../../service/TeacherApi';
 
-function NoteUpload() {
+function AssignmentUpload() {
 
   const [background, setBackground] = useState()
   const [color, setColor] = useState()
@@ -178,41 +178,13 @@ function NoteUpload() {
     formdata.append('className', className);
 
 
+
     console.log("this is from data" , formdata);
 
-      const res = await uploadNotes(formdata);
-      console.log(res);
+      const res = await uploadAssignment(formdata);
+      console.log("in frontend Agginment upload -->",  res);
 
-    // try {
-    //   const response = await axios.post('https://exampedia-rest-api-production.up.railway.app/api/note/upload/', formdata, noteUploadOptions);
-    //   setNotesMsg('File Upload successfully');
-    //   reset()
-    //   // setFile([]);
-    //   setCredit('');
-    //   setChapter('');
-    //   console.log(credit);
-    //   setSubjectSuggestion('');
-    // } catch (error) {
-    //   if (error.response) {
-    //     // The request was made and the server responded with a status code
-    //     // that falls out of the range of 2xx
-    //     console.log(error.response.data);
-    //     console.log(error.response.status);
-    //     console.log(error.response.headers);
-    //     setNotesMsg(`Error: ${error.response.data}`);
-    //   } else if (error.request) {
-    //     // The request was made but no response was received
-    //     // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-    //     // http.ClientRequest in node.js
-    //     console.log(error.request);
-    //     setNotesMsg('Error: No response received from server');
-    //   } else {
-    //     // Something happened in setting up the request that triggered an Error
-    //     console.log('Error', error.message);
-    //     setNotesMsg(`Error: ${error.message}`);
-    //   }
-    //   console.log(error.config);
-    // }
+
   }
 
   const noteUploadOptions = {
@@ -228,46 +200,13 @@ function NoteUpload() {
   return (
     <>
       
-      {/* <Navbar /> */}
-
       <div className="upload">
-
-        <div className="upload-menu">
-
-          
-
-          <NavLink exact to="/teacherDashboard/noteUpload">
-            <button onClick={notesButtonON}  className='upload-menu-notes'>Notes</button>
-
-          </NavLink>
-
-          <NavLink exact to="/teacherDashboard/pyqUpload">
-            <button onClick={pyqButtonON} style={{
-              background: "rgb(173, 160, 160)",
-              color: "black"
-            }} className='upload-menu-pyq'>Pyq</button>
-
-          </NavLink>
-
+        <div className='m-2' >
+            <button style={{width:"14rem"}}    className='upload-menu-notes m-2  '>Assignment Upload</button>
         </div>
-
-
-
-
-      
-
       <div className="upload">
-        
-        
-
         <div  className="upload-notes">
           <form onSubmit={(e) => notesUpload(e)} className='notes-upload-form' >
-
-
-
-
-
-
 
             <label className='select-notes-container' for="Select Notes">
               <img src="https://i.postimg.cc/fLbNF8mc/ezgif-com-gif-maker-3.gif" alt="" srcset="" />
@@ -338,4 +277,4 @@ function NoteUpload() {
   )
 }
 
-export default NoteUpload
+export default AssignmentUpload

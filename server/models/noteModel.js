@@ -6,8 +6,13 @@ const noteSchema = new Schema({
         required: true,
 
     },
+    // filePath: {
+    //     type: String,
+    //     required: true,
+
+    // },
     filePath: {
-        type: String,
+        type: Object,
         required: true,
 
     },

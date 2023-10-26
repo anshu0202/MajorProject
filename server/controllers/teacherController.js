@@ -5,6 +5,9 @@ import fs from "fs";
 import noteModel from "../models/noteModel.js";
 
 import {google} from 'googleapis';
+import { fileSizeFormatter } from "../helpers/utils.js";
+import pyqModel from "../models/pyqModel.js";
+import assignmentModel from "../models/assignmentModel.js";
 
 const   client_email=process.env.CLIENT_EMAIL;
 const private_key= process.env.PRIVATE_KEY;
@@ -150,7 +153,7 @@ export const notesUploadController = async ( req, res, next) => {
     console.log(gdriveResponse.data);
     const gData = gdriveResponse.data;
     const fileId = gData.id;
-    console.log(fileId);
+    console.log("fieldID is this --->", fileId);
 
     await drive.permissions.create({
       fileId: fileId,
@@ -166,12 +169,14 @@ export const notesUploadController = async ( req, res, next) => {
     });
 
     const gFileUrl = gResult.data;
-    console.log(gFileUrl);
-
+    console.log("this is gfile-->" , gFileUrl);
+      // console.log("Fields this -->",  fields)
     // Assuming "note" is your model for storing file information
     const file = new noteModel({
       fileName: req.file.originalname,
-      filePath: fileId,
+      // filePath: fileId,
+      filePath:  gFileUrl , 
+
       fileType: req.file.mimetype,
       fileSize: fileSizeFormatter(req.file.size, 2), // Format the size as needed
       chapter: req.body.chapter,
@@ -240,18 +245,18 @@ export const pyqUploadController = async ( req, res, next) => {
     console.log(gFileUrl);
 
     // Assuming "note" is your model for storing file information
-    // const file = new note({
-    //   fileName: req.file.originalname,
-    //   filePath: fileId,
-    //   fileType: req.file.mimetype,
-    //   fileSize: fileSizeFormatter(req.file.size, 2), // Format the size as needed
-    //   chapter: req.body.chapter,
-    //   subject: req.body.subject,
-    //   credit: req.body.credit,
-    // });
+    const file = new pyqModel({
+      fileName: req.file.originalname,
+      filePath: gFileUrl,
+      fileType: req.file.mimetype,
+      fileSize: fileSizeFormatter(req.file.size, 2), // Format the size as needed
+      chapter: req.body.chapter,
+      subject: req.body.subject,
+      credit: req.body.credit,
+    });
 
-    // await file.save();
-    // console.log(file);
+    await file.save();
+    console.log(file);
     console.log("uploaded suceesful")
 
     res.status(201).send('File Upload Successfully');
@@ -310,18 +315,18 @@ export const assignmentUploadController = async ( req, res, next) => {
     // console.log(gFileUrl);
 
     // Assuming "note" is your model for storing file information
-    // const file = new ({
-    //   fileName: req.file.originalname,
-    //   filePath: fileId,
-    //   fileType: req.file.mimetype,
-    //   fileSize: fileSizeFormatter(req.file.size, 2), // Format the size as needed
-    //   chapter: req.body.chapter,
-    //   subject: req.body.subject,
-    //   credit: req.body.credit,
-    // });
+    const file = new assignmentModel({
+      fileName: req.file.originalname,
+      filePath: gFileUrl,
+      fileType: req.file.mimetype,
+      fileSize: fileSizeFormatter(req.file.size, 2), // Format the size as needed
+      chapter: req.body.chapter,
+      subject: req.body.subject,
+      credit: req.body.credit,
+    });
 
-    // await file.save();
-    // console.log(file);
+    await file.save();
+    console.log(file);
     console.log("uploaded suceesful")
 
     res.status(201).send('File Upload Successfully');
@@ -336,9 +341,16 @@ export const assignmentUploadController = async ( req, res, next) => {
 
 export const getAllAssignmentController=async(req,res)=>{
   try{
-    const {cid,tid}=req.params;
+    // const {cid,tid}=req.params;
 
-    // const assignment=await 
+    
+
+    const assignment=await assignmentModel.find();
+    return res.status(200).send({
+      message:"All assignments",
+      data:assignment,
+      success:true
+    }) 
   }
   catch(error){
     console.log("Error while getting all assignment ", error.message);
