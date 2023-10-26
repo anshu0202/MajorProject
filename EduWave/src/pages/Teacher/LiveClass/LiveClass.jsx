@@ -47,8 +47,8 @@ const LiveClass = () => {
 
 
     return (
-        <Layout>
-            {/* <h1>Home</h1> */}
+        <>
+
 
             <div className='container text-center  '>
                 <div style={{ height: "100vh" }} className='row h-100  pt-5'>
@@ -74,7 +74,7 @@ const LiveClass = () => {
                 </div>
             </div>
 
-        </Layout>
+        </>
 
     )
 }

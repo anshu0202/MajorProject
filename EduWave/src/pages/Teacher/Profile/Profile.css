@@ -1,0 +1,210 @@
+/* Base styles for larger screens */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 80%;
+    border: 0.5px solid rgb(184, 183, 183);
+    border-radius: 20px;
+    margin-bottom: 20vh;
+    box-shadow: 5px 10px 18px #888888;
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 0.5px solid grey;
+    margin-bottom: 20px;
+  }
+
+  .profile-photo {
+    position: relative;
+  }
+  
+  .icon {
+    position: absolute;
+    top: 105px; /* Adjust the top and right values to position the icon */
+    right: 20px;
+    background-color: Black; 
+    /* Background color for the icon */
+    color: white;
+     /* Icon color */
+    width: 30px; /* Icon dimensions */
+    height: 30px;
+    border-radius: 50%; /* Make it a circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .profile-photo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+    
+  }
+  
+  .profile-photo h2 {
+    /* font-size: 1.5rem; */
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .profile-info p {
+    font-size:2rem;
+    font-weight: bold;
+    width:70%;
+    text-align: center;
+    /* margin: 10px; */
+  }
+  
+  .profile-courses {
+    /* margin-bottom: 20px; */
+    text-align: center;
+
+  }
+  
+  .profile-courses h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .profile-courses ul {
+    list-style-type: none;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .profile-details {
+    width: 80%;
+    background-color: rgb(2, 16, 61);
+    color: white;
+    /* text-align: center; */
+    padding:20px;
+    border: 0.5px solid grey;
+    margin-bottom: 5vh;
+    border-radius: 20px;
+    /* margin-bottom: 20vh; */
+    box-shadow: 2px 5px 10px #888888;
+  }
+  
+  .profile-details h3 {
+    /* width: 80%; */
+    /* font-size: 1.2rem; */
+      text-align: center;
+    border-bottom: 1px solid grey;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  .profile-details ul {
+    /* width: 80%; */
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .profile-details-col{
+    border:1px solid #f6f2f2d6;
+    color: black;
+    box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #f6f2f2d6;
+    margin: 10px;
+  }
+
+  
+
+
+  /* Media query for even smaller screens */
+  @media (max-width: 768px) {
+
+    .profile-container {
+        padding: 10px;
+        border: 0px solid rgb(184, 183, 183);
+        border-radius: 20px;
+        box-shadow: 0px 0px 0px #888888;
+        align-items: center;
+      }
+
+    .profile-header {
+      flex-direction: column;
+      align-items: flex-start;
+      align-items: center;
+    }
+  
+    .profile-photo img {
+      width: 100px;
+      height: 100px;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .profile-photo h2 {
+      font-size: 1.2rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid grey;
+    }
+
+    .profile-info{
+        align-items: center;
+        text-align: center;
+    }
+  
+    .profile-info p {
+        margin-left: 30px;
+      text-align: center;
+      font-size: 1rem;
+    }
+  
+    .profile-courses {
+      text-align: left;
+    }
+  
+    .profile-courses h3 {
+      font-size: 1.2rem;
+    }
+  
+    .profile-details {
+        width: 90%;
+      text-align: left;
+      margin-left: 0;
+      /* text-wrap: wrap; */
+    }
+
+    .profile-details-col{
+        white-space: normal; /* Allow text to wrap */
+  word-wrap: break-word;
+    }
+
+    .icon {
+        position: absolute;
+        top: 60px;
+         /* Adjust the top and right values to position the icon */
+        right: 10px;
+        background-color: black; /* Background color for the icon */
+        color: white; /* Icon color */
+        width: 30px; /* Icon dimensions */
+        height: 30px;
+        border-radius: 50%; /* Make it a circle */
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+      }
+
+      .row{
+        width:100%;
+      }
+
+      .col{
+        width:100%;
+        margin: 10px;
+      }
+      
+  }
+  
+  

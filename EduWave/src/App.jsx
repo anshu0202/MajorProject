@@ -23,6 +23,12 @@ import Grades from './pages/Student/Grades/Grades';
 import LiveClass from './pages/Teacher/LiveClass/LiveClass';
 import Profile from './pages/Student/Profile/Profile';
 import UpdateProfile from './pages/Student/UpdateProfile/UpdateProfile';
+import SideBarTeacher from './pages/Teacher/SideBarTeacher';
+import CreateTest from './pages/Teacher/Test/CreateTest';
+import UploadAssignment from './pages/Teacher/Assignments/UploadAssignment';
+import NoteUpload from './pages/Teacher/Assignments/NoteUpload';
+import PyqUpload from './pages/Teacher/Assignments/PyqUpload';
+import TeacherHome from './pages/Teacher/TeacherHome';
 // import Testingpage from './pages/Testingpage';
 
 
@@ -44,6 +50,7 @@ function App() {
 
         <Route path="/about" element={<About />} />
         <Route path="/studentDashboard" element={<SideBar/>}>
+
         <Route index element={<Course/>} />
         <Route path='Courses' element={<Course/>} />
 
@@ -59,6 +66,35 @@ function App() {
         <Route path="Profile" element={<Profile/>}/>
         <Route path="UpdateProfile" element={<UpdateProfile/>}/>
         </Route>
+
+
+
+        <Route path="/teacherDashboard" element={<SideBarTeacher/>}>
+        <Route index element={<TeacherHome/>} />
+        {/* <Route path='home' element={<Course/>} /> */}
+        <Route path='Courses' element={<Course/>} />
+
+
+        <Route path="Assignment" element={<UploadAssignment/>}/>
+        <Route path="noteUpload" element={<NoteUpload/>}/>
+        <Route path="pyqUpload" element={<PyqUpload/>}/>
+        <Route path="Attendance" element={<Attendance/>}/>
+        <Route path="Notes" element={<Notes/>}/>
+        <Route path="Test" element={<CreateTest/>}/>
+        <Route path="Schedule" element={<Schedule/>}/>
+        <Route path="HelpAndSupport" element={<Help/>}/>
+        <Route path="Grades" element={<Grades/>}/>
+        <Route path="Announcements" element={<Announcements/>}/>
+        <Route path="JoinClass" element={<LiveClass/>}/>
+        <Route path="Profile" element={<Profile/>}/>
+        <Route path="UpdateProfile" element={<UpdateProfile/>}/>
+
+
+
+        </Route>
+
+        <Route path="/liveClass" element={<LiveClass/>}/>
+
         
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
