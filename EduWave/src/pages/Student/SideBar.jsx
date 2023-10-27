@@ -205,10 +205,10 @@ export default function SideBar() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", paddingTop: "15vh" }}>
+    <div style={{ display: "flex", flexDirection: "column",margin:"20px", minHeight: "100vh", paddingTop: "15vh" }}>
       <Box sx={{ display: 'flex' }} style={{ zIndex: 1, flex: 1 }} >
         <CssBaseline />
-        <AppBar position="fixed" open={open} style={{ backgroundColor: "Black", }}>
+        <AppBar position="fixed" open={open} style={{ background: "linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)", }}>
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
             <IconButton
               color="inherit"
@@ -288,14 +288,14 @@ export default function SideBar() {
         {/* <div > */}
 
 
-        <Drawer variant="permanent" open={open} style={{ backgroundColor: "Black" }}>
-          <DrawerHeader style={{ backgroundColor: "Black", color: "white" }}>
+        <Drawer variant="permanent" open={open} >
+          <DrawerHeader style={{ background: 'linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)', color: "white" }}>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronRightIcon style={{ color: "white" }} /> : <ChevronLeftIcon style={{ color: "white" }} />}
             </IconButton>
           </DrawerHeader>
           <Divider />
-          <List style={{ backgroundColor: "Black", color: "white" }}>
+          <List style={{ background: 'linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)',height:"100vh", color: "white" }}>
             {arr.map((text, index) => (
               <Link to={text.link} style={{ textDecoration: "none" }} >
                 <ListItem key={index} disablePadding sx={{ display: 'block', }}>
@@ -335,10 +335,10 @@ export default function SideBar() {
 
         </Drawer>
         {/* </div> */}
-        <Box component="main" sx={{ p: 3 }}>
+        {/* <Box component="main" sx={{ p: 3 ,backgroundColor:"yellow" }}>
           <DrawerHeader />
 
-        </Box>
+        </Box> */}
         <Outlet />
       </Box>
 
