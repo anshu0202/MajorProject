@@ -202,7 +202,7 @@ function AssignmentUpload() {
       
       <div className="upload">
         <div className='m-2' >
-            <button style={{width:"14rem"}}    className='upload-menu-notes m-2  '>Assignment Upload</button>
+            <button style={{width:"14rem"}}    className='btn upload-menu-notes m-2 btn-profile  '>Assignment Upload</button>
         </div>
       <div className="upload">
         <div  className="upload-notes">
@@ -237,7 +237,7 @@ function AssignmentUpload() {
             })}
 
             <div className="note-submit">
-              <button type='submit'  name="Upload" id="" >Upload</button>
+              <button className='btn' type='submit'  name="Upload" id="" >Upload</button>
 
 
 

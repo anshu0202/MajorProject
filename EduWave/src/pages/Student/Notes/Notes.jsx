@@ -1,48 +1,12 @@
-// import React from 'react'
-// import NotesCard from './NotesCard'
-
-// function Notes() {
-//   return (
-//     <div>
-//       This is Notes Page 
-//       Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab praesentium iusto perspiciatis dolorum aperiam dignissimos esse obcaecati minus non tempora optio qui pariatur quo nobis quae debitis dolorem vel expedita accusamus fuga deserunt, quos error est aspernatur! Et quod aperiam quam tenetur porro beatae iusto tempora distinctio debitis, natus non quae quos ullam eligendi quia deleniti doloremque eius amet error.
-
-//       <NotesCard subject="DMW"/>
-//       <NotesCard subject="Maths"/>
-//       <NotesCard subject="English"/>
-//     </div>
-//   )
-// }
-
-// export default Notes
-
-
-
-
-// import React from 'react'
-// import { useParams } from 'react-router-dom';
-
-// function Assignment() {
-//     let title = useParams();
-//   return (
-//     <div>
-
-//         <h1>All Assignment </h1>
-
-
-//     </div>
-//   )
-// }
-
-// export default Assignment
-
-
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import LoadingAnimation from "../Assignments/LoadingAnimation";
 // import Navbar from './Navbar'
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import '../../Teacher/Assignments/note.css'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function Notes() {
   const [serverValue, setServerValue] = useState([])
@@ -169,8 +133,8 @@ function Notes() {
 
     <>
       {/* <Navbar /> */}
-      <div className="note">
-        <div className="note-intro">
+      <div className="note" style={{textAlign:"center"}}>
+        <div className="note-intro" style={{padding:"0%",position:"relative"}}>
 
         
           <div className="note-select">
@@ -201,14 +165,21 @@ function Notes() {
           
         </div>
 
-        <div className="note-card-row">
+        {/* <Row>
+        <Col sm>sm=true</Col>
+        <Col sm>sm=true</Col>
+        <Col sm>sm=true</Col>
+      </Row> */}
+
+
+        <Row style={{marginTop:"8rem",width:"90%",margin:"8rem auto"}}>
           {loaderAnimation ? searchResult && searchResult.map((searchResult, i) => {
             let docUrl = `https://drive.google.com/file/d/`;
             let docMethod = `/view`
             return (
               <>
 
-                <div key={i} className="note-card">
+                <Col sm md key={i} className="note-card" style={{padding:"0%"}}>
                 <div className="note-card-subject">
 
                 <h1>{searchResult.subject}</h1>
@@ -234,11 +205,11 @@ function Notes() {
                   <h1>{searchResult.chapter}</h1>
                 </div>
                   
-                </div>
+                </Col>
               </>
             )
           }) :<LoadingAnimation/> }
-        </div>
+        </Row>
         
 
       </div>

@@ -3,6 +3,10 @@
     flex-direction: column;
     height: 100vh; /* Ensure the container takes the full viewport height */
   }
+
+  .student-header{
+    background-color: "linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)",
+  }
   
   /* .sideBar {
     /* Your sidebar styles */

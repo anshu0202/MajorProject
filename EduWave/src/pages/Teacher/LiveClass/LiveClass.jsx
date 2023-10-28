@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { startLiveClass } from '../../../service/TeacherApi';
 import { useTeacher } from '../../../context/Teacher';
+import './LiveClass.css'
 const LiveClass = () => {
     const [roomID, setRoomID] = useState('');
     const navigate = useNavigate();
@@ -58,7 +59,7 @@ const LiveClass = () => {
 
                         <div className='d-flex flex-column gap-2 align-items-center'>
                             <Input type="text" placeholder='Enter Room Code ' value={roomID} onChange={(e) => setRoomID(e.target.value)} />
-                            <Button style={{ width: "50%" }} variant='contained' color='success' onClick={handleJoinRoom}>Create Class </Button>
+                            <Button className='btn'   onClick={handleJoinRoom}>Create Class </Button>
                         </div>
                     </div>
                     <div className='col-md-6'>

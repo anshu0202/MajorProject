@@ -4,7 +4,8 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    width: 80%;
+    width: 90%;
+    margin: 0 auto;
     border: 0px solid rgb(184, 183, 183);
     border-radius: 20px;
     margin-bottom: 20vh;
@@ -90,30 +91,35 @@
   }
 
   .profile-details {
-    width: 80%;
-    background-color: rgb(2, 16, 61);
-    color: white;
+    width: 70%;
+    /* background: linear-gradient(303deg, rgba(182, 51, 118, 1) 5%, rgba(29, 15, 74, 1) 57%); */
+    /* color: white; */
     /* text-align: center; */
+    justify-content: center;
+    align-items: center;
     padding:20px;
     border: 0.5px solid grey;
     margin-bottom: 5vh;
     border-radius: 20px;
     /* margin-bottom: 20vh; */
-    box-shadow: 2px 5px 10px #888888;
+    box-shadow: 2px 5px 10px rgba(29, 15, 74, 1);
   }
   
   .profile-details h3 {
     /* width: 80%; */
     /* font-size: 1.2rem; */
+    color: black;
       text-align: center;
-    border-bottom: 1px solid grey;
+    /* border-bottom: 1px solid grey; */
     padding: 10px;
     margin: 0;
   }
   
   .profile-details ul {
     /* width: 80%; */
-    list-style-type: none;
+    color: black;
+    list-style-type: disc;
+    /* overflow: unset; */
     padding: 0;
   }
   
@@ -122,8 +128,28 @@
     color: black;
     box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    background-color: #f6f2f2d6;
+    background-color: white;
     margin: 10px;
+  }
+
+  .btn{
+    /* background-color: rgba(29, 15, 74, 1); */
+    background: linear-gradient(303deg, rgba(182, 51, 118, 1) 5%, rgba(29, 15, 74, 1) 57%);
+    border-radius: 25px;
+    border: 0ch;
+    padding: 0rem 0rem 0rem 1rem;
+    height: 3rem;
+    width: 100%;
+    color: white;
+  }
+
+
+  .btn:hover{
+    /* background-color: #2d0222; */
+    background: rgba(29, 15, 74, 1);
+    color: white;
+    box-shadow: 1px 2px 5px #7e025d;
+    /* background: "linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)"; */
   }
 
   
@@ -205,6 +231,7 @@
         /* justify-content: center; */
         align-items: center;
       }
+
 
       .row{
         width:100%;

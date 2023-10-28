@@ -43,6 +43,7 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 const drawerWidth = 240;
 
@@ -185,10 +186,10 @@ export default function SideBarTeacher() {
   }
 
   return (
-    <div style={{display:"flex",flexDirection:"column",minHeight:"100vh",paddingTop:"15vh"}}>
+    <div style={{display:"flex",flexDirection:"column",margin:"20px",minHeight:"100vh",paddingTop:"15vh"}}>
     <Box sx={{ display: 'flex' }} style={{zIndex:1,flex:1 }} >
       <CssBaseline  />
-      <AppBar position="fixed" open={open} style={{backgroundColor:"Black",}}>
+      <AppBar position="fixed" open={open} style={{ background: "linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)", }}>
         <Toolbar style={{display:"flex",justifyContent:"space-between"}}>
           <IconButton
             color="inherit"
@@ -268,14 +269,14 @@ export default function SideBarTeacher() {
       {/* <div > */}
 
      
-      <Drawer variant="permanent" open={open}  style={{backgroundColor:"Black"}}>
-        <DrawerHeader style={{backgroundColor:"Black", color:"white"}}>
+      <Drawer variant="permanent" open={open} >
+        <DrawerHeader style={{ background: 'linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)', color: "white" }}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon style={{color:"white"}}/> : <ChevronLeftIcon style={{color:"white"}}/>}
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List style={{backgroundColor:"Black",color:"white"}}>
+        <List style={{ background: 'linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)',height:"100vh", color: "white" }}>
           {arr.map((text,index) => (
             <Link to={text.link} style={{textDecoration:"none" }} >
             <ListItem key={index} disablePadding sx={{ display: 'block',}}>
@@ -287,9 +288,12 @@ export default function SideBarTeacher() {
                   px: 2.5,
                 }}
               >
-              
-
-
+              <OverlayTrigger
+                    style={{background:"black",color:"white",zIndex:3}}
+                    placement="right"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={ <Tooltip id="button-tooltip" style={{background:"linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)",border:"1px solid white",borderRadius:"25px",padding:"10px",width:"7rem",color:"white",zIndex:3}}>{text.name} </Tooltip>}
+                  >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
@@ -304,6 +308,7 @@ export default function SideBarTeacher() {
                   <AssignmentIcon style={{color:"white"}}/>
                   <CalendarMonthIcon style={{color:"white"}}/> */}
                 </ListItemIcon>
+                </OverlayTrigger>
                 <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 ,textDecorationLine:"none",textDecoration:"none",color:"white"}} />
                 {/* </Link> */}
               </ListItemButton>
@@ -315,11 +320,11 @@ export default function SideBarTeacher() {
         
         </Drawer>
         {/* </div> */}
-      <Box component="main" sx={{ p: 3}}>
+      {/* <Box component="main" sx={{ p: 3}}>
         <DrawerHeader />
        
-      </Box>
-      <Outlet  />
+      </Box> */}
+      <Outlet />
     </Box>
    
     

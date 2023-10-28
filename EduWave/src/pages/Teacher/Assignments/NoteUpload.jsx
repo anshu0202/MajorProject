@@ -237,7 +237,7 @@ function NoteUpload() {
           
 
           <NavLink exact to="/teacherDashboard/noteUpload">
-            <button onClick={notesButtonON}  className='upload-menu-notes'>Notes</button>
+            <button  onClick={notesButtonON}  className='upload-menu-notes'>Notes</button>
 
           </NavLink>
 
@@ -298,7 +298,7 @@ function NoteUpload() {
             })}
 
             <div className="note-submit">
-              <button type='submit'  name="Upload" id="" >Upload</button>
+              <button className='btn' type='submit'  name="Upload" id="" >Upload</button>
 
 
 

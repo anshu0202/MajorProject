@@ -17,6 +17,7 @@ const Profile = ({ user }) => {
       <div className="profile-header">
       <div className="profile-info">
           <p style={{textAlign:"center"}}>The IK Gujral Punjab Technical University</p>
+          <hr />
         </div>
         <div className="profile-photo">
           <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D" alt="Profile" />
@@ -24,74 +25,103 @@ const Profile = ({ user }) => {
           <AddCircleOutlineIcon className='profile-icon' fontSize='large'/>
           <h2>Seea Rani</h2>
         </div>
-        
-      
-      {/* <div className="profile-courses">
-        <h3>Courses</h3>
-        <ul>
-          {courses.map((course, index) => (
-            <li key={index}>{course}</li>
-          ))}
-        </ul>
-      </div> */}
 
       </div>
-      {/* <hr style={{color:"grey"}}/> */}
+      
       <div className="profile-details">
-        
-        <Row>
-          <Col className='profile-details-col' >
-          <h3>Student Information</h3>
-          <div>
-          <strong className='fs-4 m-3'>Name :</strong> <span className='fs-4 '>Seea Rani</span>
-          </div>
-          <div>
-          <strong className='fs-4 m-3'>Phone No :</strong> <span className='fs-4'>9915667484</span>
-          </div>
-          <div>
-          <strong className='fs-4 m-3'>Roll No. :</strong> <span className='fs-4'>2022614</span>
-          </div>
-          <div>
-          <strong className='fs-4 m-3'>Email :</strong> <span className='fs-4'>seeagarg0203@gmail.com</span>
-          </div>
-          <div>
-          <strong className='fs-4  m-3'>Gender :</strong> <span className='fs-4'>Female</span>
-          </div>
-          <div>
-          <strong className='fs-4  m-3'>DOB :</strong> <span className='fs-4'>02-02-03</span>
-          </div>
-          <div>
-          <strong className='fs-4  m-3'>Address :</strong> <span className='fs-4'>Jalandhar</span>
-          </div>
-          </Col>
-          <Col className='profile-details-col profile-courses'>
-          <h3>Course List</h3>
-          <ul>
+          
+          <h3 className='fw-bold'>Student Information</h3>
+
+          <Row style={{margin: "0 auto",width: "70%"}}>
+          <hr />
+            <Col className='fs-5 m-2'>
+            <strong >Name :</strong>
+            </Col>
+            <Col className='fs-5 m-2'> Seea Rani</Col>
+            <hr />
+          </Row>
+          
+          <Row style={{margin: "0 auto",width: "70%"}}>
+            <Col className='fs-5 m-2'>
+            <strong >Phone No :</strong>
+            </Col>
+            <Col className='fs-5 m-2'> 9915667484</Col>
+            <hr />
+          </Row>
+
+          <Row style={{margin: "0 auto",width: "70%"}}>
+            <Col className='fs-5 m-2'>
+            <strong >Roll No. :</strong>
+            </Col>
+            <Col className='fs-5 m-2'> 2022614</Col>
+            <hr />
+          </Row>
+
+          <Row style={{margin: "0 auto",width: "70%"}}>
+            <Col className='fs-5 m-2'>
+            <strong >Email :</strong>
+            </Col>
+            <Col className='fs-5 m-2'>seeagarg0203@gmail.com</Col>
+            <hr />
+          </Row>
+
+          <Row style={{margin: "0 auto",width: "70%"}}>
+            <Col className='fs-5 m-2'>
+            <strong >Gender :</strong>
+            </Col>
+            <Col className='fs-5 m-2'>Female</Col>
+            <hr />
+          </Row>
+
+          <Row style={{margin: "0 auto",width: "70%"}}>
+            <Col className='fs-5 m-2'>
+            <strong >DOB :</strong>
+            </Col>
+            <Col className='fs-5 m-2'> 02-02-03</Col>
+            <hr />
+          </Row>
+
+          <Row style={{margin: "0 auto",width: "70%"}}>
+            <Col className='fs-5 m-2'>
+            <strong >Address :</strong>
+            </Col>
+            <Col className='fs-5 m-2'> Jalandhar</Col>
+            <hr />
+          </Row>
+
+          {/* </div> */}
+          
+          
+          
+          <div >
+          <h3 className='fw-bold'>Course List</h3>
+          <ul style={{width:"70%",margin:"0 auto",display:"flex",flexWrap:"wrap",flexDirection: "column",height: "120px"}}>
           {courses.map((course, index) => (
-            <li key={index} className='fs-4 '>{course}</li>
+            <li key={index} className='fs-5 mx-5'>{course}</li>
           ))}
         </ul>
-          </Col>
+        </div>
           
           
-        </Row>
+          
+        {/* </Row> */}
         
       </div>
      
 
       <Row className='row' style={{width:"80%",alignItems:"center",alignContent:"center"}}>
         <Col className='col'><Link to="/studentDashboard/UpdateProfile">
-        <Button variant="info" style={{width:"100%"}}>Update Profile</Button>
+        <Button className='btn btn-profile' >Update Profile</Button>
         </Link>
         </Col>
         <Col  className='col'>
         <Link to="/studentDashboard/Grades">
-         <Button variant="info" style={{width:"100%"}}>My Progress</Button>
+         <Button className='btn btn-profile' >My Progress</Button>
          </Link>
          </Col>
 
         <Col  className='col'><Link to="/studentDashboard/Assignment">
-        <Button variant="info" style={{width:"100%"}}>My Assignments</Button>
+        <Button className='btn btn-profile'  >My Assignments</Button>
         </Link></Col>
       </Row>
       
