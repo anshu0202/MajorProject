@@ -1,4 +1,5 @@
-import { Button } from '@mui/material';
+// import { Button } from '@mui/material';
+import Button from 'react-bootstrap/Button';
 import React from 'react';
 import { joinLiveClass } from '../../../service/StudentApi';
 import { toast } from 'react-toastify';
@@ -60,8 +61,8 @@ function JoinClass() {
     <div>
       <div  >
         <div >
-          <table style={{width:"75vw"}}>
-            <thead  style={{margin:"20px",border:"1px solid black",borderRadius:"20px",}} >
+          <table style={{width:"75vw",border:"1px solid black",borderRadius:"25px"}} >
+            <thead  style={{margin:"20px",borderRadius:"20px"}} >
               <tr >
                 <th style={{padding:"10px"}}>Name</th>
                 <th style={{padding:"10px"}}>Class ID</th>
@@ -74,12 +75,12 @@ function JoinClass() {
             </thead>
             <tbody style={{margin:"2vh",padding:"2vh"}} >
               {data.map((item, index) => (
-                <tr key={index} style={{border:"1px solid black",borderRadius:"20px",margin:"2vh"}}>
+                <tr key={index} style={{borderRadius:"20px",margin:"2vh"}}>
                   <td style={{padding:"10px"}}>{item.name}</td>
                   <td style={{padding:"10px"}}>{item.classId}</td>
                   <td style={{padding:"10px"}}>{item.TeacherName}</td>
                   <td style={{padding:"10px"}}>
-                    <Button onClick={()=>handleJoin(item.classId)} variant='contained' color='success'>
+                    <Button className='btn' onClick={()=>handleJoin(item.classId)} variant='contained' color='success'>
                       Join Class
 
                     </Button>
