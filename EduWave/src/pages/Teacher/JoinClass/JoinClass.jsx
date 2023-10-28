@@ -3,6 +3,7 @@ import React from 'react';
 import { joinLiveClass } from '../../../service/StudentApi';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
+import '../../Student/Profile/Profile.css'
 
 function JoinClass() {
 
@@ -79,9 +80,8 @@ function JoinClass() {
                   <td style={{padding:"10px"}}>{item.classId}</td>
                   <td style={{padding:"10px"}}>{item.TeacherName}</td>
                   <td style={{padding:"10px"}}>
-                    <Button onClick={()=>handleJoin(item.classId)} variant='contained' color='success'>
+                    <Button  className='btn' onClick={()=>handleJoin(item.classId)} >
                       Join Class
-
                     </Button>
                   </td>
 

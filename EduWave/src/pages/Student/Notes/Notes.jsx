@@ -133,8 +133,8 @@ function Notes() {
 
     <>
       {/* <Navbar /> */}
-      <div className="note">
-        <div className="note-intro">
+      <div className="note" style={{textAlign:"center"}}>
+        <div className="note-intro" style={{padding:"0%",position:"relative"}}>
 
         
           <div className="note-select">
@@ -172,14 +172,14 @@ function Notes() {
       </Row> */}
 
 
-        <Row className="note-card-row">
+        <Row style={{marginTop:"8rem",width:"90%",margin:"8rem auto"}}>
           {loaderAnimation ? searchResult && searchResult.map((searchResult, i) => {
             let docUrl = `https://drive.google.com/file/d/`;
             let docMethod = `/view`
             return (
               <>
 
-                <Col sm md key={i} className="note-card">
+                <Col sm md key={i} className="note-card" style={{padding:"0%"}}>
                 <div className="note-card-subject">
 
                 <h1>{searchResult.subject}</h1>

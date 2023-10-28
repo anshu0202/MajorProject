@@ -43,6 +43,9 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+// import Tooltip from 'react-bootstrap/Tooltip';
+
 
 const drawerWidth = 240;
 
@@ -111,7 +114,18 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+
+
+
+
+
+
+
 export default function SideBar() {
+
+  
+
+
 
   let { title } = useParams();
 
@@ -179,6 +193,17 @@ export default function SideBar() {
       // }
     ]
 
+    // const renderTooltip = (props) => {
+    //   // {arr.map((text,index)=>(
+    //     <Tooltip id="button-tooltip" {...props} >
+    //     {/* {text.name} */}
+    //     hello
+    //   </Tooltip>
+    // // ))}
+      
+    //   }
+    
+
 
 
   const theme = useTheme();
@@ -203,6 +228,8 @@ export default function SideBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
 
   return (
     <div style={{ display: "flex", flexDirection: "column",margin:"20px", minHeight: "100vh", paddingTop: "15vh" }}>
@@ -295,7 +322,7 @@ export default function SideBar() {
             </IconButton>
           </DrawerHeader>
           <Divider />
-          <List style={{ background: 'linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)',height:"100vh", color: "white" }}>
+          <List style={{ background: 'linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)',zIndex:0,height:"100vh", color: "white" }}>
             {arr.map((text, index) => (
               <Link to={text.link} style={{ textDecoration: "none" }} >
                 <ListItem key={index} disablePadding sx={{ display: 'block', }}>
@@ -308,7 +335,12 @@ export default function SideBar() {
                     }}
                   >
 
-
+                  <OverlayTrigger
+                    style={{background:"black",color:"white",zIndex:3}}
+                    placement="right"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={ <Tooltip id="button-tooltip" style={{background:"linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)",border:"1px solid white",borderRadius:"25px",padding:"10px",width:"7rem",color:"white",zIndex:3}}>{text.name} </Tooltip>}
+                  >
 
                     <ListItemIcon
                       sx={{
@@ -324,6 +356,7 @@ export default function SideBar() {
                   <AssignmentIcon style={{color:"white"}}/>
                   <CalendarMonthIcon style={{color:"white"}}/> */}
                     </ListItemIcon>
+                    </OverlayTrigger>
                     <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, textDecorationLine: "none", textDecoration: "none", color: "white" }} />
                     {/* </Link> */}
                   </ListItemButton>

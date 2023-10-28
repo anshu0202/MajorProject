@@ -111,17 +111,17 @@ const Profile = ({ user }) => {
 
       <Row className='row' style={{width:"80%",alignItems:"center",alignContent:"center"}}>
         <Col className='col'><Link to="/studentDashboard/UpdateProfile">
-        <Button className='btn-profile' >Update Profile</Button>
+        <Button className='btn btn-profile' >Update Profile</Button>
         </Link>
         </Col>
         <Col  className='col'>
         <Link to="/studentDashboard/Grades">
-         <Button className='btn-profile' >My Progress</Button>
+         <Button className='btn btn-profile' >My Progress</Button>
          </Link>
          </Col>
 
         <Col  className='col'><Link to="/studentDashboard/Assignment">
-        <Button className='btn-profile'  >My Assignments</Button>
+        <Button className='btn btn-profile'  >My Assignments</Button>
         </Link></Col>
       </Row>
       

@@ -11,6 +11,12 @@
     width: 40rem;
 }
 
+
+
+.btn:hover{
+    background-color: rgba(29,15,74,1);
+}
+
 .upload-intro h1 {
     color: rgba(29, 15, 74);
     font-size: 3rem;
@@ -91,7 +97,7 @@
 }
 
 .upload-notes {
-    width: 40rem;
+    width: 100%;
     height: 20rem;
     display: flex;
     justify-content: center;
@@ -560,4 +566,34 @@ input[type="file"]::file-selector-button {
     /* position: relative; */
     margin: 1rem 0rem 1rem 0rem;
     
+}
+
+
+@media screen and (max-width:786px) {
+   
+    .select-notes-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 1.3rem 0rem 1rem 0rem;
+        cursor: pointer;
+        width: 70%;
+        margin: 2rem auto;
+        height: 12rem;
+        border-radius: 25px;
+        border: 3px dashed rgba(29, 15, 74, 1);
+        background-color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.584);
+        position: relative;
+    }
+
+    .upload-notes {
+        width: 95%;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* margin: auto; */
+    }
 }

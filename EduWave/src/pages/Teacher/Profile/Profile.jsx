@@ -73,17 +73,17 @@ const Profile = ({ user }) => {
 
       <Row className='row' style={{width:"80%",alignItems:"center",alignContent:"center"}}>
         <Col className='col'><Link to="/studentDashboard/UpdateProfile">
-        <Button variant="info" style={{width:"100%"}}>Update Profile</Button>
+        <Button className='btn' variant="info" style={{width:"100%"}}>Update Profile</Button>
         </Link>
         </Col>
         <Col  className='col'>
         <Link to="/studentDashboard/Grades">
-         <Button variant="info" style={{width:"100%"}}>My Progress</Button>
+         <Button className='btn' variant="info" style={{width:"100%"}}>My Progress</Button>
          </Link>
          </Col>
 
         <Col  className='col'><Link to="/studentDashboard/Assignment">
-        <Button variant="info" style={{width:"100%"}}>My Assignments</Button>
+        <Button className='btn' variant="info" style={{width:"100%"}}>My Assignments</Button>
         </Link></Col>
       </Row>
       
