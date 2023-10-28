@@ -291,8 +291,8 @@ export default function SideBarTeacher() {
               <OverlayTrigger
                     style={{background:"black",color:"white",zIndex:3}}
                     placement="right"
-                    delay={{ show: 250, hide: 400 }}
-                    overlay={ <Tooltip id="button-tooltip" style={{background:"linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)",border:"1px solid white",borderRadius:"25px",padding:"10px",width:"7rem",color:"white",zIndex:3}}>{text.name} </Tooltip>}
+                    delay={{ show: 250, hide: 100 }}
+                    overlay={ <Tooltip id="button-tooltip" style={{background:"linear-gradient(303deg, rgba(182, 51, 118, 1) 0%, rgba(29, 15, 74, 1) 44%)",border:"1px solid white",borderRadius:"25px",padding:"10px",width:"7rem",color:"white",zIndex:3,marginLeft:"10px"}}>{text.name} </Tooltip>}
                   >
                 <ListItemIcon
                   sx={{

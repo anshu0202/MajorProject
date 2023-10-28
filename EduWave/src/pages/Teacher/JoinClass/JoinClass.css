@@ -1,0 +1,10 @@
+.btn{
+    width: 50%;
+    border-radius: 25px;
+    color: white;
+    
+}
+
+.btn:hover{
+    background-color: rgba(29,15,74,1);
+}

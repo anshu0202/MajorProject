@@ -2,12 +2,15 @@ import React, { useCallback, useState } from 'react'
 import Layout from '../../../components/Layout/Layout';
 import webrtc from "../../../assets/img/webrtc.gif";
 import { useNavigate } from 'react-router-dom';
-import { Button, Input } from '@mui/material';
+import { Input } from '@mui/material';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { startLiveClass } from '../../../service/TeacherApi';
 import { useTeacher } from '../../../context/Teacher';
 import './LiveClass.css'
+import Button from 'react-bootstrap/Button';
+// import Input from 'react-bootstrap/Input'
+
 const LiveClass = () => {
     const [roomID, setRoomID] = useState('');
     const navigate = useNavigate();
@@ -53,13 +56,13 @@ const LiveClass = () => {
 
             <div className='container text-center  '>
                 <div style={{ height: "100vh" }} className='row h-100  pt-5'>
-                    <div className='col-md-6'>
+                    <div className='col-md-6' style={{width:"40%"}}>
 
                         <h3>Generate Class Code </h3>
 
-                        <div className='d-flex flex-column gap-2 align-items-center'>
-                            <Input type="text" placeholder='Enter Room Code ' value={roomID} onChange={(e) => setRoomID(e.target.value)} />
-                            <Button className='btn'   onClick={handleJoinRoom}>Create Class </Button>
+                        <div className=' align-items-center' style={{width:"50%",margin:"10px auto"}}>
+                            <Input className='m-3' type="text" placeholder='Enter Room Code ' value={roomID} onChange={(e) => setRoomID(e.target.value)} />
+                            <Button style={{color:"white"}}  onClick={handleJoinRoom} className='btn-create'>Create Class </Button>
                         </div>
                     </div>
                     <div className='col-md-6'>

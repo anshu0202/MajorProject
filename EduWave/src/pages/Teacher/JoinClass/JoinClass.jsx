@@ -3,7 +3,8 @@ import React from 'react';
 import { joinLiveClass } from '../../../service/StudentApi';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
-import '../../Student/Profile/Profile.css'
+import './JoinClass.css'
+// import '../../Student/Profile/Profile.css'
 
 function JoinClass() {
 
