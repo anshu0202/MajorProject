@@ -193,15 +193,6 @@ export default function SideBar() {
       // }
     ]
 
-    // const renderTooltip = (props) => {
-    //   // {arr.map((text,index)=>(
-    //     <Tooltip id="button-tooltip" {...props} >
-    //     {/* {text.name} */}
-    //     hello
-    //   </Tooltip>
-    // // ))}
-      
-    //   }
     
 
 
