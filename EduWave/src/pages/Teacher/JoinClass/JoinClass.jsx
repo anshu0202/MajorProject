@@ -53,9 +53,6 @@ function JoinClass() {
     if(res){
       toast.success("Class Joined Successfull!!  ")
     }
-
-
-
   }
 
   return (
@@ -69,9 +66,6 @@ function JoinClass() {
                 <th style={{padding:"10px"}}>Class ID</th>
                 <th style={{padding:"10px"}}>Teacher Name</th>
                 <th style={{padding:"10px"}}>Join Now</th>
-
-
-
               </tr>
             </thead>
             <tbody style={{margin:"2vh",padding:"2vh"}} >
