@@ -18,7 +18,7 @@ jobs:
           VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
           VITE_SERVER_SECRET: ${{ secrets.VITE_SERVER_SECRET }}
           VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
-        run: npm run vite build
+        run: npm run build
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v2
         with:
