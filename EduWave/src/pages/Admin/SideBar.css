@@ -1,0 +1,33 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Ensure the container takes the full viewport height */
+  }
+  
+  /* .sideBar {
+    /* Your sidebar styles */
+    /* width: 250px; Adjust the width as needed */
+    /* background-color: #f1f1f1; */
+  /* } */
+  
+  /* .content {
+    Your main content styles
+    flex: 1; /* Takes up remaining available space */
+    /* padding: 20px; Add padding as needed */
+  /* } */ 
+  
+  
+
+  .footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: auto;
+    margin-top: 10vh;
+    color: white; /* Adjust text color as needed */
+    text-align: center;
+
+  }
+  
+  

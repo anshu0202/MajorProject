@@ -31,6 +31,12 @@ import PyqUpload from './pages/Teacher/Assignments/PyqUpload';
 import TeacherHome from './pages/Teacher/TeacherHome';
 import AssignmentUpload from './pages/Teacher/Assignments/AssignmentUpload';
 import Previous from './pages/Student/PYQS/Previous';
+import SideBarAdmin from './pages/Admin/SideBarAdmin';
+import TeacherManagement from './pages/Admin/JoinClass/TeacherManagement';
+import StudentManagement from './pages/Admin/Courses/StudentManagement';
+import CreateCourse from './pages/Admin/Schedule/CreateCourse';
+import CreateSubjects from './pages/Admin/Assignments/CreateSubjects';
+import AssignTeachers from './pages/Admin/Test/AssignTeachers';
 // import Testingpage from './pages/Testingpage';
 
 
@@ -93,6 +99,32 @@ function App() {
         <Route path="JoinClass" element={<LiveClass/>}/>
         <Route path="Profile" element={<Profile/>}/>
         <Route path="UpdateProfile" element={<UpdateProfile/>}/>
+
+
+
+        </Route>
+
+
+        <Route path="/adminDashboard" element={<SideBarAdmin/>}>
+        <Route index element={<TeacherHome/>} />
+        {/* <Route path='home' element={<Course/>} /> */}
+        <Route path='studentManagement' element={<StudentManagement/>} />
+        <Route path="createSubjects" element={<CreateSubjects/>}/>
+        <Route path="assignmentUpload" element={<AssignmentUpload/>}/>
+        <Route path="noteUpload" element={<NoteUpload/>}/>
+        <Route path="pyqUpload" element={<PyqUpload/>}/>
+        <Route path="createCourse" element={<CreateCourse/>}/>
+        <Route path="Notes" element={<Notes/>}/>
+        <Route path="assignTeachers" element={<AssignTeachers/>}/>
+        <Route path="Schedule" element={<Schedule/>}/>
+        <Route path="HelpAndSupport" element={<Help/>}/>
+        <Route path="Grades" element={<Grades/>}/>
+        <Route path="Announcements" element={<Announcements/>}/>
+        <Route path="teacherManagement" element={<TeacherManagement/>}/>
+        <Route path="Profile" element={<Profile/>}/>
+        <Route path="UpdateProfile" element={<UpdateProfile/>}/>
+
+
 
 
 

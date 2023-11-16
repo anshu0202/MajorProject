@@ -3,9 +3,14 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
 
-    name:{
+    fname:{
         type:String,
-        required:true,
+        // required:true,
+        trim:true
+    },
+    lname:{
+        type:String,
+        // required:true,
         trim:true
     },
     email:{
@@ -19,17 +24,17 @@ const userSchema = new mongoose.Schema({
     },
     phone:{
         type:String,
-        required:true
+        // required:true
 
     },
     address:{
         type:String,
-        required:true
+        // required:true
     },
 
     role:{
         type:Number,
-        default:0
+        default:1
     }
 },
 {timestamps:true}
