@@ -13,10 +13,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { toast, ToastContainer } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import { studentRegister } from '../../service/StudentApi';
+import { Register } from '../../service/StudentApi';
+
+import { InputLabel, MenuItem, Select } from '@mui/material';
 // import loginGif from "./img/login.gif";
 function Copyright(props) {
     return (
@@ -39,6 +41,7 @@ export default function SignUp() {
     const [fname, setFName] = useState("");
     const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
+    const [role, setRole] = useState(null);
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     // const [answer, setAnswer] = useState("");
@@ -46,23 +49,23 @@ export default function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
-            firstName: fname,
-            email : email,
-            password : password,
-            lastName: lname,
-            userName : username
+            fname: fname,
+            email: email,
+            password: password,
+            lname: lname,
+            role: role
         }
         console.log(data);
 
-        const res = await studentRegister(data);
+        const res = await Register(data);
         console.log("res in register page main ", res);
         if (res.success) {
             toast.success(res.message);
             // localStorage.setItem("user", JSON.stringify(res?.student));
             setTimeout(() => {
-                
+
                 navigate("/login");
-            },2000);
+            }, 2000);
 
         } else {
             toast.error(res.message);
@@ -130,6 +133,22 @@ export default function SignUp() {
                                     name="email"
                                     autoComplete="email"
                                 />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                                <Select 
+                                    style={{ width: "100%" }}
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={role}
+                                    label="role"
+                                    onChange={(e) => setRole(e.target.value)}
+                                >
+                                    
+                                    <MenuItem value={1}>Student</MenuItem>
+                                    <MenuItem value={2}>Teacher</MenuItem>
+                                    
+                                </Select>
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField

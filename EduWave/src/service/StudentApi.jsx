@@ -4,11 +4,11 @@ const url = import.meta.env.VITE_BACKEND_URL;
 
 
 //register
-export const studentRegister = async(data) => {
+export const Register = async(data) => {
     // console.log("back-->", url);
 
     try {
-        const res = await axios.post(`${url}/api/v1/student/register`, data)
+        const res = await axios.post(`${url}/api/v1/auth/register`, data)
         console.log("this is register data-->", res);
         return res.data;
 
