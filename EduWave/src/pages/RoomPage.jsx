@@ -11,7 +11,7 @@ const RoomPage = () => {
     const { teacherData, setTeacherData } = useTeacher();
 
     const myMeeting = async (element) => {
-        console.log("teacher data" , teacherData)
+        console.log("teacher data" , teacherData);
         // const appID = import.meta.env.VITE_APP_ID;
         const appID = 2098487774;
 
