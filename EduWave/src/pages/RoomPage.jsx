@@ -13,12 +13,12 @@ const RoomPage = () => {
     const myMeeting = async (element) => {
         console.log("teacher data" , teacherData)
         // const appID = import.meta.env.VITE_APP_ID;
-        const appID = 1661547157;
+        const appID = 2098487774;
 
         console.log("thisb is is app id -->" , appID);
 
         // const serverSecret = import.meta.env.VITE_SERVER_SECRET;
-        const serverSecret = "1c0498b400a8f29784c2b4dc3c08cc40"
+        const serverSecret = "00081a5a7b3762a321d3f4481a660c51"
 
         console.log("thisb is is secret id -->" , serverSecret);
 
