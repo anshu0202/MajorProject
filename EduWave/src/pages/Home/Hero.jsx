@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import './css/index.css'
 function Hero() {
   return (
     <>
@@ -14,12 +15,12 @@ function Hero() {
             <h1>Ace your exams with our comprehensive notes and pyq</h1>
             <h3>Unlock your full potential with our in-depth notes and pyq</h3>
             <div className="hero-button">
-            <NavLink exact to="/notes">
-            <button className="notes">Notes</button>
+            <NavLink exact to="/studentDashboard">
+            <button className="notes">Student</button>
             </NavLink>
 
-            <NavLink exact to="/pyq">
-            <button className="pyq"></button>
+            <NavLink exact to="/teacherDashboard">
+            <button className="py">Teacher</button>
             </NavLink>
               
               

@@ -345,25 +345,24 @@
   .hero-button .notes:active {
     transform: scale(.7);
   }
-  .hero-button .pyq::before{
-    content: "Previous Year Question";
+ 
   
-  }
   
-  .hero-button .pyq {
-    width: 15rem;
+
+
+  .hero-button .py {
+    width: 5.5rem;
     padding: .7rem .7rem .7rem .7rem;
     border-radius: 25px;
+    color: black;
     font-size: .9rem;
     font-weight: bold;
+    background-color: #f3940e;
+    border: none;
+    margin: 0rem 1rem 0rem 0rem;
+    background: rgb(29, 15, 74);
     transition: 1s;
     cursor: pointer;
-    letter-spacing: 1px;
-    color: black;
-    background-color: rgba(182, 51, 118, 1);
-    border: none;
-    margin: 0rem 2rem 0rem 0rem;
-    background: rgb(29, 15, 74);
     background: linear-gradient(313deg, rgba(182, 51, 118, 1) 6%, rgba(243, 148, 14, 1) 87%);
   }
   
