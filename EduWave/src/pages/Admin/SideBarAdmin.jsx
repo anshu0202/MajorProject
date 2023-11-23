@@ -28,7 +28,7 @@ import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import GradeIcon from '@mui/icons-material/Grade';
 import QuizIcon from '@mui/icons-material/Quiz';
 import InfoIcon from '@mui/icons-material/Info';
-import Course from './Courses/StudentManagement';
+import Course from './StudentManagement/StudentManagement';
 import Footer from '../../components/Layout/Footer';
 import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import Assignment from './Assignments/UploadAssignment';
