@@ -2,6 +2,23 @@ import axios from "axios";
 const url = import.meta.env.VITE_BACKEND_URL;
 
 
+export const teacherLogin = async(data) => {
+    console.log("services data login -->", data);
+
+    try {
+        const res = await axios.post(`${url}/api/v1/teacher/login`, data)
+        console.log("this is Teacher login data-->", res);
+        return res?.data;
+
+    } catch (error) {
+        console.log("Error  baaackservies Submitting data in frontEnd --> ", error);
+    }
+
+}
+
+
+
+
 
 export const startLiveClass = async(data) => {
     console.log("back-->", url);

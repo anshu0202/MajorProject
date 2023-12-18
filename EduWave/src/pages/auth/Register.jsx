@@ -16,7 +16,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { json, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import { Register } from '../../service/StudentApi';
+import { newStudentRegister, newTeacherRegister, Register } from '../../service/StudentApi';
 
 import { InputLabel, MenuItem, Select } from '@mui/material';
 // import loginGif from "./img/login.gif";
@@ -57,19 +57,58 @@ export default function SignUp() {
         }
         console.log(data);
 
-        const res = await Register(data);
+        if(role==1){
+            const res = await newStudentRegister(data);
         console.log("res in register page main ", res);
         if (res.success) {
             toast.success(res.message);
             // localStorage.setItem("user", JSON.stringify(res?.student));
             setTimeout(() => {
 
-                navigate("/login");
+                // navigate("/login");
             }, 2000);
 
         } else {
             toast.error(res.message);
         }
+
+
+
+        }else{
+            const res = await newTeacherRegister(data);
+        console.log("res in register page main ", res);
+        if (res.success) {
+            toast.success(res.message);
+            // localStorage.setItem("user", JSON.stringify(res?.student));
+            setTimeout(() => {
+                // navigate("/login");
+            }, 2000);
+
+        } else {
+            toast.error(res.message);
+        }
+
+
+
+
+        }
+
+
+
+
+        // const res = await Register(data);
+        // console.log("res in register page main ", res);
+        // if (res.success) {
+        //     toast.success(res.message);
+        //     // localStorage.setItem("user", JSON.stringify(res?.student));
+        //     setTimeout(() => {
+
+        //         navigate("/login");
+        //     }, 2000);
+
+        // } else {
+        //     toast.error(res.message);
+        // }
 
 
     }
@@ -163,7 +202,7 @@ export default function SignUp() {
                                     autoComplete="new-password"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <TextField
                                     required
                                     value={username}
@@ -175,7 +214,7 @@ export default function SignUp() {
                                     id="exampleInputUsername"
                                     autoComplete="username"
                                 />
-                            </Grid>
+                            </Grid> */}
                             {/* <Grid item xs={12}>
                                 <TextField
                                     required

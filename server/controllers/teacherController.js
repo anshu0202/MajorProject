@@ -5,9 +5,11 @@ import fs from "fs";
 import noteModel from "../models/noteModel.js";
 
 import {google} from 'googleapis';
-import { fileSizeFormatter } from "../helpers/utils.js";
+import { fileSizeFormatter, getToken } from "../helpers/utils.js";
 import pyqModel from "../models/pyqModel.js";
 import assignmentModel from "../models/assignmentModel.js";
+import teacherModel from "../models/teacherModel.js";
+import { comparePassword } from "../helpers/authHelper.js";
 
 const   client_email=process.env.CLIENT_EMAIL;
 const private_key= process.env.PRIVATE_KEY;
@@ -56,6 +58,78 @@ async function authorize(){
 // })
 
 // for managing live classes
+
+export const teacherLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    // console.log("ggg ", req.body)
+
+    if (!email || !password) {
+      res.status(400).send({
+        message: "Invalid email or password",
+        success: false,
+      });
+      return;
+    }
+
+    const teacher = await teacherModel.findOne({ email });
+
+    console.log("teacher in teacherAPI -->", teacher);
+
+    if (!teacher) {
+      res.status(200).send({
+        success: false,
+        message: "No Teacher found with given Email-ID",
+      });
+      return;
+    }
+
+    const match = await comparePassword(password, teacher.password);
+
+    if (!match) {
+      res.status(404).send({
+        message: "Email or Password do not match",
+        success: false,
+      });
+    }
+
+    else {
+
+      const token = await getToken(teacher._id);
+      res.status(200).send({
+        message: "Teacher successfully login !!",
+        teacher,
+        success: true,
+        token,
+      });
+
+    }
+  } catch (error) {
+    console.log("Error while Teacher login");
+    res.status(500).send({
+      message: "Error while Teacher login",
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const liveClassController = async (req, res) => {
   try {

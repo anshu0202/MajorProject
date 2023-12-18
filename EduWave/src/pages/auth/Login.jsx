@@ -20,9 +20,11 @@ import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios';
 import loginGif from "../../assets/img/login.gif";
 import { studentLogin } from '../../service/StudentApi';
+import { teacherLogin } from '../../service/TeacherApi';
 import { useAuth } from '../../context/User';
 // import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 // import jwt_decode from "jwt-decode";
+import { InputLabel, MenuItem, Select } from '@mui/material';
 
 
 
@@ -49,6 +51,7 @@ export default function SignInSide() {
     const {auth , setAuth} = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [role, setRole] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
     // const [auth, setAuth] = useAuth();
@@ -61,26 +64,75 @@ export default function SignInSide() {
 
         // console.log("data in login -->", data);
 
-        const res = await studentLogin(data);
-        // console.log("this is teststststt ---> " , res);
-        if (res.success) {
-            toast.success("Login Successfully");
-            localStorage.setItem("auth", JSON.stringify(res?.student));
-            localStorage.setItem("token", JSON.stringify(res?.token));
+        if(role=== 1){
 
-            setTimeout(() => {
+            const res = await studentLogin(data);
+
+            if(res?.success === false){
+                // console.log("this is for sjdgfsadfd teahcer ---> ");
+                toast.error(res?.message);
+
+                return ;
+            }
+            // console.log("this is teststststt ---> " , res);
+            if (res.success) {
+                toast.success("Login Successfully");
+                localStorage.setItem("auth", JSON.stringify(res?.student));
+                localStorage.setItem("token", JSON.stringify(res?.token));
+    
+                setTimeout(() => {
+                    
+                    navigate("/studentDashboard");
+                }, 2000);
+    
                 
-                navigate("/studentDashboard");
-            }, 2000);
+                setAuth({
+                    user: res?.student,
+                    token: res?.token
+                });
+                
+    
+            }
 
-            
-            setAuth({
-                user: res?.student,
-                token: res?.token
-            });
-            
 
+
+        }else{
+            const res = await teacherLogin(data);
+
+
+            // console.log("this is for teahcer ---> " , res);
+            if(res?.success === false){
+                // console.log("this is for sjdgfsadfd teahcer ---> ");
+                toast.error(res?.message);
+
+                return ;
+            }
+            if (res?.success) {
+                toast.success("Login Successfully");
+                localStorage.setItem("auth", JSON.stringify(res?.teacher));
+                localStorage.setItem("token", JSON.stringify(res?.token));
+    
+                setTimeout(() => {
+                    
+                    navigate("/teacherDashboard");
+                }, 2000);
+    
+                
+                setAuth({
+                    user: res?.teacher,
+                    token: res?.token
+                });
+                
+    
+            }
         }
+
+
+
+
+
+
+
     }
     return (
         <>
@@ -111,6 +163,7 @@ export default function SignInSide() {
                                 alignItems: 'center',
                             }}
                         >
+                         
                             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                                 <LockOutlinedIcon />
                             </Avatar>
@@ -155,6 +208,22 @@ export default function SignInSide() {
                                     id="password"
                                     autoComplete="current-password"
                                 />
+                                <Grid item xs={12}>
+                                <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                                <Select 
+                                    style={{ width: "100%" }}
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={role}
+                                    label="role"
+                                    onChange={(e) => setRole(e.target.value)}
+                                >
+                                    
+                                    <MenuItem value={1}>Student</MenuItem>
+                                    <MenuItem value={2}>Teacher</MenuItem>
+                                    
+                                </Select>
+                            </Grid>
                                 <FormControlLabel
                                     control={<Checkbox value="remember" color="primary" />}
                                     label="Remember me"
