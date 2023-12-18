@@ -9,11 +9,6 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: [true, "Last name is required."],
     },
-    userName: {
-        type: String,
-        required: [true, "Username is required."],
-        unique: true,
-    },
     email: {
         type: String,
         // required: [true, "Email is required."],

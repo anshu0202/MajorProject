@@ -91,9 +91,9 @@ export const studentLogin = async (req, res) => {
     const student = await studentModel.findOne({ email });
 
     if (!student) {
-      res.status(404).send({
+      res.status(200).send({
         message: "No student found with given Email-ID",
-        success: true,
+        success: false,
       });
       return;
     }

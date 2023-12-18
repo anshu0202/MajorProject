@@ -21,6 +21,38 @@ export const Register = async(data) => {
 
 }
 
+export const newTeacherRegister = async(data) => {
+    // console.log("back-->", url);
+
+    try {
+        const res = await axios.post(`${url}/api/v1/newReq/newTeacherRegister`, data)
+        console.log("this is register Teacher Register-->", res);
+        return res.data;
+
+
+
+
+    } catch (error) {
+        console.log("Error while Submitting data in frontEnd --> ", error);
+    }
+
+}
+
+
+export const newStudentRegister = async(data) => {
+    // console.log("back-->", url);
+
+    try {
+        const res = await axios.post(`${url}/api/v1/newReq/newStudentRegister`, data)
+        console.log("this is Studnet Register  data-->", res);
+        return res.data;
+
+    } catch (error) {
+        console.log("Error while Submitting data in frontEnd --> ", error);
+    }
+
+}
+
 // login
 
 export const studentLogin = async(data) => {
@@ -28,17 +60,16 @@ export const studentLogin = async(data) => {
 
     try {
         const res = await axios.post(`${url}/api/v1/student/login`, data)
-        console.log("this is login data-->", res);
+        console.log("this is student login data-->", res);
         return res.data;
-
-
-
 
     } catch (error) {
         console.log("Error  baaackservies Submitting data in frontEnd --> ", error);
     }
 
 }
+
+
 
 
 

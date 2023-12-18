@@ -8,6 +8,8 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import studentRoute from "./routes/studentRoute.js";
 import teacherRoute from "./routes/teacherRoute.js";
+import newReqRoute from "./routes/newReqRoute.js";
+import adminRoute from "./routes/adminRoute.js";
 
 import cors from "cors";
 // config env
@@ -29,9 +31,13 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/student", studentRoute);
+app.use("/api/v1/newReq", newReqRoute);
 
 //teacher route
 app.use("/api/v1/teacher", teacherRoute);
+
+//admin route
+app.use("/api/v1/admin", adminRoute);
 
 //rest api
 app.get("/", (req, res) => {
