@@ -37,6 +37,8 @@ import StudentManagement from './pages/Admin/StudentManagement/StudentManagement
 import CreateCourse from './pages/Admin/Schedule/CreateCourse';
 import CreateSubjects from './pages/Admin/Assignments/CreateSubjects';
 import AssignTeachers from './pages/Admin/Test/AssignTeachers';
+import ClassManagement from './pages/Admin/ClassManagement/ClassManagement';
+import ClassAllocation from './pages/Admin/ClassAllocation/ClassAllocation';
 // import Testingpage from './pages/Testingpage';
 
 
@@ -123,6 +125,10 @@ function App() {
         <Route path="teacherManagement" element={<TeacherManagement/>}/>
         <Route path="Profile" element={<Profile/>}/>
         <Route path="UpdateProfile" element={<UpdateProfile/>}/>
+        <Route path="classManagement" element={<ClassManagement/>}/>
+        <Route path="classAllocation" element={<ClassAllocation/>}/>
+
+
 
 
 

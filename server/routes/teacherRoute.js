@@ -1,6 +1,6 @@
 import express from "express";
 import upload from "../middlewares/multer.js";
-import { assignmentUploadController, endLiveClassController, getAllAssignmentController, getAllNotesController, getAllPyqController, liveClassController, notesUploadController, pyqUploadController, teacherLogin } from "../controllers/teacherController.js";
+import { assignmentUploadController, endLiveClassController, getAllAssignmentController, getAllNotesController, getAllPyqController, getAllTeacherClassController, getTeacherInfoController, liveClassController, notesUploadController, pyqUploadController, teacherLogin } from "../controllers/teacherController.js";
 
 const router = express.Router();
 
@@ -23,6 +23,17 @@ router.get('/getAllPyqs',getAllPyqController);
 
 // router.get('/getAllNotes/:tid/:cid',getAllNotesController);
 router.get('/getAllNotes',getAllNotesController);
+
+router.get("/getAllClass/:tid", getAllTeacherClassController);
+
+router.get("/getTeacherInfo/:tid",getTeacherInfoController);
+
+
+
+
+
+
+
 
 
 

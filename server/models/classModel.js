@@ -10,12 +10,12 @@ const classSchema = new Schema({
         subjectId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'subject',
-            required: true,
+            // required: true,
         },
         teacherId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'teacher',
-            required: true,
+            // required: true,
         },
     }],
 });

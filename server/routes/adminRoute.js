@@ -1,5 +1,5 @@
 import express from "express";
-import { createNewClass, createSubjects, getAllClassController, getAllStudentReq, getAllSubjectController, getAllTeacherReq, studentApproval, teacherApproval } from "../controllers/adminController.js";
+import { allocateClassController, createNewClass, createSubjects, deleteStudentReqController, deleteTeacherReqController, getAllClassController, getAllStudentList, getAllStudentReq, getAllSubjectController, getAllTeacherReq, getAllteacherList, getSubjectByIdController, studentApproval, teacherApproval } from "../controllers/adminController.js";
 
 const router = express.Router();
 
@@ -7,16 +7,25 @@ router.get("/getStudentReqList" , getAllStudentReq );
 router.get("/getTeacherReqList" , getAllTeacherReq );
 router.put("/teacherApproval/:id" , teacherApproval );
 router.put("/studentApproval/:id" , studentApproval );
-router.post("/createClass" , createNewClass);
-router.post("/createSubejct" , createSubjects);
+router.post("/createNewClass" , createNewClass);
+router.post("/createNewSubject" , createSubjects);
+router.get("/getAllTeacher" , getAllteacherList);
+router.get("/getAllStudent" , getAllStudentList);
+
+// delete apis
+router.delete("/deleteStudentReq/:sid" , deleteStudentReqController );
+router.delete("/deleteTeacherReq/:tid" , deleteTeacherReqController );
+
 
 
 //fetching class and subjects
-router.get("/getAllClass" , getAllClassController);
-router.get("/getAllSubject" , getAllSubjectController);
+router.get("/getAllClassList" , getAllClassController);
+router.get("/getAllSubjects" , getAllSubjectController);
+router.get("/getSubjectById/:subjectId",getSubjectByIdController)
+
 
 // allocating teacher class and subjects
-router.post("/subjectAllocation",createSubjects);
+router.post("/teacherClassAllocation",allocateClassController);
 
 
 

@@ -54,10 +54,11 @@ export const teacherApproval = async(req , res)=>{
         if(!existingTeacher){
             return res.status(404).send({
                 message:"Teacher Not Found",
+                success:false
             })
         }
         const teacher = await newTeacherReqModel.findByIdAndDelete(teacherId);
-        console.log("thisis thesiakjd -->",  teacher);
+        // console.log("thisis thesiakjd -->",  teacher);
         const newTeacher = await teacherModel.create({
             firstName: teacher.fname,
             lastName: teacher.lname,
@@ -76,6 +77,7 @@ export const teacherApproval = async(req , res)=>{
         res.status(200).send({
             message:"Teacher Request Approved",
             data:newTeacher,
+            success:true
         })
 
 
@@ -84,12 +86,55 @@ export const teacherApproval = async(req , res)=>{
         console.log("Error While Approving Teacher Request ", error);
         res.status(500).send({
             message:"Error While Approving Teacher Request",
+            error,
+            success:false
+        })
+        
+    }
+}
+
+
+export const getAllteacherList = async(req , res)=>{
+    try {
+
+        const teacherList = await teacherModel.find({});
+        res.status(200).send({
+            message:"All Teacher List",
+            data:teacherList,
+        })
+
+        
+    } catch (error) {
+        console.log("Error While Getting All Teacher List ", error);
+        res.status(500).send({
+            message:"Error While Getting All Teacher List",
             error
         })
         
     }
 }
 
+export const getAllStudentList = async(req , res)=>{
+    try {
+
+        const studentList = await studentModel.find({});
+        res.status(200).send({
+            message:"All Student List",
+            data:studentList,
+
+        })
+
+        
+    } catch (error) {
+        console.log("Error While Getting All Student List ", error);
+        res.status(500).send({
+            message:"Error While Getting All Student List",
+            error,
+            success:false
+        })
+        
+    }
+}
 
 export const studentApproval = async(req , res)=>{
     try {
@@ -99,10 +144,11 @@ export const studentApproval = async(req , res)=>{
         if(!existingStudent){
             return res.status(404).send({
                 message:"Student Not Found",
+                success:false
             })
         }
         const student = await newStudentReqModel.findByIdAndDelete(studentId);
-        console.log("thisis thesiakjd -->",  student);
+        // console.log("thisis thesiakjd -->",  student);
         const newStudent = await studentModel.create({
             firstName: student.fname,
             lastName: student.lname,
@@ -121,6 +167,7 @@ export const studentApproval = async(req , res)=>{
         res.status(200).send({
             message:"Student Request Approved",
             data:newStudent,
+            success:true
         })
 
 
@@ -129,7 +176,8 @@ export const studentApproval = async(req , res)=>{
         console.log("Error While Approving Student Request ", error);
         res.status(500).send({
             message:"Error While Approving Student Request",
-            error
+            error,
+            success:false
         })
         
     }
@@ -181,6 +229,8 @@ export const createNewClass = async(req , res) =>{
     try {
         const { className , subjectList } = req.body;
 
+        // console.log("this is the subjectList-->", subjectList);
+
         if(!className){
             return res.status(400).send({
                 message:"Class Name is Required",
@@ -230,15 +280,13 @@ export const createNewClass = async(req , res) =>{
 
 export const getAllClassController = async (req, res) => {
     try {
-        const allClasses = await classModel.find().populate({
-            path: 'subjectList.subjectId',
-            model: subjectModel,
-        }).populate('subjectList.teacherId');
-        
+        const allClasses = await classModel.find();
         res.status(200).send({
+            success: true,
             message: "All Classes",
             data: allClasses,
-        });
+        })
+       
     } catch (error) {
         console.log("Error while getting all class list ", error.message);
         res.status(500).send({
@@ -292,16 +340,36 @@ export const allocateClassController = async(req,res)=>{
         }
 
 
-        const newClass = await classModel.findByIdAndUpdate(classId,{
-            $push:{
-                subjectList:{
-                    subjectId,
-                    teacherId
-                }
-            }
-        })
+        const existingClass = await classModel.findOne({
+            _id: classId,
+            'subjectList.subjectId': subjectId
+        });
 
-        await newClass.save();
+        if (!existingClass) {
+            res.status(400).send({
+                message:"Class or Subject Not Found",
+                success:false
+            })
+        }
+
+       
+            // If subjectId exists, add the teacherId to the existing entry
+            const updatedClass = await classModel.findOneAndUpdate(
+                {
+                    _id: classId,
+                    'subjectList.subjectId': subjectId
+                },
+                {
+                    $set: {
+                        'subjectList.$.teacherId': teacherId
+                    }
+                },
+                
+            );
+    
+
+
+        
 
         const updatedTeacher = await teacherModel.findByIdAndUpdate(
             teacherId,
@@ -322,7 +390,7 @@ export const allocateClassController = async(req,res)=>{
             message:"Class Allocated Successfully",
             success:true,
             updatedTeacher,
-            newClass
+            updatedClass
         })
     
 
@@ -335,3 +403,91 @@ export const allocateClassController = async(req,res)=>{
         })
     }
 }
+
+// deleting student and teacher request
+export const deleteStudentReqController = async (req, res) => {
+    const { sid } = req.params; // Assuming you pass requestId in the request parameters
+
+    try {
+        const deletedStudentReq = await newStudentReqModel.findByIdAndDelete(sid);
+
+        if (!deletedStudentReq) {
+            // If the request with the given id is not found
+            return res.status(404).send({
+                message: "Student request not found",
+            });
+        }
+
+        res.status(200).send({
+            message: "Student request deleted successfully",
+            data: deletedStudentReq,
+            success:true
+        });
+    } catch (error) {
+        console.error("Error while deleting student request: ", error.message);
+        res.status(500).json({
+            message: "Error while deleting student request",
+            error: error.message,
+            success:false
+        });
+    }
+};
+
+export const deleteTeacherReqController = async (req, res) => {
+    const { tid } = req.params; // Assuming you pass requestId in the request parameters
+
+    try {
+        const deletedStudentReq = await newTeacherReqModel.findByIdAndDelete(tid);
+
+        if (!deletedStudentReq) {
+            // If the request with the given id is not found
+            return res.status(404).send({
+                message: "Teacher request not found",
+                success:false
+            });
+        }
+
+        res.status(200).send({
+            message: "Teacher request deleted successfully",
+            data: deletedStudentReq,
+            success:true
+        });
+    } catch (error) {
+        console.error("Error while deleting teacher request: ", error.message);
+        res.status(500).json({
+            message: "Error while deleting teacher request",
+            error: error.message,
+            success:false
+        });
+    }
+};
+
+
+
+export const getSubjectByIdController = async (req, res) => {
+    const { subjectId } = req.params;
+
+    try {
+        const subject = await subjectModel.findById(subjectId);
+
+        if (!subject) {
+            return res.status(404).send({
+                message: "Subject not found",
+                success:false
+            });
+        }
+
+        res.status(200).send({
+            message: "Subject retrieved successfully",
+            data: subject,
+            success:true
+        });
+    } catch (error) {
+        console.error("Error while getting subject by ID: ", error.message);
+        res.status(500).send({
+            message: "Error while getting subject by ID",
+            error: error.message,
+            success:false
+        });
+    }
+};

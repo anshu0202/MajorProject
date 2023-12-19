@@ -16,8 +16,8 @@ const  AuthProvider =({children})=>{
             const data=localStorage.getItem("auth");
             const data1=localStorage.getItem("token");
 
-            console.log("in context"  , data);
-            console.log("in context token"  , data1);
+            // console.log("in context"  , data);
+            // console.log("in context token"  , data1);
 
             if(data){
                 const parseData=JSON.parse(data);

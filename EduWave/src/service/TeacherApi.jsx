@@ -73,3 +73,13 @@ export const uploadAssignment =  async(data)=>{
     }
 }
 
+export const getTeacherInfo= async(tid)=>{
+    try{
+        const res=await axios.get(`${url}/api/v1/teacher/getTeacherInfo/${tid}`);
+        return res.data
+
+    }
+    catch(error){
+        console.log("Error while fetching teacher info ", error.message);
+    }
+}
