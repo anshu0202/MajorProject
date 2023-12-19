@@ -7,17 +7,23 @@ const classSchema = new Schema({
         required: [true, "Class name is required."],
     },
     subjectList: [{
+        _id: false, 
         subjectId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'subject',
+            _id: false, 
+            
             // required: true,
         },
         teacherId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'teacher',
-            // required: true,
+            _id: false, 
+        
+            required: false,
         },
     }],
-});
+   
+}, );
 
 export default mongoose.model('class', classSchema);

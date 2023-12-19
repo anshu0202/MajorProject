@@ -256,6 +256,8 @@ export const createNewClass = async(req , res) =>{
 
         await newClass.save();
 
+        console.log("created class is ",newClass);
+
         res.status(201).send({
             message:"New Class Created",
             data:newClass,
@@ -316,61 +318,53 @@ export const getAllSubjectController = async(req,res)=>{
 
 
 
-export const allocateClassController = async(req,res)=>{
-    try{
-        const {teacherId, classId, subjectId} = req.body;
+export const allocateClassController = async (req, res) => {
+    try {
+        const { teacherId, classId, subjectId } = req.body;
+        console.log("Request body ", req.body);
 
-        if(!teacherId){
-            res.status(400).send({
-                message:"Teacher Id is Required",
-               success:false
-            })
-        }
-        if(!classId){
-            res.status(400).send({
-                message:"Class Id is Required",
-               success:false
-            })
-        }
-        if(!subjectId){
-            res.status(400).send({
-                message:"Subject Id is Required",
-               success:false
-            })
+        // Validation for required fields
+        if (!teacherId || !classId || !subjectId) {
+            return res.status(400).send({
+                message: "Teacher Id, Class Id, and Subject Id are required.",
+                success: false,
+            });
         }
 
-
+        // Check if the class exists and the subject is part of the class
         const existingClass = await classModel.findOne({
             _id: classId,
-            'subjectList.subjectId': subjectId
+    subjectList: {
+        $elemMatch: {
+            subjectId: subjectId,
+        },
+    },
         });
 
+        console.log("class --> ",existingClass);
+
         if (!existingClass) {
-            res.status(400).send({
-                message:"Class or Subject Not Found",
-                success:false
-            })
+            return res.status(400).send({
+                message: "Class or Subject Not Found",
+                success: false,
+            });
         }
 
-       
-            // If subjectId exists, add the teacherId to the existing entry
-            const updatedClass = await classModel.findOneAndUpdate(
-                {
-                    _id: classId,
-                    'subjectList.subjectId': subjectId
+        // If subjectId exists, add the teacherId to the existing entry
+        const updatedClass = await classModel.findOneAndUpdate(
+            {
+                _id: classId,
+                'subjectList.subjectId': subjectId,
+            },
+            {
+                $set: {
+                    'subjectList.$.teacherId': teacherId,
                 },
-                {
-                    $set: {
-                        'subjectList.$.teacherId': teacherId
-                    }
-                },
-                
-            );
-    
+            },
+            { new: true } // Return the modified document
+        );
 
-
-        
-
+        // Update the teacher with the assigned class and subject
         const updatedTeacher = await teacherModel.findByIdAndUpdate(
             teacherId,
             {
@@ -381,28 +375,24 @@ export const allocateClassController = async(req,res)=>{
                     },
                 },
             },
-           
+            { new: true } // Return the modified document
         );
 
-        await updatedTeacher.save();
-
-        res.status(200).send({
-            message:"Class Allocated Successfully",
-            success:true,
+        res.status(200).json({
+            message: "Class Allocated Successfully",
+            success: true,
             updatedTeacher,
-            updatedClass
-        })
-    
-
+            updatedClass,
+        });
+    } catch (error) {
+        console.error("Error while allocating class ", error.message);
+        res.status(500).json({
+            message: "Error while allocating class",
+            success: false,
+            error: error.message,
+        });
     }
-    catch(error){
-        console.log("Error while allocating class ", error);
-        res.status(500).send({
-            message:"Error while allocating class",
-            error
-        })
-    }
-}
+};
 
 // deleting student and teacher request
 export const deleteStudentReqController = async (req, res) => {

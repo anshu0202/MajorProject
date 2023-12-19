@@ -44,6 +44,12 @@ const studentSchema = new mongoose.Schema({
             "Invalid phone number format. It should be a 10-digit number.",
         ],
     },
+    classList: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Class',  // Replace with the actual model name for classes
+        }
+    ],
     address: {
         type: String,
     }

@@ -21,7 +21,7 @@ router.delete("/deleteTeacherReq/:tid" , deleteTeacherReqController );
 //fetching class and subjects
 router.get("/getAllClassList" , getAllClassController);
 router.get("/getAllSubjects" , getAllSubjectController);
-router.get("/getSubjectById/:subjectId",getSubjectByIdController)
+router.get("/getSubjectById/:subjectId",getSubjectByIdController);
 
 
 // allocating teacher class and subjects
