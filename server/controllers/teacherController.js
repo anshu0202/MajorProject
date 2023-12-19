@@ -10,6 +10,7 @@ import pyqModel from "../models/pyqModel.js";
 import assignmentModel from "../models/assignmentModel.js";
 import teacherModel from "../models/teacherModel.js";
 import { comparePassword } from "../helpers/authHelper.js";
+import classModel from "../models/classModel.js";
 
 const   client_email=process.env.CLIENT_EMAIL;
 const private_key= process.env.PRIVATE_KEY;
@@ -115,9 +116,44 @@ export const teacherLogin = async (req, res) => {
 };
 
 
+export const getAllTeacherClassController = async (req, res) => {
+  try {
+    const { tid } = req.params;
 
+    if (!tid) {
+      return res.status(400).send("Invalid request");
+    }
 
+    const teacher = await teacherModel.findById(tid).populate({
+      path: 'assignedClasses.class',
+      model: classModel,
+    }).populate('assignedClasses.subject');
 
+    if (!teacher) {
+      return res.status(404).send("Teacher not found");
+    }
+
+    const assignedClasses = teacher.assignedClasses.map((assignment) => ({
+      class: assignment.class,
+      subject: assignment.subject,
+    }));
+
+    console.log("Assigned classes in teacherController: ", assignedClasses);
+    
+
+    res.status(200).send({
+      message: "Teacher's assigned classes and subjects",
+      data: assignedClasses,
+    });
+  } catch (error) {
+    console.error("Error in getAllTeacherClassController: ", error);
+    res.status(500).send({
+      message: "Error in getAllTeacherClassController",
+      success: false,
+      error: error.message,
+    });
+  }
+};
 
 
 
@@ -475,6 +511,49 @@ export const getAllNotesController=async(req,res)=>{
   }
 }
 
+
+export const getTeacherInfoController=async(req,res)=>{
+  const {tid}=req.params;
+  try{
+
+    const teacher=await teacherModel.findOne({_id:tid});  
+    console.log("treacher ",teacher)
+    return res.status(200).send({
+      message:"Teacher Info",
+      data:teacher,
+      success:true
+    })
+  }
+  catch(error){
+    console.log("Error while getting teacher info ", error.message);
+    res.status(500).send({
+      message:"Error while getting teacher info",
+      error:error.message
+    })
+  }
+}
+
+
+//update profile
+export const updateProfile=async(req,res)=>{
+  try{
+
+    const teacher=await teacherModel.findByIdAndUpdate({_id:req.body._id},req.body,{new:true});  
+    return res.status(200).send({
+      message:"Profile Updated",
+      data:teacher,
+      success:true
+    })
+
+  }
+  catch(error){
+    console.log("Error while updating teacher profile ", error.message);
+   res.status(500).send({
+     message:"Error while updating teacher profile",
+     error:error.message
+   })
+  }
+}
 
 
 

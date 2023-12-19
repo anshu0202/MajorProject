@@ -129,6 +129,16 @@ export default function SideBarAdmin() {
         link: "/adminDashboard/studentManagement"
       },
       {
+        name: 'Class Management',
+        icon: <ClassIcon style={{ color: "white" }} />,
+        link: "/adminDashboard/classManagement"
+      },
+      {
+        name: 'Class Allocation',
+        icon: <ClassIcon style={{ color: "white" }} />,
+        link: "/adminDashboard/classAllocation"
+      },
+      {
         name: 'Create Course',
         icon: <AssessmentIcon style={{ color: "white" }} />,
         link: "/adminDashboard/createCourse"
