@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { createNewClass, createNewSubject, getAllClassesList, getAllSubjects, getAllTeacherList, getSubjectById } from '../../../service/AdminApi';
+import { createNewClass, createNewSubject, getAllClassesList, getAllSubjects, getAllTeacherList, getSubjectById, teacherClassAllocation } from '../../../service/AdminApi';
 import { toast, ToastContainer } from 'react-toastify';
 
 
@@ -18,6 +18,9 @@ const ClassManagement = () => {
     const [selectedSubjects , setSelectedSubjects] = useState([]);
     const [selectedClass , setSelectedClass] = useState(null);
     const [ selectedSubject     , setSelectedSubject] = useState(null);
+    const [selectedTeacher, setSelectedTeacher]=useState(null);
+
+    const [allocationList,setAllocationList]= useState([]);
 
 
     const [selectedSubjectsList, setSelectedSubjectsList] = useState([]);
@@ -67,13 +70,41 @@ const ClassManagement = () => {
 
     };
 
+    const handleClassAllocate=()=>{
+        if(selectedSubject===null){
+            toast.error("Subject has not been selected");
+            return;
+        }
+
+        if(selectedTeacher===null){
+            toast.error("Teacher has not been selected");
+            return;
+        }
+        if(selectedClass===null){
+            toast.error("class has not been selected");
+            return;
+        }
+
+        // console.log(selectedClass,selectedSubject,selectedTeacher)
+       
+            // Check if the subject is not already in the array before adding
+            const allocationData={teacher:selectedTeacher,subject:selectedSubject.data,class:selectedClass};
+
+
+            if (!allocationList.includes(allocationData)) {
+                setAllocationList([...allocationList, allocationData]);
+            }
+
+
+    }
+
     const getClassList =  async() =>{
 
 
         try {
 
             const res = await getAllClassesList();
-            console.log("this is getting All Classes LIST -->", res?.data);
+            // console.log("this is getting All Classes LIST -->", res?.data);
             setClassList(res?.data);
             
         } catch (error) {
@@ -114,10 +145,22 @@ const ClassManagement = () => {
                 return;
             }
 
+            let sL=[];
+            const tid="60805f42b1a012001c1d58a1"
+            for(let i=0;i<selectedSubjects?.length;i++){
+                // console.log("ele is ",selectedSubjects[i]?._id)
+                sL.push({
+                    subjectId:selectedSubjects[i]?._id,
+                    teacherId:tid
+                })
+            }
+
+            // console.log("sl is ",selectedSubjects);
+
 
             const res = await createNewClass({
                 className,
-                subjectList: selectedSubjects
+                subjectList: sL
 
             })
             if (res?.status === 201) {
@@ -127,11 +170,6 @@ const ClassManagement = () => {
                 setClassName("");
                 setSelectedSubjects([]);
             }
-
-
-
-
-
 
         } catch (error) {
             console.log("Error in creating class --> ", error);
@@ -178,18 +216,21 @@ const ClassManagement = () => {
     const getAllClasses = async () => {
         try {
             const res = await getAllClassesList();
-            console.log("All classes List in front -->", res);
+            // console.log("All classes List in front -->", res);
 
         } catch (error) {
             console.log("Error in creating subject --> ", error);
 
         }
     }
-
+  const handleTeacherChange=(teacher)=>{
+     setSelectedTeacher(teacher)
+  }
     const handleSelectedSubject = async (data) => {
         try {
             setSelectedClass(data);
-            const subjectIds = data.subjectList.map(subject => subject._id);
+            // console.log("data is ",data);
+            const subjectIds = data.subjectList.map(subject => subject.subjectId);
     
             const selectedSubjects = await Promise.all(subjectIds.map(async (subjectId) => {
                 try {
@@ -213,6 +254,70 @@ const ClassManagement = () => {
             console.error('Error in handleSelectedSubject:', error);
         }
     };
+
+    const removeAllocationItem=(objToRemove)=>{
+        setAllocationList((prevAllocationList) => {
+            const updatedAllocationList = prevAllocationList.filter(
+                (item) => item !== objToRemove
+            );
+            return updatedAllocationList;
+        });
+    }
+
+
+    const saveAllocationList = async () => {
+        // console.log("allocation list ", allocationList);
+    
+        // Check if the allocationList is not empty
+        if (allocationList.length === 0) {
+            console.log("Allocation list is empty.");
+
+            return;
+        }
+
+        let status=true;
+    
+        // Iterate over each item in allocationList and make API calls
+        const apiCalls = allocationList.map(async (allocationItem) => {
+            try {
+                const data = {
+                    subjectId: allocationItem.subject._id,
+                    classId: allocationItem.class._id,
+                    teacherId: allocationItem.teacher._id
+                };
+    
+                
+                const res=await teacherClassAllocation(data);
+                
+                
+               
+    
+            } catch (error) {
+                // Handle error for individual API call
+                status=false;
+                console.error('Error making API call:', error);
+            }
+        });
+    
+        // Wait for all API calls to complete
+        await Promise.all(apiCalls);
+         
+        if(status===true){
+            toast.success("Classes allocated Successfully", {
+                position: toast.POSITION.TOP_CENTER
+            });
+            setAllocationList([]);
+
+        }
+        else{
+
+            toast.error("Something went wrong",{
+                position: toast.POSITION.TOP_CENTER
+            })
+        }
+        
+    };
+    
     
     // Assuming getSubjectById is an asynchronous function
     // const getSubjectById = async (subjectId) => {
@@ -338,14 +443,15 @@ const ClassManagement = () => {
                                         aria-haspopup="true"
                                         aria-expanded="false"
                                     >
-                                        Select Teacher
+                                       Select Teacher
+                                       
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         {teacherList?.map((teacher, index) => (
                                             <div
                                                 key={index}
                                                 className="dropdown-item"
-                                                onClick={() => handleSubjectChange(teacher, 'add')}
+                                                onClick={() => handleTeacherChange(teacher)}
                                             >
                                                 {teacher?.firstName}
                                             </div>
@@ -404,23 +510,35 @@ const ClassManagement = () => {
                                     </div>
                                 </div>
                             </Form.Group>
+                            <Form.Group className="mt-3 mb-3" controlId="subject">
+                                
+                                    <button
+                                        className="btn btn-secondary  p-2"
+                                        type="button"
+                                        onClick={handleClassAllocate}
+                                    >
+                                        Allocate
+                                    </button>
+                                    
+                                
+                            </Form.Group>
                         </div>
 
-                        {selectedSubjects.length > 0 ?
+                        {allocationList.length > 0 ?
                             <>
-                                <SubjectTable
+                                <AllocationTable
                                     style={{ marginTop: '2rem' }}
-                                    selectedSubjects={selectedSubjects}
-                                    handleSubjectChange={handleSubjectChange}
+                                    allocationList={allocationList}
+                                    removeAllocationItem={removeAllocationItem}
                                 />
 
-                                <Button onClick={handleCreateClass} className='mt-3'>
-                                    Save Class
+                                <Button onClick={saveAllocationList} className='mt-3'>
+                                    Save Allocation List
                                 </Button>
                             </>
                             :
                             <>
-                                <p className="text-center">No Subjects Selected</p>
+                                {/* <p className="text-center">No Subjects Selected</p> */}
                             </>}
 
 
@@ -480,6 +598,40 @@ const SubjectTable = ({ selectedSubjects, handleSubjectChange }) => {
                                 variant="danger"
                                 size="sm"
                                 onClick={() => handleSubjectChange(subject, 'remove')}
+                            >
+                                Remove
+                            </Button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
+    );
+};
+
+
+const AllocationTable = ({ allocationList, removeAllocationItem }) => {
+    return (
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th className='text-center'>Teacher</th>
+                    <th className='text-center'>Class</th>
+                    <th className='text-center'>Subject</th>
+                    <th className='text-center'>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {allocationList?.map((aList, index) => (
+                    <tr key={index}>
+                        <td className='text-center'>{aList?.teacher?.firstName}</td>
+                        <td className='text-center'>{aList?.class?.className}</td>
+                        <td className='text-center'>{aList?.subject?.subjectName}</td>
+                        <td className='text-center'>
+                            <Button
+                                variant="danger"
+                                size="sm"
+                                onClick={() => removeAllocationItem(aList)}
                             >
                                 Remove
                             </Button>
