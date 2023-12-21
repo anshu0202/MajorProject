@@ -102,7 +102,7 @@ function JoinClass() {
                   <td style={{padding:"10px"}}>{item.classId.className}</td>
                   <td style={{padding:"10px"}}>{item.teacherId.firstName}</td>
                   <td style={{padding:"10px"}}>
-                    <Button className='btn' onClick={()=>handleJoin(item.teacherId)} variant='contained' color='success'>
+                    <Button className='btn' onClick={()=>handleJoin(item.teacherId._id)} variant='contained' color='success'>
                       Join Class
 
                     </Button>
