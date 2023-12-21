@@ -3,12 +3,18 @@ import mongoose from "mongoose";
 const liveClassSchema = new mongoose.Schema(
   {
     classId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'class',
       required: [true, "Class id is required"],
     },
-    teacherId: { type: String, required: [true, "Teacher id is required"] },
+    teacherId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'teacher',
+        required: [true, "Teacher id is required"] 
+      },
     subjectId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'subject',
       required: [true, "class room id is required"],
     },
   },

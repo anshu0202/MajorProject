@@ -43,7 +43,7 @@ function Notes() {
 
       const pyqServerData = await fetch(`${url}/api/v1/teacher/getAllAssignment`);
       let pyqServerValue = await pyqServerData.json();
-      console.log("thisb is all data --->" , pyqServerValue);
+      // console.log("thisb is all data --->" , pyqServerValue);
       setServerValue(pyqServerValue.data);
       // console.log(serverValue);
       // setServerValue(pyqServerValue)
@@ -136,7 +136,7 @@ function Notes() {
     // console.log(`https://exampedia-rest-api-production.up.railway.app/api/allNote?${optionValue}=${searchBarValue} is searched`);
     const searchedData = await fetch(`${url}/api/v1/teacher/getAllAssignment`);
     const searchValue = await searchedData.json();
-    console.log("loda lasun -->" , searchValue);
+    // console.log("loda lasun -->" , searchValue);
     setSearchResult(searchValue.data);
     setLoaderAnimation(true);
     

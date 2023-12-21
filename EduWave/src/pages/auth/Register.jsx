@@ -8,6 +8,11 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import { Form } from 'react-bootstrap';
+
+
+
+// import { toast, ToastContainer } from 'react-toastify';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -19,12 +24,13 @@ import axios from 'axios';
 import { newStudentRegister, newTeacherRegister, Register } from '../../service/StudentApi';
 
 import { InputLabel, MenuItem, Select } from '@mui/material';
+import { getAllClassesList } from '../../service/AdminApi';
 // import loginGif from "./img/login.gif";
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link color="inherit" href="https://laxmikant.co">
+            <Link color="inherit" href="https://anshuverma.co">
                 Education Wave
             </Link>{' '}
             {new Date().getFullYear()}
@@ -45,21 +51,58 @@ export default function SignUp() {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     // const [answer, setAnswer] = useState("");
+    const [classList , setClassList] = useState([]);
+    const [classObj,setClassObj]=useState(null);
+
+    const [course, setCourse]=useState(null);
+
+
+    const getClassList =  async() =>{
+
+
+        try {
+
+            const res = await getAllClassesList();
+            // console.log("this is getting All Classes LIST -->", res?.data);
+            setClassList(res?.data);
+            
+        } catch (error) {
+                console.log("Erro in getting data in frontEnd --> ", error);
+        }
+    } 
+    React.useEffect(()=>{
+        getClassList();
+    },[])
+
+
+    const handleClass =  (data) => {
+       
+            setClassObj(data);
+            // setCourse(data.className)
+    
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if(classObj===null){
+            toast.error("Select course");
+            return 
+        }
+
         const data = {
             fname: fname,
             email: email,
             password: password,
             lname: lname,
-            role: role
+            role: role,
+            classId:classObj?._id
         }
-        console.log(data);
+        // console.log(data);
 
         if(role==1){
             const res = await newStudentRegister(data);
-        console.log("res in register page main ", res);
+        // console.log("res in register page main ", res);
         if (res.success) {
             toast.success(res.message);
             // localStorage.setItem("user", JSON.stringify(res?.student));
@@ -189,9 +232,56 @@ export default function SignUp() {
                                     
                                 </Select>
                             </Grid>
+                            {
+                                role===1?<>
+                                <Grid className="mt-3 mb-3" controlId="subject">
+                                <div className="dropdown">
+                                    <button
+                                        className="btn btn-secondary dropdown-toggle p-2"
+                                        type="button"
+                                        id="dropdownMenuButton"
+                                        data-bs-toggle="dropdown" // Updated class for Bootstrap 5
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                        Select Course
+                                    </button>
+                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        {classList?.map((cname, index) => (
+                                            <div
+                                                key={index}
+                                                className="dropdown-item"
+                                                onClick={() => handleClass(cname)}
+
+                                            >
+                                                {cname?.className}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </Grid>
+                                </>:<></>
+                            }
+                            {/* {
+                                classObj===null && role!==1?<></>:<>
+                                <Grid item xs={12} sm={6}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    value={classObj.className}
+                                    // onChange={(e) => setLname(e.target.value)}
+                                    id="course"
+                                    label="course"
+                                    name="course"
+                                    // autoComplete="lastname"
+                                />
+                            </Grid>
+                                </>
+                            } */}
                             <Grid item xs={12}>
                                 <TextField
                                     required
+                                    aria-readonly
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     fullWidth

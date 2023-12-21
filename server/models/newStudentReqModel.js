@@ -35,7 +35,12 @@ const newStudentSchema = new mongoose.Schema({
     role:{
         type:Number,
         default:1
+    },
+    classId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'class',
     }
+    
 },
 {timestamps:true}
 );
