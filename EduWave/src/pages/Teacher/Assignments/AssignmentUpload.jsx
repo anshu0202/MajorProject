@@ -11,6 +11,7 @@ import "./upload.css";
 import "./note.css";
 import "./media.css";
 import { uploadAssignment, uploadNotes } from '../../../service/TeacherApi';
+import { toast , ToastContainer } from 'react-toastify';
 
 function AssignmentUpload() {
 
@@ -35,7 +36,16 @@ function AssignmentUpload() {
   const [subjectName , setSubjectName] = useState('');
   const [className , setClassName] = useState('');
 
+
+  const auth = JSON.parse(localStorage.getItem('auth'));
+  // setCredit(auth.firstName)
+
+  // console.log("auth is ",auth.firstName);
+
   useEffect(() => {
+     setCredit(auth.firstName)
+     
+
     const loadSubject = async () => {
       const subjectNoteFetch = await fetch('https://exampedia-rest-api.onrender.com/api/allNote')
       const subjectNoteData = await subjectNoteFetch.json()
@@ -136,39 +146,17 @@ function AssignmentUpload() {
     // console.log(chapter);
 
   }
-  //  const notesUpload = async (e) =>{
-  //   setNoteProgress(0)
-  //   e.preventDefault()
-  //   console.log(subjectSuggestion)
-  //   console.log(file);
-  //   console.log(credit);
-  //   const formdata =  new FormData();
-  //   formdata.append('file',file);
-  //   formdata.append('credit',credit);
-  //   formdata.append('subject',subjectSuggestion);
-  //   try {
-  //     await axios.post('http://localhost:4000/api/note/upload/', formdata,noteUploadOptions);
-  //     setNotesMsg('File Upload successfully');
-  //     setFile([]);
-  //     setCredit('');
-  //     setSubjectSuggestion('')
-
-
-  // } catch (error) {
-  //   setNotesMsg(error);
-  //     throw error;
-  // }
-  //  }
+  
 
   const notesUpload = async (e) => {
     setNoteProgress(0)
     e.preventDefault()
-    console.log(subjectSuggestion)
-    console.log(file);
-    console.log(credit);
-    console.log(chapter);
-    console.log(subjectName);
-    console.log(className);
+    // console.log(subjectSuggestion)
+    // console.log(file);
+    // console.log(credit);
+    // console.log(chapter);
+    // console.log(subjectName);
+    // console.log(className);
     // {subjectSuggestion && file && credit}
     const formdata = new FormData();
     formdata.append('file', file);
@@ -177,12 +165,19 @@ function AssignmentUpload() {
     formdata.append('subject', subjectName);
     formdata.append('className', className);
 
-
-
-    console.log("this is from data" , formdata);
-
       const res = await uploadAssignment(formdata);
-      console.log("in frontend Agginment upload -->",  res);
+      if(res.success===true){
+        toast.success("File uploaded successfully");
+        setFile([]);
+        setCredit('');
+        setChapter('');
+        setClassName('');
+        setSubjectName('')
+
+      }
+      else{
+        toast.error("Error while File uploading");
+      }
 
 
   }
@@ -222,10 +217,11 @@ function AssignmentUpload() {
 
             <input className='note-text-input' value={credit} placeholder='Enter Your Name' required type="text" name="credit" id="" onChange={(e) => creditName(e)} />
             <input className='note-text-input' value={chapter} placeholder='Enter Unit/Topic Name ' required type="text" name="credit" id="" onChange={(e) => chapterName(e)} />
+            <input className='note-text-input' value={className} onChange={(e) => setClassName(e.target.value)} placeholder='Enter Class name' required type="text" name="class"  />
 
             <input className='note-text-input' value={subjectName} onChange={(e) => setSubjectName(e.target.value)} placeholder='Enter subject name' required type="text" name="subject"  />
 
-            <input className='note-text-input' value={className} onChange={(e) => setClassName(e.target.value)} placeholder='Enter Class name' required type="text" name="class"  />
+           
 
             {suggestion && suggestion.map((suggestion, i) => {
 
@@ -273,6 +269,7 @@ function AssignmentUpload() {
       </div>
       {/* <Footer/> */}
 
+      <ToastContainer/>
     </>
   )
 }

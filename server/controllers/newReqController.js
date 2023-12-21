@@ -81,7 +81,7 @@ export const newTeacherController = async (req, res) => {
 
 export const newStudentController = async (req, res) => {
 
-    const { fname, lname, email, password, role } = req.body;
+    const { fname, lname, email, password, role, classId } = req.body;
 
     try {
           // validation 
@@ -99,6 +99,9 @@ export const newStudentController = async (req, res) => {
         }
         if (!role) {
             return res.send({ message: 'Role is Required' })
+        }
+        if (!classId) {
+            return res.send({ message: 'Class Id is Required' })
         }
         // if (!address) {
         //     return res.send({ message: 'Role is Required' })
@@ -118,7 +121,7 @@ export const newStudentController = async (req, res) => {
         const hashedPassword = await hashPassword(password);
 
         const newStudent = await new newStudentReqModel({
-            fname, email, lname,   password: hashedPassword ,  role
+            fname, email, lname,   password: hashedPassword ,  role, classId
         })
 
         await newStudent.save();

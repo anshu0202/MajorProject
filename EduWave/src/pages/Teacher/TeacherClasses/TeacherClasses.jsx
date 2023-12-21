@@ -23,7 +23,7 @@ const TeacherClasses = () => {
                     try {
                         const subjectId = classInfo.subject;
                         const classId = classInfo.class;
-                        console.log("Class info" , classInfo);
+                        // console.log("Class info" , classInfo);
 
                         const subject = await getSubjectById(subjectId);
                         const classData = await getClasstById(classId);
@@ -48,7 +48,7 @@ const TeacherClasses = () => {
     const handleStartClass = async(data)=>{
         try {
 
-            console.log("this is data in habdle Start live-->" , data);
+            // console.log("this is data in habdle Start live-->" , data);
             const teacherIDDD = classesList._id;
             const dataInfo = {
                 classId : data?.class?.data?._id,
@@ -56,21 +56,22 @@ const TeacherClasses = () => {
                 teacherId : teacherIDDD
             }
 
-            navigate("/teacherDashboard/JoinClass")
             
             
-            // const res = await startLiveClass(dataInfo);
+            
+            const res = await startLiveClass(dataInfo);
             
             // console.log("Data info to resssssssssssssssssss" , res);
 
-            // if(res?.success===true){
-            //     setTimeout(() => {
-            //         toast.success("Live class started successfully");
-                    
-            //     }, 2000);
-
-                
-            // }
+            if(res?.success===true){
+                setTimeout(() => {
+                   
+                    navigate(`/room/${teacherIDDD}`);
+                }, 2000);
+                // navigate("/teacherDashboard/JoinClass")
+               
+                 toast.success("Live class will start soon..");
+            }
 
 
             

@@ -118,27 +118,38 @@ export default function SideBarTeacher() {
     const navigate = useNavigate();
     const arr =
         [
-            {name:'Start Live Class',
-             icon:<VideoCameraFrontIcon  style={{color:"white"}} />,
-             link:"/teacherDashboard/JoinClass"},
+            // {
+            //   name:'Start Live Class',
+            //  icon:<VideoCameraFrontIcon  style={{color:"white"}} />,
+            //  link:"/teacherDashboard/JoinClass"
+            // },
             { name:'Classes',
-              icon:<ClassIcon style={{color:"white"}}/>,
+              icon:<VideoCameraFrontIcon style={{color:"white"}}/>,
               link:"/teacherDashboard/classes"}, 
-            { name:'Attendance',
-              icon:<AssessmentIcon style={{color:"white"}}/>,
-              link:"/teacherDashboard/Attendance"},
+            // { name:'Attendance',
+            //   icon:<AssessmentIcon style={{color:"white"}}/>,
+            //   link:"/teacherDashboard/Attendance"}
+            ,
             { name:'Assignment',
               icon:<AssignmentIcon style={{color:"white"}}/>,
-              link:"/teacherDashboard/assignmentUpload"},
-            { name:'Create-Test',
-              icon:<QuizIcon style={{color:"white"}}/>,
-              link:"/teacherDashboard/Test"},
+              link:"/teacherDashboard/assignmentUpload"}
+              ,
+            // { name:'',
+            //   icon:<QuizIcon style={{color:"white", display:"none"}}/>,
+            //   link:"/teacherDashboard/Test"}
+              ,
               { name:'Upload-Notes',
               icon:<QuizIcon style={{color:"white"}}/>,
               link:"/teacherDashboard/noteUpload"},
               { name:'Upload-PYQS',
               icon:<QuizIcon style={{color:"white"}}/>,
               link:"/teacherDashboard/pyqUpload"},
+
+              // { name:'',
+              // icon:<QuizIcon style={{color:"white"}}/>,
+              // link:"/room/:roomID"}
+             
+
             // { name:'Course Material',
             //   icon:<DescriptionIcon style={{color:"white"}}/>,
             //   link:"/teacherDashboard/Notes"},

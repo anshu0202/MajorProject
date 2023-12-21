@@ -172,7 +172,7 @@ export const liveClassController = async (req, res) => {
     
 
     const { classId, teacherId, subjectId } = req.body;
-
+    console.log("req body is ",req.body);
     if (!classId || !teacherId || !subjectId) {
       res.status(400).send("Invalid request");
     }
@@ -382,7 +382,7 @@ export const pyqUploadController = async ( req, res, next) => {
 export const assignmentUploadController = async ( req, res, next) => {
   try {
    
-    console.log("hgefh ",req.fields)
+    // console.log("hgefh ",req.fields)
 
     const authClient = await authorize();
 
@@ -439,7 +439,11 @@ export const assignmentUploadController = async ( req, res, next) => {
     console.log(file);
     console.log("uploaded suceesful")
 
-    res.status(201).send('File Upload Successfully');
+    res.status(201).send({
+      message:'File Upload Successfully',
+      success:true
+
+    });
   } catch (error) {
     console.log("Error is ", error.message);
     res.status(400).send(error.message);

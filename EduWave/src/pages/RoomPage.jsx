@@ -11,16 +11,16 @@ const RoomPage = () => {
     const { teacherData, setTeacherData } = useTeacher();
 
     const myMeeting = async (element) => {
-        console.log("teacher data" , teacherData);
+        // console.log("teacher data" , teacherData);
         // const appID = import.meta.env.VITE_APP_ID;
         const appID = 36642466;
 
-        console.log("thisb is is app id -->" , appID);
+        // console.log("thisb is is app id -->" , appID);
 
-        // const serverSecret = import.meta.env.VITE_SERVER_SECRET;
+      
         const serverSecret = "90fa3790d13873f7e04d348ad2933aa1"
 
-        console.log("thisb is is secret id -->" , serverSecret);
+       
 
 
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
@@ -33,6 +33,8 @@ const RoomPage = () => {
         const zc = ZegoUIKitPrebuilt.create(kitToken);
 
         // zc.addPlugins({ ZegoSuperBoardManager });
+
+      
         zc.joinRoom({
             container: element,
             whiteboardConfig: {
@@ -63,6 +65,14 @@ const RoomPage = () => {
             showScreenSharingButton: true,
         });
 
+        // zc.on('endCall', () => {
+        //     // Your function to be executed when the "End Call" button is clicked
+        //     console.log('End Call button clicked');
+        //     // Add your custom logic here
+        // });
+
+
+
 
     }
 
@@ -71,12 +81,14 @@ const RoomPage = () => {
     return (
         <Layout>
 
-            <div style={{ width: "100%" , height: "100vh" }} className='container  '>
-                <div  className='d-flex justify-content-center align-items-center h-100 w-100' ref={myMeeting} />
-            </div>
+            {/* <div style={{ width: "100%" , height: "100vh" }} className='container  '> */}
+
+                <div  className='d-flex justify-content-center align-items-center h-100 w-100' ref={myMeeting}   />
+
+            {/* </div> */}
 
 
-        </Layout>
+         </Layout>
     )
 }
 

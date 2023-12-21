@@ -160,7 +160,7 @@ export const deleteStudentReq=async(sid)=>{
     try{
 
         const res = await axios.delete(`${url}/api/v1/admin/deleteStudentReq/${sid}`);
-        console.log("Student request deleted successfully", res);
+        // console.log("Student request deleted successfully", res);
         return res.data;
 
     }
@@ -173,7 +173,7 @@ export const getSubjectById=async(id)=>{
     try{
 
         const res = await axios.get(`${url}/api/v1/admin/getSubjectById/${id}`);
-        console.log("Subject request fethed successfully", res);
+        // console.log("Subject request fethed successfully", res);
         return res?.data;
     }
     catch(error){
@@ -185,7 +185,7 @@ export const getClasstById=async(id)=>{
     try{
 
         const res = await axios.get(`${url}/api/v1/admin/getClassById/${id}`);
-        console.log("Class request fethed successfully", res);
+        // console.log("Class request fethed successfully", res);
         return res?.data;
     }
     catch(error){
@@ -197,7 +197,7 @@ export const getClasstById=async(id)=>{
 export const teacherClassAllocation=async(data)=>{
     try{
         const res = await axios.post(`${url}/api/v1/admin/teacherClassAllocation`, data);
-        console.log("Class Allocated successfully", res);
+        // console.log("Class Allocated successfully", res);
         return res.data;
     }
     catch(error){
@@ -209,7 +209,7 @@ export const teacherClassAllocation=async(data)=>{
 export const classList=async(data)=>{
     try{
         const res = await axios.post(`${url}/api/v1/admin/getAllClassList`, data);
-        console.log("Class List HEre in admin API ", res);
+        // console.log("Class List HEre in admin API ", res);
         return res.data;
     }
     catch(error){

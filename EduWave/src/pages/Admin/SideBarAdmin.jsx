@@ -153,16 +153,18 @@ export default function SideBarAdmin() {
         icon: <QuizIcon style={{ color: "white" }} />,
         link: "/adminDashboard/assignTeachers"
       },
-      {
-        name: 'Upload-Notes',
-        icon: <QuizIcon style={{ color: "white" }} />,
-        link: "/teacherDashboard/noteUpload"
-      },
-      {
-        name: 'Upload-PYQS',
-        icon: <QuizIcon style={{ color: "white" }} />,
-        link: "/teacherDashboard/pyqUpload"
-      },
+      // {
+      //   name: 'Upload-Notes',
+      //   icon: <QuizIcon style={{ color: "white" }} />,
+      //   link: "/teacherDashboard/noteUpload"
+      // }
+      ,
+      // {
+      //   name: 'Upload-PYQS',
+      //   icon: <QuizIcon style={{ color: "white" }} />,
+      //   link: "/teacherDashboard/pyqUpload"
+      // }
+      ,
       // { name:'Course Material',
       //   icon:<DescriptionIcon style={{color:"white"}}/>,
       //   link:"/teacherDashboard/Notes"},
