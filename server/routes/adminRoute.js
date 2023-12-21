@@ -1,5 +1,5 @@
 import express from "express";
-import { allocateClassController, createNewClass, createSubjects, deleteStudentReqController, deleteTeacherReqController, getAllClassController, getAllStudentList, getAllStudentReq, getAllSubjectController, getAllTeacherReq, getAllteacherList, getSubjectByIdController, studentApproval, teacherApproval } from "../controllers/adminController.js";
+import { allocateClassController, createNewClass, createSubjects, deleteStudentReqController, deleteTeacherReqController, getAllClassController, getAllStudentList, getAllStudentReq, getAllSubjectController, getAllTeacherReq, getAllteacherList, getClassByIdController, getSubjectByIdController, studentApproval, teacherApproval } from "../controllers/adminController.js";
 
 const router = express.Router();
 
@@ -22,6 +22,8 @@ router.delete("/deleteTeacherReq/:tid" , deleteTeacherReqController );
 router.get("/getAllClassList" , getAllClassController);
 router.get("/getAllSubjects" , getAllSubjectController);
 router.get("/getSubjectById/:subjectId",getSubjectByIdController);
+router.get("/getClassById/:classId",getClassByIdController);
+
 
 
 // allocating teacher class and subjects

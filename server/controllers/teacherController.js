@@ -171,16 +171,16 @@ export const liveClassController = async (req, res) => {
   try {
     
 
-    const { classId, teacherId, classRoomId } = req.body;
+    const { classId, teacherId, subjectId } = req.body;
 
-    if (!classId || !teacherId || !classRoomId) {
+    if (!classId || !teacherId || !subjectId) {
       res.status(400).send("Invalid request");
     }
 
     const liveClass = await new liveClassModel({
       classId,
       teacherId,
-      classRoomId,
+      subjectId,
     }).save();
 
     res.status(201).send({

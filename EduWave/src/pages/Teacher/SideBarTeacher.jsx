@@ -121,9 +121,9 @@ export default function SideBarTeacher() {
             {name:'Start Live Class',
              icon:<VideoCameraFrontIcon  style={{color:"white"}} />,
              link:"/teacherDashboard/JoinClass"},
-            { name:'Courses',
+            { name:'Classes',
               icon:<ClassIcon style={{color:"white"}}/>,
-              link:"/teacherDashboard/Courses"}, 
+              link:"/teacherDashboard/classes"}, 
             { name:'Attendance',
               icon:<AssessmentIcon style={{color:"white"}}/>,
               link:"/teacherDashboard/Attendance"},
@@ -179,6 +179,12 @@ export default function SideBarTeacher() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    localStorage.clear();
+    navigate("/login");
+
+
+
+
   };
 
   const handleDash = ()=>{
@@ -196,7 +202,9 @@ export default function SideBarTeacher() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
+            style={{cursor:"pointer"}}
             sx={{
+
               marginRight: 5,
               ...(open && { display: 'none' }),
             }}
@@ -207,9 +215,10 @@ export default function SideBarTeacher() {
             {title==undefined ? "Teacher Dashboard" : title}
             {/* {title} */}
           </Typography>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoHXWaNoXKuhTQ8j3eV-NxoCOxrpOfXEYwpg3gF-vMw&s" alt="" onClick={handleClick} style={{height:"30px",width:"30px",borderRadius:"50%"}} />
+          <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoHXWaNoXKuhTQ8j3eV-NxoCOxrpOfXEYwpg3gF-vMw&s" alt="" onClick={handleClick} style={{height:"30px",width:"30px",borderRadius:"50%"}} />
         </Toolbar>
         <Menu
+          style={{cursor:"pointer"}}
         anchorEl={anchorEl}
         id="account-menu"
         open={opendropdown}

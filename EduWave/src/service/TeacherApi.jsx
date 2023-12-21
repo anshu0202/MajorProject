@@ -25,7 +25,7 @@ export const startLiveClass = async(data) => {
     try {
         const res = await axios.post(`${url}/api/v1/teacher/startClass`, data)
         console.log("this is teach-->", res);
-        return res.data;
+        return res?.data;
 
 
 

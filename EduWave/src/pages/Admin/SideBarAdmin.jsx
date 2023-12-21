@@ -202,7 +202,10 @@ export default function SideBarAdmin() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+
     setAnchorEl(null);
+    localStorage.clear();
+    navigate("/login");
   };
 
   const handleDash = () => {
