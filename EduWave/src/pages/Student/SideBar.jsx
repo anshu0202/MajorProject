@@ -136,16 +136,16 @@ export default function SideBar() {
         icon: <VideoCameraFrontIcon style={{ color: "white" }} />,
         link: "/studentDashboard/JoinClass"
       },
-      {
-        name: 'Courses',
-        icon: <ClassIcon style={{ color: "white" }} />,
-        link: "/studentDashboard/Courses"
-      },
-      {
-        name: 'Attendance',
-        icon: <AssessmentIcon style={{ color: "white" }} />,
-        link: "/studentDashboard/Attendance"
-      },
+      // {
+      //   name: 'Courses',
+      //   icon: <ClassIcon style={{ color: "white" }} />,
+      //   link: "/studentDashboard/Courses"
+      // },
+      // {
+      //   name: 'Attendance',
+      //   icon: <AssessmentIcon style={{ color: "white" }} />,
+      //   link: "/studentDashboard/Attendance"
+      // },
       {
         name: 'Assignment',
         icon: <AssignmentIcon style={{ color: "white" }} />,
@@ -161,21 +161,21 @@ export default function SideBar() {
         icon: <AssignmentIcon style={{ color: "white" }} />,
         link: "/studentDashboard/Previous"
       },
-      {
-        name: 'Test',
-        icon: <QuizIcon style={{ color: "white" }} />,
-        link: "/studentDashboard/Test"
-      },
-      {
-        name: 'Course Material',
-        icon: <DescriptionIcon style={{ color: "white" }} />,
-        link: "/studentDashboard/Notes"
-      },
-      {
-        name: 'Calendar',
-        icon: <CalendarMonthIcon style={{ color: "white" }} />,
-        link: "/studentDashboard/Schedule"
-      },
+      // {
+      //   name: 'Test',
+      //   icon: <QuizIcon style={{ color: "white" }} />,
+      //   link: "/studentDashboard/Test"
+      // },
+      // {
+      //   name: 'Course Material',
+      //   icon: <DescriptionIcon style={{ color: "white" }} />,
+      //   link: "/studentDashboard/Notes"
+      // },
+      // {
+      //   name: 'Calendar',
+      //   icon: <CalendarMonthIcon style={{ color: "white" }} />,
+      //   link: "/studentDashboard/Schedule"
+      // },
       // {
       //   name: 'Announcements',
       //   icon: <CircleNotificationsIcon style={{ color: "white" }} />,

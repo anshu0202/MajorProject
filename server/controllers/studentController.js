@@ -281,6 +281,32 @@ export const joinLiveClass = async (req, res) => {
 };
 
 
+export const getLiveCLass = async (req, res) => {
+  try {
+  
+    const getClassList = await liveClassModel.find().populate('classId').populate('teacherId').populate('subjectId');
+
+    // console.log("live class ",getClassList)
+   
+    res.status(200).send({
+      message:"List of live classes",
+      success:true,
+      classList:getClassList
+    })
+  }
+  catch(error){
+    console.log("Error while getting live class list",error.message);
+    res.status(500).send({
+      message:"Error while getting live class list",
+      success:false
+    })
+
+  }
+
+    
+};
+
+
 
 export const assignmentSubmitController = async ( req, res, next) => {
   try {
