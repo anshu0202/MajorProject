@@ -21,7 +21,7 @@ const Layout = ({ children, title, description, keywords, author }) => {
                 {children}
                 <ToastContainer position="top-center" autoClose={5000} />
             </main>
-            <Footer />
+            {/* <Footer /> */}
 
         </>
     )

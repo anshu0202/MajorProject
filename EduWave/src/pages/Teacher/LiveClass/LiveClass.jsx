@@ -29,21 +29,21 @@ const LiveClass = () => {
 
     const handleJoinRoom = async()=>{
         console.log("teacher data" , teacherData);
-
-        const res = await startLiveClass({
-            classId : "abcd",   
-             teacherId :  teacherData.teacherID,  
+        navigate(`/room/${roomID}`);
+        // const res = await startLiveClass({
+        //     classId : "abcd",   
+        //      teacherId :  teacherData.teacherID,  
              
-             classRoomId: roomID
+        //      classRoomId: roomID
             
-        })
+        // })
 
-        console.log("this is res -->", res);
+        // console.log("this is res -->", res);
 
-        if(res){
-            navigate(`/room/${roomID}`);
-            toast.success("Class Created Successfull!!  ")
-        }
+        // if(res){
+            
+        //     toast.success("Class Created Successfull!!  ")
+        // }
 
 
     }

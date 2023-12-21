@@ -181,6 +181,19 @@ export const getSubjectById=async(id)=>{
     }
 }
 
+export const getClasstById=async(id)=>{
+    try{
+
+        const res = await axios.get(`${url}/api/v1/admin/getClassById/${id}`);
+        console.log("Class request fethed successfully", res);
+        return res?.data;
+    }
+    catch(error){
+        console.log("Error while getting Class details by id", error);
+    }
+}
+
+
 export const teacherClassAllocation=async(data)=>{
     try{
         const res = await axios.post(`${url}/api/v1/admin/teacherClassAllocation`, data);

@@ -8,7 +8,7 @@ function Feature() {
     return (
         <div className='main-teacher-dashboard'>
             <div className="feature-intro">
-                <h1>Why ExamPedia ?</h1>
+                <h1>Education HUB ?</h1>
                 <p>Maximize your learning and reach your academic goals with our user-friendly platform. Join now and get access to a wide range of notes and previous year questions, as well as the support of a community of like-minded students</p>
             </div>
             <div className="feature">

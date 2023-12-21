@@ -43,7 +43,8 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
   const handlelogout = () => {
-    navigate("/register");
+    localStorage.clear();
+    navigate("/login");
     toast.success("Successfull");
   }
 
@@ -56,7 +57,7 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -72,7 +73,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            EducationHUB
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -128,7 +129,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Education HUB
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', }, justifyContent: 'flex-end', gap: '20px', mr: '10px' }}>
@@ -150,14 +151,14 @@ function ResponsiveAppBar() {
 
 
 
-            <Button
+            {/* <Button
               onClick={handlelogin}
               sx={{ my: 2, display: 'block' }}
               color='success'
               variant='contained'
             >
               Login/Register
-            </Button>
+            </Button> */}
 
 
 

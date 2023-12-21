@@ -38,20 +38,22 @@ function JoinClass() {
 
 
   const handleJoin = async(classId) => {
-    console.log(classId);
-    const res = await joinLiveClass(classId);
-    const classID = res.classRoomId;
-
-    if(classID){
-      navigate(`/room/${classID}`);
-    }
 
 
-    console.log("this is res in joinclass -->", res);
+    navigate(`/room/${classId}`);
+    // console.log(classId);
+    // const res = await joinLiveClass(classId);
+    // const classID = res.classRoomId;
 
-    if(res){
-      toast.success("Class Joined Successfull!!  ")
-    }
+    // if(classID){
+    // }
+
+
+    // console.log("this is res in joinclass -->", res);
+
+    // if(res){
+    //   toast.success("Class Joined Successfull!!  ")
+    // }
 
 
 

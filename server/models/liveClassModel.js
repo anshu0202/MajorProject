@@ -7,7 +7,7 @@ const liveClassSchema = new mongoose.Schema(
       required: [true, "Class id is required"],
     },
     teacherId: { type: String, required: [true, "Teacher id is required"] },
-    classRoomId: {
+    subjectId: {
       type: String,
       required: [true, "class room id is required"],
     },

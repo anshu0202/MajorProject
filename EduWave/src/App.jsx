@@ -39,6 +39,7 @@ import CreateSubjects from './pages/Admin/Assignments/CreateSubjects';
 import AssignTeachers from './pages/Admin/Test/AssignTeachers';
 import ClassManagement from './pages/Admin/ClassManagement/ClassManagement';
 import ClassAllocation from './pages/Admin/ClassAllocation/ClassAllocation';
+import TeacherClasses from './pages/Teacher/TeacherClasses/TeacherClasses';
 // import Testingpage from './pages/Testingpage';
 
 
@@ -101,6 +102,8 @@ function App() {
         <Route path="JoinClass" element={<LiveClass/>}/>
         <Route path="Profile" element={<Profile/>}/>
         <Route path="UpdateProfile" element={<UpdateProfile/>}/>
+        <Route path="classes" element={<TeacherClasses/>}/>
+
 
 
 

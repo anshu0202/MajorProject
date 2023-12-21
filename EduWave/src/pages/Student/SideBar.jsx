@@ -123,7 +123,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function SideBar() {
 
-  
+  const navigate  = useNavigate();
 
 
 
@@ -218,6 +218,8 @@ export default function SideBar() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    localStorage.clear();
+    navigate("/login");
   };
 
 

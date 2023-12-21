@@ -12,7 +12,7 @@ const TeacherProvider = ({ children }) => {
         }else{
             setTeacherData({
                 teacherID : "teacherID",
-                teacherName : "Dinesh",
+                teacherName : JSON.parse(localStorage.getItem("auth"))?.firstName,
                 teacherEmail : "s4iXy@example.com",
                 teacherImage : "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
                 phone : 9414565899,

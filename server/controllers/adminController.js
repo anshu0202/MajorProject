@@ -481,3 +481,32 @@ export const getSubjectByIdController = async (req, res) => {
         });
     }
 };
+
+
+export const getClassByIdController = async (req, res) => {
+    const { classId } = req.params;
+
+    try {
+        const classDeatil = await classModel.findById(classId);
+
+        if (!classDeatil) {
+            return res.status(404).send({
+                message: "Class not found",
+                success:false
+            });
+        }
+
+        res.status(200).send({
+            message: "Class retrieved successfully",
+            data: classDeatil,
+            success:true
+        });
+    } catch (error) {
+        console.error("Error while getting Class by ID: ", error.message);
+        res.status(500).send({
+            message: "Error while getting Class by ID",
+            error: error.message,
+            success:false
+        });
+    }
+};
