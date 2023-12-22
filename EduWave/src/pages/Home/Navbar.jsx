@@ -34,11 +34,11 @@ function Navbar() {
 
                     <NavLink onClick={menuClose} className="nav-links" exact to="/about">About</NavLink>
 
-                    <NavLink onClick={menuClose} className="nav-links" exact to="/upload">Upload</NavLink>
+                    {/* <NavLink onClick={menuClose} className="nav-links" exact to="/upload">Upload</NavLink> */}
 
-                    <NavLink onClick={menuClose} className="nav-links" exact to="/pyq">PYQ</NavLink>
+                    {/* <NavLink onClick={menuClose} className="nav-links" exact to="/pyq">PYQ</NavLink> */}
 
-                    <NavLink onClick={menuClose} className="nav-links" exact to="/notes">Notes</NavLink>
+                    {/* <NavLink onClick={menuClose} className="nav-links" exact to="/notes">Notes</NavLink> */}
 
                     <NavLink onClick={menuClose} className="nav-links" exact to="/contact">Contact</NavLink>
 

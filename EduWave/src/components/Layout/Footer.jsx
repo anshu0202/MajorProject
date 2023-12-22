@@ -1,76 +1,83 @@
+import React from 'react'
 
-import * as React from "react";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import { Facebook, Instagram, Twitter } from "@mui/icons-material";
-import { Box } from "@mui/material";
-
-export default function Footer() {
+function Footer() {
     return (
-        <Box
-            component="footer"
-            sx={{
-                // background: 'rgb(2, 0, 36)',
-                background: 'linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 88, 121, 1) 53%, rgba(0, 212, 255, 1) 100%)',
-            }}
-        >
-            <Container maxWidth="lg">
-                <Grid container spacing={5}>
-                    <Grid item xs={12} sm={4}>
-                        <Typography variant="h6" color="white" gutterBottom>
-                            About Us
-                        </Typography>
-                        <Typography variant="body2" color="white">
-                            We are Education Wave , dedicated to providing the best service to our
-                            customers.
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Typography variant="h6" color="white" gutterBottom>
-                            Contact Us
-                        </Typography>
-                        <Typography variant="body2" color="white">
-                            Jalandhar Punjab
-                        </Typography>
-                        <Typography variant="body2" color="white">
-                            Email: laxmikantsarswat.com
-                        </Typography>
-                        <Typography variant="body2" color="white">
-                            Phone: +91 9511506049
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Typography variant="h6" color="white" gutterBottom>
-                            Follow Us
-                        </Typography>
-                        <Link href="https://www.facebook.com/" color="inherit">
-                            <Facebook />
-                        </Link>
-                        <Link
-                            href="https://www.instagram.com/"
-                            color="inherit"
-                            sx={{ pl: 1, pr: 1 }}
-                        >
-                            <Instagram />
-                        </Link>
-                        <Link href="https://www.twitter.com/" color="inherit">
-                            <Twitter  />
-                        </Link>
-                    </Grid>
-                </Grid>
-                <Box mt={5}>
-                    <Typography variant="body2" color="white" align="center">
-                        {"Copyright © "}
-                        <Link color="inherit" href="https://your-website.com/">
-                            Education Wave  
-                        </Link>{" "}
-                        {new Date().getFullYear()}
-                        {"."}
-                    </Typography>
-                </Box>
-            </Container>
-        </Box>
-    );
+        <>
+            <div className="footer">
+                <div className="footer-main">
+                    <div className="footer-intro">
+                        <h1>Stay connected with Us. </h1>
+                    </div>
+
+                    <div className="footer-social">
+
+                        <div className="linkedin">
+                            <img src="https://i.postimg.cc/0ynccSBG/linkedin.gif" alt="" srcset="" />
+
+                            <a href="https://www.linkedin.com/in/seea-rani-3642bb215/" target="_blank">
+                                <h1><span><i class="fa-solid fa-arrow-up-right-from-square"></i></span>Linkedin</h1>
+                            </a>
+
+                        </div>
+
+                        <div className="instagram">
+                            <img src="https://i.postimg.cc/sDqV1Bcc/instagram.gif" alt="" srcset="" />
+                            <a href="https://www.instagram.com/seea__garg/" target="_blank">
+                                <h1><span><i class="fa-solid fa-arrow-up-right-from-square"></i></span>Instagram</h1>
+                            </a>
+
+                        </div>
+
+                        {/* <div className="github">
+                            <img src="https://i.postimg.cc/yxWH8B3t/github.gif" alt="" srcset="" />
+                            <a href="https://github.com/Abdev1205" target="_blank">
+                                <h1><span><i class="fa-solid fa-arrow-up-right-from-square"></i></span>Github</h1>
+                            </a>
+
+                        </div> */}
+
+                        {/* <div className="youtube">
+                            <img src="https://i.postimg.cc/NjqWWRDW/youtube.gif" alt="" srcset="" />
+                            <a href="https://www.youtube.com/c/Abideas" target="_blank">
+                                <h1><span><i class="fa-solid fa-arrow-up-right-from-square"></i></span>Youtube</h1>
+                            </a>
+
+                        </div> */}
+
+                        <div className="facebook">
+                            <img src="https://i.postimg.cc/FRMMNcmd/facebook.gif" alt="" srcset="" />
+                            <a href="https://www.facebook.com/people/Seea-Garg/pfbid02Nmj7YjZhsRQRXKCx8T4Dip4W3QvHJf2xzFAnNuBmqyVVDh2iGVTEBYSM4R2F5z6rl/" target="_blank">
+                                <h1><span><i class="fa-solid fa-arrow-up-right-from-square"></i></span>Facebook</h1>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            {/* <div className="footer-content">
+                <h1>Developed and Designed By <a href="https://dev-ab.netlify.app/" target="_blank">Abhay Mishra</a>
+                </h1>
+            </div> */}
+            
+            <footer class="py-3 " style={{background: "linear-gradient(303deg, rgba(182, 51, 118, 1) 5%, rgba(29, 15, 74, 1) 57%)",
+  width: "100%"}}>
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted text-white">Home</a></li>
+      {/* <li class="nav-item"><a href="#" class="nav-link px-2 text-muted text-white">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted text-white">Pricing</a></li> */}
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted text-white">Contact Us</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted text-white">About Us</a></li>
+    </ul>
+    <p class="text-center text-light">© 2023 Education Hub, Inc</p>
+  </footer>
+
+
+
+            </div>
+        </>
+    )
 }
+
+export default Footer
