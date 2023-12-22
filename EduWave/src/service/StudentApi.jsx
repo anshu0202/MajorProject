@@ -96,3 +96,16 @@ export const joinLiveClass = async (classId) => {
     }
 
 }
+
+
+export const getLiveClassList=async()=>{
+     try{
+        const res=await axios.get(`${url}/api/v1/student/getLiveClass`)
+        // console.log("liist is ",res.data);
+        return res.data;
+     }
+     catch(error){
+        console.log("Error while getting live class List",error.message);
+
+     }
+}

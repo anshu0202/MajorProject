@@ -85,22 +85,24 @@ export default function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(classObj===null){
-            toast.error("Select course");
-            return 
-        }
-
-        const data = {
-            fname: fname,
-            email: email,
-            password: password,
-            lname: lname,
-            role: role,
-            classId:classObj?._id
-        }
+        
         // console.log(data);
 
         if(role==1){
+            if(classObj===null){
+                toast.error("Select course");
+                return 
+            }
+    
+            const data = {
+                fname: fname,
+                email: email,
+                password: password,
+                lname: lname,
+                role: role,
+                classId:classObj?._id
+            }
+
             const res = await newStudentRegister(data);
         // console.log("res in register page main ", res);
         if (res.success) {
@@ -118,6 +120,15 @@ export default function SignUp() {
 
 
         }else{
+            
+    
+            const data = {
+                fname: fname,
+                email: email,
+                password: password,
+                lname: lname,
+                role: role,
+            }
             const res = await newTeacherRegister(data);
         console.log("res in register page main ", res);
         if (res.success) {

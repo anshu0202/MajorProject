@@ -7,6 +7,7 @@ import {
   getAllAttendance,
   getAssignmentController,
   getAttendanceByClass,
+  getLiveCLass,
   joinLiveClass,
   studentLogin,
   studentRegisterController,
@@ -42,6 +43,8 @@ router.get('/getAssignment/:sid/:cid', upload.single('file'), getAssignmentContr
 
 //join class 
 router.get('/joinClass/:id',joinLiveClass);
+
+router.get('/getLiveClass',getLiveCLass)
 
 
 

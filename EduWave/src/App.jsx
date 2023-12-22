@@ -40,6 +40,7 @@ import AssignTeachers from './pages/Admin/Test/AssignTeachers';
 import ClassManagement from './pages/Admin/ClassManagement/ClassManagement';
 import ClassAllocation from './pages/Admin/ClassAllocation/ClassAllocation';
 import TeacherClasses from './pages/Teacher/TeacherClasses/TeacherClasses';
+import Contact from './components/Layout/Contact'
 // import Testingpage from './pages/Testingpage';
 
 
@@ -60,6 +61,7 @@ function App() {
 
 
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact/>} />
         <Route path="/studentDashboard" element={<SideBar/>}>
 
         <Route index element={<Course/>} />

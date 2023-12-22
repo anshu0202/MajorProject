@@ -13,7 +13,7 @@ function Hero() {
             </span></h2>
             <img src="https://i.postimg.cc/mrC7Cnhh/image-removebg-preview-2.png" alt="" />
             <h1>Ace your exams with our comprehensive notes and pyq</h1>
-            <h3>Unlock your full potential with our in-depth notes and pyq</h3>
+            <h2>Unlock your full potential with our in-depth notes and pyq</h2>
             <div className="hero-button">
             <NavLink exact to="/studentDashboard">
             <button className="notes">Student</button>
