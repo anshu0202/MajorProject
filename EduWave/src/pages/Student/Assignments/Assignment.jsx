@@ -36,7 +36,7 @@ function Notes() {
   const [sortOptionOpen, setSortOptionOpen] = useState(true)
   const [loaderAnimation , setLoaderAnimation] =useState(false)
   const [sortValue,setSortValue ] = useState('MID Term')
-  const url = import.meta.env.VITE_BACKEND_URL;
+  const url = meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     const loadOption = async () => {
       // const pyqServerData = await fetch('https://exampedia-rest-api-production.up.railway.app/api/allNote');

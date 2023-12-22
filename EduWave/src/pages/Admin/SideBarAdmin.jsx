@@ -125,7 +125,7 @@ export default function SideBarAdmin() {
       },
       {
         name: 'Student Management',
-        icon: <ClassIcon style={{ color: "white" }} />,
+        icon: <QuizIcon style={{ color: "white" }} />,
         link: "/adminDashboard/studentManagement"
       },
       {
@@ -135,24 +135,24 @@ export default function SideBarAdmin() {
       },
       {
         name: 'Class Allocation',
-        icon: <ClassIcon style={{ color: "white" }} />,
-        link: "/adminDashboard/classAllocation"
-      },
-      {
-        name: 'Create Course',
         icon: <AssessmentIcon style={{ color: "white" }} />,
-        link: "/adminDashboard/createCourse"
+        link: "/adminDashboard/classManagement"
       },
-      {
-        name: 'Crete Subject',
-        icon: <AssignmentIcon style={{ color: "white" }} />,
-        link: "/adminDashboard/createSubjects"
-      },
-      {
-        name: 'Assign Teachers',
-        icon: <QuizIcon style={{ color: "white" }} />,
-        link: "/adminDashboard/assignTeachers"
-      },
+      // {
+      //   name: 'Create Course',
+      //   icon: <AssessmentIcon style={{ color: "white" }} />,
+      //   link: "/adminDashboard/createCourse"
+      // },
+      // {
+      //   name: 'Crete Subject',
+      //   icon: <AssignmentIcon style={{ color: "white" }} />,
+      //   link: "/adminDashboard/createSubjects"
+      // },
+      // {
+      //   name: 'Assign Teachers',
+      //   icon: <QuizIcon style={{ color: "white" }} />,
+      //   link: "/adminDashboard/assignTeachers"
+      // },
       // {
       //   name: 'Upload-Notes',
       //   icon: <QuizIcon style={{ color: "white" }} />,
