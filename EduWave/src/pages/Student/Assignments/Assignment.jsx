@@ -24,6 +24,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { toast, ToastContainer } from 'react-toastify';
+import axios from 'axios';
 
 function Notes() {
   const [serverValue, setServerValue] = useState([])
@@ -34,9 +36,10 @@ function Notes() {
   const [suggestion, setSuggestion] = useState([])
   const [searchResult, setSearchResult] = useState([])
   const [sortOptionOpen, setSortOptionOpen] = useState(true)
-  const [loaderAnimation , setLoaderAnimation] =useState(false)
-  const [sortValue,setSortValue ] = useState('MID Term')
-  const url = meta.env.VITE_BACKEND_URL;
+  const [loaderAnimation, setLoaderAnimation] = useState(false)
+  const [sortValue, setSortValue] = useState('MID Term')
+  const url = import.meta.env.VITE_BACKEND_URL;
+  const [ showView ,  setShowView] = useState(false);
   useEffect(() => {
     const loadOption = async () => {
       // const pyqServerData = await fetch('https://exampedia-rest-api-production.up.railway.app/api/allNote');
@@ -83,7 +86,7 @@ function Notes() {
     loadOption()
     search()
 
-  }, [optionValue,searchBarValue])
+  }, [optionValue, searchBarValue])
 
 
 
@@ -92,23 +95,23 @@ function Notes() {
     // console.log(e.target.value);
   }
 
-  const sort = (e) =>{
-    if(e.target.value === 'Sort'){
+  const sort = (e) => {
+    if (e.target.value === 'Sort') {
       setSortValue('');
-    }else{
+    } else {
 
       setSortValue(e.target.value);
       console.log(e.target.value);
     }
     // console.log(sortValue);
     search()
-    
+
   }
 
   const searchBar = (searchKeyword) => {
     // setSearchBarValue(e.target.value);
     // console.log(e.target.value);
-    
+
     let searchMatch = [];
     if (searchKeyword.length > 0) {
       searchMatch = searchKeyValueSuggestion.filter(ele => {
@@ -129,7 +132,7 @@ function Notes() {
 
 
   const search = async () => {
-    if(searchBarValue.length > 0){
+    if (searchBarValue.length > 0) {
 
     }
     // alert(`${searchBarValue} is searched`)
@@ -139,9 +142,90 @@ function Notes() {
     // console.log("loda lasun -->" , searchValue);
     setSearchResult(searchValue.data);
     setLoaderAnimation(true);
-    
+
 
   }
+
+
+
+  const validateViewCount = async()=>{
+
+    try {
+      console.log("kjvnfsdkjnvskjdf validate")
+      const userID = JSON.parse(localStorage.getItem("auth"))?._id;
+
+      const res = await fetch(`${url}/api/v1/teacher/checkUserViewAssignment/${userID}`);
+
+      console.log("this is res -->", res);
+
+
+      
+    } catch (error) {
+      console.log(error);
+    }
+
+
+
+
+  }
+
+  const handleClickView = async (data) => {
+    console.log(" check user already view" , data);
+
+
+
+    try {
+      const userID = JSON.parse(localStorage.getItem("auth"))?._id;
+
+      const res = await axios.get(`${url}/api/v1/teacher/checkUserViewAssignment/${userID}/${data._id}`);
+
+      console.log("this is res -->", res);
+
+      if(res.data.view==true){
+
+        toast.error("Already viewed");
+        setShowView(false);
+        return;
+      }else{
+        toast.success("Viewed successfully");
+        setShowView(true);
+      }
+
+
+      
+    } catch (error) {
+      console.log(error);
+    }
+
+
+      console.log("this is data -->", data);
+
+      
+
+
+
+      const id = data._id;
+      const userID = JSON.parse(localStorage.getItem("auth"))?._id;
+      console.log("This is user ID-->" , userID);
+      const res = await fetch(`${url}/api/v1/teacher/increaseCount/${id}`);
+
+      if (res.status === 200) {
+        toast.success("Count increased successfully");
+        // window.location.reload();
+        search();
+      }
+
+    
+
+
+
+
+
+
+  }
+
+
+  
 
 
 
@@ -152,7 +236,7 @@ function Notes() {
     <>
       {/* <Navbar /> */}
       <div className="note">
-        <div className="note-intro" style={{padding:"0%",position:"relative"}}>
+        <div className="note-intro" style={{ padding: "0%", position: "relative" }}>
           <div className="note-select">
             <select value={optionValue} onChange={(e) => option(e)} name="" id="">
               <option className='note-option'>filter</option>
@@ -178,52 +262,72 @@ function Notes() {
               );
             })}
           </div>
-          
+
         </div>
 
-        <Row style={{marginTop:"8rem",width:"90%",margin:"8rem auto"}}>
+        <Row style={{ marginTop: "8rem", width: "90%", margin: "8rem auto" }}>
           {loaderAnimation ? searchResult && searchResult.map((searchResult, i) => {
             let docUrl = `https://drive.google.com/file/d/`;
             let docMethod = `/view`
             return (
               <>
 
-                <Col sm md key={i} className="note-card"  style={{padding:"0%"}}>
-                <div className="note-card-subject">
+                <Col sm md key={i} className="note-card" style={{ padding: "0%" }}>
+                  <div className="note-card-subject">
 
-                <h1>{searchResult.subject}</h1>
-                </div>
-                <div className="note-card-content">
-                  <div className="note-card-content-1">
-                    <img src="https://i.postimg.cc/fbvjMqxy/image-removebg-preview-4.png" alt="" srcset="" />
+                    <h1>{searchResult.subject}</h1>
                   </div>
-                  <div className="note-card-content-2">
-                  
-                    <h2>credit : {searchResult.credit}</h2>
-                    <h3>{searchResult.fileSize}</h3>
-                    <h4>{searchResult.fileType}</h4>
-                    <a style={{textDecoration:"none"}} target='_blank' href=  {searchResult?.filePath?.webContentLink}>
-                    <button>Download</button>
-                    </a>
-                    <a style={{textDecoration:"none" , marginTop:"1rem"}} target='_blank' href=  {searchResult?.filePath?.webViewLink}>
-                    <button>View</button>
-                    </a>
+                  <div className="note-card-content">
+                    <div className="note-card-content-1">
+                      <img src="https://i.postimg.cc/fbvjMqxy/image-removebg-preview-4.png" alt="" srcset="" />
+                    </div>
+                    <div className="note-card-content-2">
+
+                      <h2>credit : {searchResult.credit}</h2>
+                      <h3>{searchResult.fileSize}</h3>
+                      <h4>{searchResult.fileType}</h4>
+
+                      <h4>{searchResult.count}</h4>
+                      <a style={{ textDecoration: "none" }} target='_blank' href={searchResult?.filePath?.webContentLink}>
+                        <button>Download</button>
+                      </a>
+
+
+
+                      {
+                        showView ==true ? null : 
+
+
+                        <a 
+                      
+                      style={{ textDecoration: "none", marginTop: "1rem" }} target='_blank' href={searchResult?.filePath?.webViewLink}>
+                        <button onclick={() => handleClickView(searchResult)}>View</button>
+
+                      </a>
+
+
+                      }
+
+                      <button onClick={() => handleClickView(searchResult)}>Checkkk</button>
+
+                      {/* <button className='mt-2' onClick={() => handleClickView(searchResult)} >Count</button> */}
+                      {/* <button onClick={() => handleClickView(searchResult)}>test 111</button> */}
+                    </div>
                   </div>
-                </div>
-                <div className="note-card-credit">
-                  <h1>{searchResult.chapter}</h1>
-                </div>
-                  
+                  <div className="note-card-credit">
+                    <h1>{searchResult.chapter}</h1>
+                  </div>
+
                 </Col>
               </>
             )
-          }) :<LoadingAnimation/> }
+          }) : <LoadingAnimation />}
         </Row>
-        
+
 
       </div>
 
-
+      <ToastContainer />
     </>
   )
 }

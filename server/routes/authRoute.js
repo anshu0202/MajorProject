@@ -14,7 +14,7 @@ const router = express.Router();
 
 // routing
 //Register Route || POST
-router.post('/register', registerController);
+router.post('/register', isAdmin ,  registerController);
 
 // Register with google || POST
 

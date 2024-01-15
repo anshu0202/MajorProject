@@ -41,6 +41,10 @@ const assignmentSchema = new Schema ({
         // required : true,
         
     },
+    count : {
+        type : Number,
+        default : 0
+    }
     
     
 }, {timestamps:true});
