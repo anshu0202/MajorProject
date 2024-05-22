@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const ObjectId = mongoose.Types.ObjectId;
 import fs from "fs";
 import noteModel from "../models/noteModel.js";
-
+import viewCountModel from "../models/viewCountModel.js";
 import {google} from 'googleapis';
 import { fileSizeFormatter, getToken } from "../helpers/utils.js";
 import pyqModel from "../models/pyqModel.js";
@@ -557,6 +557,108 @@ export const updateProfile=async(req,res)=>{
      error:error.message
    })
   }
+}
+
+
+export const increaseCountController = async (req, res) => {
+
+  try{
+    const {id} = req.params;
+
+    console.log("this is id assignment ", id ,  typeof(id));
+
+
+    
+    const assignment = await assignmentModel.findOne({ _id: id });
+
+    
+
+
+    if (!assignment) {
+      return res.status(404).send("Assignment not found");
+    }
+
+   
+
+    assignment.count = assignment.count + 1;
+
+    await assignment.save();
+
+    res.status(200).send({
+      message: "Count increased successfully",
+      success: true,
+    })
+
+
+
+
+
+  }catch(error){
+    console.log("Error while updating teacher profile ", error.message);
+    res.status(500).
+    send({
+       message: error.message,
+        success: false });
+
+
+
+  }
+
+
+
+
+
+}
+
+
+export const checkUserInView = async (req, res) => {
+
+
+  try {
+
+    const { userID , assignmentID } = req.params;
+    
+    const exist = await viewCountModel.findOne({ userID: userID , assignmentID: assignmentID });
+
+    if(exist){
+      return res.status(200).send({
+        message: "Already viewed",
+        success: true,
+        view : true
+      })
+    }
+
+    console.log("this is exist ", exist);
+
+    const newView = new viewCountModel({
+      userID: userID
+      , assignmentID: assignmentID
+    })
+    
+    await newView.save();
+    res.status(200).send({
+      message: "Viewed successfully for 1st time",
+      success: true,
+      view : false
+    })
+
+
+
+
+
+
+  } catch (error) {
+    console.log(error);
+    res.satus(500).send({
+      message: error.message,
+      success: false,
+    })
+  }
+
+
+
+
+
 }
 
 
